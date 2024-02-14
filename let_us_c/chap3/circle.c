@@ -6,16 +6,15 @@ int main() {
     int x, y, r;
     int dis, d;
 
-    x = 2; // Coordinate x of the point
-    y = 2; // Coordinate y of the point
-    r = 3; // Radius of the circle
+    x = 2; 
+    y = 2; 
+    r = 3; 
            
-    // Calculate the square of the distance from the origin to the point
-    // Hypotenuse
+    /* Calculate the square of the distance (hypotenuse) from the origin (0,0) to (x, y) */
     dis = x * x + y * y;
-    // Calculate the square of the radius 
+    /* Square of the radius */
     d = r * r;
-    // Compare and determine the position of the point with respect to the circle
+    
     if (dis == d)
         printf("Point is on the circle\n");
     else {
@@ -24,6 +23,5 @@ int main() {
         else
             printf("Point is inside the circle\n");
     }
-
     return 0;
 }
