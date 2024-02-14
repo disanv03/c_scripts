@@ -9,7 +9,9 @@
 
 > "main() is a function. A function is nothing but a container for a set of statements."
 
+
 | Priority | Operators | Descriptions                                |
+|----------|-----------|---------------------------------------------|
 | 1st      | * / %     | Multiplication, Division, Modular division  |
 | 2nd      | + -       | Addition, Subtraction                       |
 | 3rd      | =         | Assignment                                  |
