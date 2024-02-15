@@ -32,3 +32,26 @@ a = 3 / 2 * 5
 ---
 
 > "Note that in C a non-zero value is considered to be true, whereas a O is considered to be false."
+
+> "Remember that in C, 'truth' is always non-zero"
+
+
+```c
+/* first question */
+int a = 10;
+!(a < 10) /* value 1 */
+
+/* second question */
+/* Why parenthesis */
+i >= 5 ? j = 10 : j = 15;
+/* find what is confusing for the compiler */
+```
+
+
+> "Almost always, if something is worth doing, it's worth doing more than once"
+
+
+> "Upon reaching the closing brace of for, control is sent back to the for statement, where the value of **count** gets incremented by 1."
+
+
+> "We often come across situations where we want to jump out of a loop instantly, without waiting to get back to the condition. The keyword *break* allows us to do this. When *break* is encountered inside any loop, control automatically passes to the first statement after the loop."
