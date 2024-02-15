@@ -55,3 +55,6 @@ i >= 5 ? j = 10 : j = 15;
 
 
 > "We often come across situations where we want to jump out of a loop instantly, without waiting to get back to the condition. The keyword *break* allows us to do this. When *break* is encountered inside any loop, control automatically passes to the first statement after the loop."
+
+
+> "In some programming situations, we want to take the control to the beginning of the loop, bypassing the statements inside the loop, which have not yet been executed. The keyword *continue* allows us to do this. When continue is encountered inside any loop, control automatically passes to the beginning of the loop"
