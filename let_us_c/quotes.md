@@ -58,3 +58,39 @@ i >= 5 ? j = 10 : j = 15;
 
 
 > "In some programming situations, we want to take the control to the beginning of the loop, bypassing the statements inside the loop, which have not yet been executed. The keyword *continue* allows us to do this. When continue is encountered inside any loop, control automatically passes to the beginning of the loop"
+
+> "The usage of the *goto* keyword should be avoided as it usually disturbs the normal flow of execution."
+
+> "On executing the return statement, it immediately transfers then control back to the calling function"
+
+> "A function can return only one value at a time. There is a way to get around this limitation, pointers..."
+
+```c
+int main() {
+    int a, b, c;
+    sum = calsum(a, b,c);
+
+    return 0;
+}
+
+int calsum(int x, int y, int z) {
+    int d;
+    d = x + y + z;
+    return d;
+}
+```
+
+In the above code, the varaibles a, b, and c are called *Actual Arguments*,
+the variable x, y, and z are called *Formal arguments*
+
+
+This means that when values are passed to a called function, the values present in actual arguments are not physically moved to the formal arguments; just a photocopy of values in actual argument is made into formal arguments.
+
+> "The value of each of the actual arguments in the calling function is copied into the corresponding formal arguments of the called function."
+
+> "In C order of passing arguments to a function is from right to left"
+
+> "If you observe carefully, whenever we called a function and passed something to it we have always passed the 'values' of variables to the called function. Such function calls are called 'calls by value'."
+
+> "We have also learnt that variables are stored somewhere in memory. So instead of passing the value of a variable, can we not pass the location number of the variable to a function? If we were able to do so, it would become a 'call by reference'"
+
