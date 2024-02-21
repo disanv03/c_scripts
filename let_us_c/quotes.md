@@ -101,3 +101,17 @@ This means that when values are passed to a called function, the values present 
 - Touch the base
 - Operation part: previous extractation(condition) and the targeted operation. Were computation take place.
 
+
+> "... the primary data types themselves can be of several types. For example, a char can be an **unsigned char** or a **signed char**. Or an **int** can be a **short int** or a **long int**."
+> "To fully define a variable, one needs to mention not only its type but also its storage class."
+
+16-bit compiler Turbo C the range is -32768 to 32776 (two/bytes used to store)
+32-bit compiler like Visual Studio or gcc range id -2147483648 to +2147483648 (four/bytes)
+
+> "Remember that out of the two/four bytes used to store an integer, the highest bit (16th/32nd bit) is used to store the sign of the integer. This bit is 1 if the number is negative and 0 if the number is positive."
+
+> "Sometimes, we come across situations where the constant is small enough to be an **int**, but still we want to give it as much storage as a **long**. In such cases, we add the suffix 'L' or 'I' at the end of the number, as in 23L."
+
+> "A **signed char** is same as an ordinary **char** and has a range from -128 to +127; whereas, an **unsigned char** has a range from 0 to 255."
+
+> "A **float** occupies four bytes in memory and can range from -3.4e38 to +3.4e38. If this is insufficient, then C offers a **double** data type that occupies 8 bytes in memory and has a range from -1.7e308 to +1.7e308."
