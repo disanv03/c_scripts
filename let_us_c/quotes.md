@@ -95,3 +95,9 @@ This means that when values are passed to a called function, the values present 
 > "We have also learnt that variables are stored somewhere in memory. So instead of passing the value of a variable, can we not pass the location number of the variable to a function? If we were able to do so, it would become a 'call by reference'"
 
 > "A stack is a last in first out (LIFO) data structure. This means that the last item to get stored on the stack (often called push operation) is the first one to get out of it (often called pop operation).
+
+### Recursive step ###
+- Decompose, extract(condition) and reduce. (descending)
+- Touch the base
+- Operation part: previous extractation(condition) and the targeted operation. Were computation take place.
+
