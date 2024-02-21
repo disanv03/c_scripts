@@ -97,7 +97,7 @@ This means that when values are passed to a called function, the values present 
 > "A stack is a last in first out (LIFO) data structure. This means that the last item to get stored on the stack (often called push operation) is the first one to get out of it (often called pop operation).
 
 ### Recursive step ###
-- Decompose, extract(condition) and reduce. (descending)
+- Decompose, extract(condition) and reduce.
 - Touch the base
 - Operation part: previous extractation(condition) and the targeted operation. Were computation take place.
 
