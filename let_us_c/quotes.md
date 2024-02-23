@@ -117,3 +117,34 @@ This means that when values are passed to a called function, the values present 
 > "A **signed char** is same as an ordinary **char** and has a range from -128 to +127; whereas, an **unsigned char** has a range from 0 to 255."
 
 > "A **float** occupies four bytes in memory and can range from -3.4e38 to +3.4e38. If this is insufficient, then C offers a **double** data type that occupies 8 bytes in memory and has a range from -1.7e308 to +1.7e308."
+
+> "We have already said all that needs to be said about constants, but we are not finished with variables. To fully define a variable, one needs to mention not only its 'type' but also its 'storage class'. In other words, not only do all variables have a data type, they also have a 'storage class'."
+
+> "There are two kinds of locations in a computer where such value may be kept - Memory and CPU registers. It is the variable's storage class that determines in which of these two types of locations, the value is stored."
+
+#### Four storage classes in C:
+
+- Automatic storage class
+- Register storage class
+- Static storage class
+- External storage class
+
+
+> "All variables that are defined inside a function are normally created on the stack each time the function is called. These variables die as soon as control goes back from the function. However, if the variables inside the function are defined as static then they do not get created on the stack. Instead they are created in a place in memory called 'Data Segment'. Such variables die only when program execution comes to an end."
+
+> "If a variable is defined outside all functions, then not only is it available to all other functions in the file in which it is defined, but also available to functions defined in other files. In the other files the variable should be declared as extern."
+
+> "We can make use of proper storage classes like **auto**, **register**, **static**, and **extern** to control four properties of a variable -storage, default initial value, scope, and life."
+
+> "The C preprocessor is exactly what its name implies. It is a program that processes our source program before it is passed to the compiler. Preprocessor commands (often known as directives) form what can almost be considered a language within C language."
+
+> "For debuging macro, view the expanded source code with cpp source.c output.l"
+
+> "#include feature is used when creating our own library of functions which we wish to distribute to others. In this situation the functions are defined in a ".c" file and their corresponding prototype declarations and macros are declared in a ".h" file".
+
+- #include "mylib.h"
+    - This command would look for the file **mylib.h** in the current directory as well as the specified list of directories as mentioned in the include search path that might have been set up
+
+- #include <mylib.h>
+    - This command would look for the file mylib.h in the specified list of
+direcotires only
