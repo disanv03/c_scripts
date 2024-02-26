@@ -148,3 +148,17 @@ This means that when values are passed to a called function, the values present 
 - #include <mylib.h>
     - This command would look for the file mylib.h in the specified list of
 direcotires only
+
+### Array
+
+> "An array is also known as a subscripted variable"
+
+> "... THis ability to use variables to represent subscripts is what makes arrays so useful"
+
+
+```c
+int arr[8];
+```
+What happens in memory when we make this declaration ? `32 bytes`get immediately reserved in memory, `4` bytes for the 8 integers. All the array elements would always be present in contiguous memory locations.
+
+> "... when the integer pointer x is incremented, it points to an address four locations after the current location, since an *int* is always 4 bytes long."
