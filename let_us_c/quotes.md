@@ -162,3 +162,5 @@ int arr[8];
 What happens in memory when we make this declaration ? `32 bytes`get immediately reserved in memory, `4` bytes for the 8 integers. All the array elements would always be present in contiguous memory locations.
 
 > "... when the integer pointer x is incremented, it points to an address four locations after the current location, since an *int* is 4 bytes long."
+
+> "When you subtract one pointer from another in C, the operation internally calculates the difference in bytes between the two memory addresses and then divides that difference by the size of the data type the pointers are pointing to. This division adjusts the byte difference to a difference in terms of array elements. [CHATGPT]"
