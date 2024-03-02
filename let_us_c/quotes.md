@@ -164,3 +164,31 @@ What happens in memory when we make this declaration ? `32 bytes`get immediately
 > "... when the integer pointer x is incremented, it points to an address four locations after the current location, since an *int* is 4 bytes long."
 
 > "When you subtract one pointer from another in C, the operation internally calculates the difference in bytes between the two memory addresses and then divides that difference by the size of the data type the pointers are pointing to. This division adjusts the byte difference to a difference in terms of array elements. [CHATGPT]"
+
+### String
+
+A string constant is a one-dimensional array of characters terminated by a null ('\0')
+
+Each character in the array occupies 1 byte of memory and the last characteris always '\0'.
+
+The terminating null ('\0') is important, because it is the only way the functions that work with a string can know where the string ends. In fact, a string not terminated by a '\0' is not really a string, but merely a collection of charaters.
+
+```c
+char name[] = {'H', 'A', 'E', 'S', 'L', 'E', 'R', '\0'};
+/* short cut for initializing strings */
+char name[] = "HAESLER";
+/* C inserts the null character automatically.
+```
+
+```c
+/* Let us understand the difference between the following two statements: */
+/* Here str acts as a constant pointer to a string, whereas,
+ * p acts as a pointer to a constant string.
+ */
+char str[] = "Quest";
+char *p = "Quest";
+
+str++; /* error, constant pointer cannot change */
+*str = 'Z'; /* works, because string is not constant */
+p++; /*works, because pointer is not constant */
+*p = 'M'; /* error, because string is constant */
