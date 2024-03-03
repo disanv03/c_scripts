@@ -192,3 +192,9 @@ str++; /* error, constant pointer cannot change */
 *str = 'Z'; /* works, because string is not constant */
 p++; /*works, because pointer is not constant */
 *p = 'M'; /* error, because string is constant */
+
+> "Though in principle a 2-D array can be used to handle several strings, in practice an array of pointers to strings is preferred since it takes less space and is efficient in processing strings."
+
+> "malloc() function can be used to allocate space in memory on the fly during execution of the program"
+
+
