@@ -192,9 +192,18 @@ str++; /* error, constant pointer cannot change */
 *str = 'Z'; /* works, because string is not constant */
 p++; /*works, because pointer is not constant */
 *p = 'M'; /* error, because string is constant */
+```
 
 > "Though in principle a 2-D array can be used to handle several strings, in practice an array of pointers to strings is preferred since it takes less space and is efficient in processing strings."
 
 > "malloc() function can be used to allocate space in memory on the fly during execution of the program"
 
+### Structures
 
+> "A structure gathers together, different atoms of informations that comprise(make up) a given entity"
+
+- (a) it is important to understand that a structure type declaration does not tell the compiler to reserve any space in memory. All a structure declaration does is, it defines the 'form' of the structure
+
+- (b) Usually structure type declaration appears at the top of the source cpcode
+
+- (c) If a structure variable is initialed to a value {0}, then all its elements are set to value 0. This is a handy way of initializing structure variables.
