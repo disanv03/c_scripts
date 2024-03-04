@@ -207,3 +207,16 @@ p++; /*works, because pointer is not constant */
 - (b) Usually structure type declaration appears at the top of the source cpcode
 
 - (c) If a structure variable is initialed to a value {0}, then all its elements are set to value 0. This is a handy way of initializing structure variables.
+
+```c
+struct book {
+    char name[10];
+    float price;
+    int pages;
+};
+
+struct book b1 = {"Basic", 130.00, 550};
+struct book b2 = {"Physics", 150.80, 800};
+struct book b3 = {0};
+```
+
