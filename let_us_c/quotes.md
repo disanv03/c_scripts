@@ -165,7 +165,7 @@ What happens in memory when we make this declaration ? `32 bytes`get immediately
 
 > "When you subtract one pointer from another in C, the operation internally calculates the difference in bytes between the two memory addresses and then divides that difference by the size of the data type the pointers are pointing to. This division adjusts the byte difference to a difference in terms of array elements. [CHATGPT]"
 
-### String
+### String
 
 A string constant is a one-dimensional array of characters terminated by a null ('\0')
 
