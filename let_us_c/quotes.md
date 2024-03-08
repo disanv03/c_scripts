@@ -255,3 +255,5 @@ void xputs(char *str) {
 
 - `^` the caret the reverse (negated)
 - `^\n` any character except newline character
+
+## File Input/Output
