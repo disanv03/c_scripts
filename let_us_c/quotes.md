@@ -220,3 +220,38 @@ struct book b2 = {"Physics", 150.80, 800};
 struct book b3 = {0};
 ```
 
+## Input/Output
+
+There are numerous library functions available for I/O. These can be classified into two broad categories:
+
+- (a) Console I/O functions:
+    - functions to receive input from keyboard and write output to VDU(screen).
+
+- (b) File I/O functions:
+    - functions to perform I/O operations on a floppy disk or a hard disk.
+
+> "The screen and keyboard together are called a console. Console I/O functions can be further classified into two categories - formatted and unformatted console I/O functions.
+
+#### Unformatted console I/O functions
+
+So far, for input we have consistently used the __scanf()__ function.However, for some situations, the __scanf()__ function has one glaring weakness... you need to hit the Enter key before the function can digest what you have typed. __getch()___ and __getche()__ are two functions which serve this purpose. These functions returns the character that has been most recently typed. The 'e' in __getche() function means it echoes(displays) the character that you typed to the screen.
+
+- There is no keyword available in C for doing input/output
+- All I/O in C is done using standard library functions
+
+
+```c
+#include <stdio.h>
+void xgets(char *str) {
+    scanf("%[^\n]s", str);
+}
+
+void xputs(char *str) {
+    printf("%s\n", str);
+}
+```
+
+- `[...]` is a scanset, telling scanf to read a sequence of characters that match the characters specified between the brackets
+
+- `^` the caret the reverse (negated)
+- `^\n` any character except newline character
