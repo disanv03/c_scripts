@@ -263,3 +263,25 @@ void xputs(char *str) {
 > "The prototype of exit() function is declared in the header file stdlib.h"
 
 > "On closing the file, the buffer associated with the file is removed from memory."
+
+> "What scanf() does is it assigns name, age and salary to appropriate variables and keeps the Enter key unread in the keyboard buffer."
+
+#### Types of buffering:
+
+- Fully Buffered: Data is stored in the buffer and only written out when thebuffer is full. This is common for file operations.
+
+- Line Buffered: Data is buffered until a newline character is encountered, which is typical for terminal output. This means that if you print a line without a newline character, it might not appear immediately on the terminal.
+
+- Unbuffered: Data is written out as soon as it's available. `stderr` is often unbuffered by default, ensuring error messages are displayed immediately.
+
+
+
+Two main areas where text and binary mode files are different:
+- (a) Handling of newlines
+- (b) Storage of numbers
+
+The only function that is available for storing numbers in a disk file is
+the fprintf() function. It is important to understand how numerical data
+is stored on the disk by fprintf(). Text and characters are stored one character per byte, as we would expect. Are numbers stored as they are in memory, 4 bytes for an integer, 4 bytes for a float, and so on? No.
+
+Numbers are stored as strings of characters. Thus, 12579, even though it occupies 4 bytes in memory, when transferred to the disk using fprintf(), would occupy 5 bytes, 1 byte per character. Similarly, the foating-point number 1234.56 would occupy 7 bytes on disk. Thus, numbers with more digits would require more disk space.
