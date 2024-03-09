@@ -257,3 +257,9 @@ void xputs(char *str) {
 - `^\n` any character except newline character
 
 ## File Input/Output
+
+> "If there are multiple exit points in the program, then the value passed to exit() can be used to find out from where the execution of the program got terminated"
+
+> "The prototype of exit() function is declared in the header file stdlib.h"
+
+> "On closing the file, the buffer associated with the file is removed from memory."
