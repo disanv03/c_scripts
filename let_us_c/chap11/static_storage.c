@@ -1,4 +1,4 @@
-/* Statci Storage class:
+/* Static Storage class:
  * Storage: Memory
  * Default value: Zero
  * Scope: Local to the block
