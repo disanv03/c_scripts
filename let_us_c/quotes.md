@@ -285,3 +285,5 @@ the fprintf() function. It is important to understand how numerical data
 is stored on the disk by fprintf(). Text and characters are stored one character per byte, as we would expect. Are numbers stored as they are in memory, 4 bytes for an integer, 4 bytes for a float, and so on? No.
 
 Numbers are stored as strings of characters. Thus, 12579, even though it occupies 4 bytes in memory, when transferred to the disk using fprintf(), would occupy 5 bytes, 1 byte per character. Similarly, the foating-point number 1234.56 would occupy 7 bytes on disk. Thus, numbers with more digits would require more disk space.
+
+> "The `sizeof()` operator gives the size of the variable in bytes."
