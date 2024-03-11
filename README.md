@@ -3,6 +3,6 @@
 
 ### Resources:
 - [Let Us C](./let_us_c) by Yashavant Kanetkar
-    - [Key point](./let_us_c/quotes.md) of the book
+    - [Keys points](./let_us_c/quotes.md) of the book
 - The C puzzle book, Alan R. Feuer (1982)
 - Coding games challenges
