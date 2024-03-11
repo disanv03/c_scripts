@@ -287,3 +287,20 @@ is stored on the disk by fprintf(). Text and characters are stored one character
 Numbers are stored as strings of characters. Thus, 12579, even though it occupies 4 bytes in memory, when transferred to the disk using fprintf(), would occupy 5 bytes, 1 byte per character. Similarly, the foating-point number 1234.56 would occupy 7 bytes on disk. Thus, numbers with more digits would require more disk space.
 
 > "The `sizeof()` operator gives the size of the variable in bytes."
+
+> "An operandis a term used to describe any object that is manipulated by an operator. In simpler terms, operands are the values or variables that operators act upon"
+
+> "Unary operators have one operand (`!condition`, `-x`)"
+
+```c
+int condition = 0; /* false in C */
+
+/* the operator works by taking the value of `condition`,
+ * inverting its truthiness, and producing a result
+ */
+if (!condition) {
+    printf("we passed in, condition is false, !condition is true.\n");
+else {
+    printf("condition is true, that the reverse so here we go passed through the reverse(negate).\n");
+}
+```
