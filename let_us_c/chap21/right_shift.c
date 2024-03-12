@@ -9,7 +9,7 @@
 void showbits(unsigned char);
 
 int main() {
-    unsigned char num = 255, in k;
+    unsigned char num = 255, i, k;
 
     printf("\nDecimal %d is same as binary ", i);
     showbits(i);

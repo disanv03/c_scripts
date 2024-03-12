@@ -341,3 +341,39 @@ else {
 --------
 10100101
 ```
+
+#### bitwise OR operator
+
+|   |    | 0  1 |
+|--------|------|
+|   0    | 0  1 |
+|   1    | 1  1 |
+
+```md
+11010000 Original bit pattern
+00000111 OR mask
+--------
+11010111
+```
+
+Bitwise OR operator is usually used to put ON a particular bit in a number.
+
+#### bitwise XOR operator
+
+|   ^    | 0  1 |
+|--------|------|
+|   0    | 0  1 |
+|   1    | 1  0 |
+
+XOR operator is used to toggle (change) a bit ON or OFF.
+
+A number XORed with another number twice gives the original number.
+
+#### Summary for bit operation:
+
+- The bitwise operators include operators like one's complement, right-shift, left-shift, bitwise AND, OR, and XOR.
+    - The one's complement converts all 0s in its operand to 1s and all 1s to 0s
+    - The right-shift and left-shift operator are useful in eliminating bits from a number -either from the left or from the right.
+    - The bitwise AND operators is useful in testing whether a bit is on/off add in putting off a particular bit
+    - The bitwise OR operator is used to turn on a particular bit.
+    - The XOR operator works almost sams as the OR execpt one minor variation, `1 ^ 1 = 0`, great for toggling bits.
