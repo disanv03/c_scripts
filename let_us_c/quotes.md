@@ -304,3 +304,40 @@ else {
     printf("condition is true, that the reverse so here we go passed through the reverse(negate).\n");
 }
 ```
+
+### Operations on bits
+
+> "The smallest element in memory on which we are able to operate as yet is a byte; and we operated on it by making the use of the data type char."
+
+> "Being able to operate on a bit-level, can be very important in programming, especially when a program must interact directly with the hardware. This is because, the programming languages are byte-oriented, whereas hardware tens to be bit-oriented"
+
+
+| Operator | Meaning                |
+|----------|------------------------|
+| `~`      | One’s complement       |
+| `>>`     | Right shift            |
+| `<<`     | Left shift             |
+| `&`      | Bitwise AND            |
+| `|`      | Bitwise OR             |
+| `^`      | Bitwise XOR            |
+
+
+#### bitwise AND operator
+
+|   &    | 0  1 |
+|--------|------|
+|   0    | 0  0 |
+|   1    | 0  1 |
+
+- AND operator is used in two situations:
+    - (a) To check whether a particular bit of an operand is ON or OFF
+    - (b) To turn OFF a particular bit
+
+(b) putting 3rd bit off
+
+```md
+10101101 Original bit pattern
+11110111 AND mask
+--------
+10100101
+```
