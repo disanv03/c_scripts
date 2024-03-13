@@ -377,3 +377,16 @@ A number XORed with another number twice gives the original number.
     - The bitwise AND operators is useful in testing whether a bit is on/off add in putting off a particular bit
     - The bitwise OR operator is used to turn on a particular bit.
     - The XOR operator works almost sams as the OR execpt one minor variation, `1 ^ 1 = 0`, great for toggling bits.
+
+
+### Miscellaneous Features
+
+- Functions with variable number of arguments:
+
+> "In C, `va_start`, `va_arg` and `va_list` are part of the `stdarg.h` header and are used for handling variable function arguments"
+
+> "These macros allow functions to accept an indefinite number of arguments, providing the flexibility to work with functions where the number and types of arguments are not know in advance"
+
+- Unions:
+
+> "Both structures and unions are used to group a number of different variables together. But while a structure enables us to treat a number of different variables stored at different places in memory, a union enables us to treat the same space in memory as a number of different variables"
