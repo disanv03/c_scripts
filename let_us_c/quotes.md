@@ -390,3 +390,17 @@ A number XORed with another number twice gives the original number.
 - Unions:
 
 > "Both structures and unions are used to group a number of different variables together. But while a structure enables us to treat a number of different variables stored at different places in memory, a union enables us to treat the same space in memory as a number of different variables"
+
+- typedef:
+
+```c
+typedef struct book [
+    char name[10];
+    float price;
+    int pages;
+} BK;
+
+BK b1, b2, b3;
+```
+
+> "Communication is the essence of all progress"
