@@ -1,9 +1,15 @@
 
 ## C educational resources and personal notes
 
-### Resources:
-- [Let Us C](./let_us_c) by Yashavant Kanetkar
+### Books:
+- [Let Us C](./let_us_c) by Yashavant Kanetkar (2016)
     - [Keys points](./let_us_c/quotes.md) of the book
-- The C programming Language by Kernighan & Ritchie
-- The C puzzle book, Alan R. Feuer (1982)
+- [The C programming Language](./the_c_programming_language) by Kernighan & Ritchie (1978)
+- [The C puzzle book](./c_puzzle_book_1982), Alan R. Feuer (1982)
+
+### Divers & Games:
 - Coding games challenges
+
+### Notes:
+
+- [Precedence_operator](./overall_notes/precedence_operator.md)
