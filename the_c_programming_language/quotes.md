@@ -1,7 +1,6 @@
-#### The C programming Language
+## The C programming Language, Kernighan & Ritchie (1978)
 
-- basics: variables and constants, arithmetic, control flow, functions,
-rudiments of input and output.
+- basics: variables and constants, arithmetic, control flow, functions, rudiments of input and output.
 
 - writing bigger programs: pointers, structures, rich set of operators, several control-flow statements, and the standard library.
 
@@ -11,7 +10,6 @@ rudiments of input and output.
 
 > "If an arithmetic operator has integer operands, an integer operation is performed. If an arithmetic operator has one floating-point operand and one integer operand, however, the interger will be converted to floating point before the operation is done."
 
-> "In any context where it is permissible to use the value of some type,
-you can use a more complicated expression of that type."
+> "In any context where it is permissible to use the value of some type, you can use a more complicated expression of that type."
 
 > "A character written between single quotes represents an integer value equal to the numerical value of the character in the machine's character set. this is called a character constant, although it is just another way to writea small integer"
