@@ -1,0 +1,13 @@
+- Chapter 1 - A Tutorial Introduction
+    - 1.1 Getting Started
+    - 1.2 Variables and Arithmetic Expresssions
+    - 1.3 The for statement
+    - 1.4 Symbolic Constants
+    - 1.5 Character Input and Output
+    - 1.6 Arrays
+    - 1.7 Functions
+    - 1.8 Arguments - Call by Value
+    - 1.9 Character Arrays
+    - 1.10 External Variables and Scope
+
+- Chapter 2 - Types, Operators and Expressions
