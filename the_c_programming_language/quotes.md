@@ -54,3 +54,49 @@
 > "Declarations list the variables to be used, and state what type they haveand perhaps what their initial values are. Operators specify what is to be done to them. Expressions combine variables and constants to produce new values."
 
 > "We tend to use short names for local variables, especially loop indices, and longer names for external variables."
+
+> "Be careful to distinguish between a character constant and a string that contains a single character: 'x' is not the same as "x". The former is an integer, used to produce the numeric value of the letter x in the machine's character set. The latter is an array of characters that contains one character (the letter x) and a '\0'."
+
+> "There is one other kind of constant, the enumeration constant. An enumeration is a list of constant values, as in:
+
+```c
+enum boolean { NO, YES };
+```
+
+The first name in an enum has value 0, the next 1, and so on, unless explicit values are specified."
+
+
+If not all values are specified, unspecified values continue the progression form the last specified value:
+
+```c
+enum months { JAN = 1, FEB, MAR, APR, MAY, JUN,
+              JUL, AUG, SEP, OCT, NOV, DEC };
+```
+
+> "The quatifier const can be applied to the declaration of any variable to specify that its value will not be changed. For an array, the const qualifier says that the elements will not be altered."
+
+> "The const declaration can also be used with array arguments, to indicate that the function does not change that array: `int strlen(const char[]);`"
+
+> "The expression `x % y` produces the remainder when x is devided by y, and thus is zero when y divides x exactly. For example, a year is a leap year if it is divisible by 4 but not by 100, except that years divisible by 400 are leap years."
+
+```c
+if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+    printf("%d is a leap year\n", year);
+else
+    printf("%d is not a leap year\n", year);
+```
+
+> "The precedence of && is higher than that of ||, and both are lower than relational and equality operators"
+
+> "By definition, the numeric value of a relational or logical expression is 1 if the relation is true, and 0 if the relation is false."
+
+> "The unary negation operator ! converts a non-zero operand into 0, and a zero operand in 1. A common use of ! is in constructions like:
+```c
+if (!valid)
+/* rather than */
+if (valid == 0)
+```
+"
+
+
+
