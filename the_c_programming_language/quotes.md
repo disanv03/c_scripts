@@ -90,13 +90,29 @@ else
 
 > "By definition, the numeric value of a relational or logical expression is 1 if the relation is true, and 0 if the relation is false."
 
-> "The unary negation operator ! converts a non-zero operand into 0, and a zero operand in 1. A common use of ! is in constructions like:
+> The unary negation operator ! converts a non-zero operand into 0, and a zero operand in 1. A common use of ! is in constructions like:
 ```c
 if (!valid)
 /* rather than */
 if (valid == 0)
 ```
-"
+
+##### Type conversion
+
+> In general, if an operator like + or * that takes two operands has operands of different types, the "lower" type is promoted to the "highter" type before the operation proceeds.
+
+> Conversions take place across assignments; the value of the right side is converted to the type of the left, which is the type of the result.
+
+> Since an argument of a function call is an expression, type conversion also takes place when arguments are passed to functions. In the absence of a function prototype, char and short become int and float becomes double.
+
+> Finally, explicit type conversions can be forced ('coerced') in any expression, with a unary operator called a cast. [...] The precise meaning of a cast is as if the expression were assigned to a variable of the specified type, which is then used in place of the whole construction.
+
+The <math.h> library routine sqrt expects a double argument, and will produce nonsense if inadvertently handled something else. So if "n" is an interger, we can use:
+
+```c
+sqrt((double) n)
+```
+to convert the value of n to double before passing it to sqrt.
 
 
 
