@@ -138,3 +138,36 @@ void squeeze(char s[], int c) {
     }
 ```
     
+##### Bitwise Operators
+
+```c
+/* getbits: get n bits from position p */
+unsigned getbits(unsigned x, int p, int n) {
+    return (x >> (p+1-n)) & ~(~0 << n);
+}
+```
+
+This bitwise section is all about understanding this return statement.
+
+First getbits, extracts `n` bits starting from position `p` in the integer `x`, these extracted bits are then "right adjusted", meaning that they are shifted to the right end of the integer (the rest of the bits to the left are set to zero).
+
+
+Example:
+
+`x = 10110100` and you want to extract 3 bits starting from position 4, you
+would extract `101`. Then adjusting, would end up with `00000101`
+
+
+`x >> (p+1-n)`: this shifts the desired part at the right end.
+
+`~0`: this is a common idiom to inverts every bit.
+
+`~0 << n`: This shifts all-1s value `n` positions to the left, which sets the `n` rightmost bits to 0 and the rest to 1.
+
+`~(~0 << n)`: This inverts the bits, producing a mask, where only the `n` rightmost bits are set to 1, and the rest to 0.
+
+`&`: apply the mask produced above, leaving only the `n`righmost its of the shifted `x`
+
+
+
+
