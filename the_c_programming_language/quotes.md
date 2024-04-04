@@ -168,7 +168,7 @@ would extract `101`. Then adjusting, would end up with `00000101`
 
 `&`: apply the mask produced above, leaving only the `n`righmost its of the shifted `x`
 
-
+---
 
 ### x &= x - 1
 
