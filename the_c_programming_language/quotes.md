@@ -170,4 +170,30 @@ would extract `101`. Then adjusting, would end up with `00000101`
 
 
 
+### x &= x - 1
 
+The expression `x &= x - 1` is a clever and efficient way to count the number of 1 bits (set bits) in an integer.
+
+Let consider what happens when you subtract 1 from a binary number:
+
+`x - 1`
+- If LSB is 1 `001`, subtrating 1 will turn it to 0 `000`
+- If LSB is 0, the subtraction borrows from a more significant bit, flippingall trailing 0s to 1s until it reaches a 1, which is flipped to 0.
+
+
+`x &=`
+
+Performs a bitwise AND on x with the result of `x - 1`. This operation clears the least significant set bit.
+
+```c
+x = 12; /* 1100 */
+/* x - 1 = 11;  1011 */
+
+x &= x - 1; /* 1100 & 1011 = 1000 (8 in decimal) */
+
+/* x - 1 = 7;  0111 */
+x &= x - 1 /* 1000 & 0111 = 0000 */
+```
+
+
+ 
