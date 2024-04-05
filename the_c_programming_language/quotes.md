@@ -195,5 +195,8 @@ x &= x - 1; /* 1100 & 1011 = 1000 (8 in decimal) */
 x &= x - 1 /* 1000 & 0111 = 0000 */
 ```
 
-
+### Control Flow
  
+> "... it's a good idea to use braces when there are nested 'ifs'"
+
+> "... the last 'else' part handles the 'none of the above' or default case where none of the other conditions is satisfied."
