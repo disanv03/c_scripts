@@ -200,3 +200,8 @@ x &= x - 1 /* 1000 & 0111 = 0000 */
 > "... it's a good idea to use braces when there are nested 'ifs'"
 
 > "... the last 'else' part handles the 'none of the above' or default case where none of the other conditions is satisfied."
+
+
+#### Switch
+
+> "The break statement causes an immediate exit from the switch. Because cases serve just as labels, after the code for one case is done, execution falls through to the next unless you take explicit action to escape. break and return are the most common ways to leave a switch."
