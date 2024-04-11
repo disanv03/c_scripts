@@ -237,3 +237,13 @@ The continue statement is related to break, but less often used; it causes the n
 #### Goto and labels
 
 > "The are a few situations where goto(s) may find a place. The most common is to abandon processing in some deeply nested structure, such as breaking out of two or more loops at once. The break statement cannot be used directly since it only exits from the innermost loop."
+
+#### Function
+
+> "C has been designed to make functions efficient and easy to use; C programs generally consist of many small functions rather than a few big ones"
+
+> "Coercion: in the context of function type declarations refers to the automatic conversion of a value from one type to another."
+
+> "[...] Because C arrays begin at position zero, indexes will be zero or positive, and so a negative value like -1 is convenient for signaling failure."
+
+> "A program is just a set of definition of variables and functions. Communication between the functions is by arguments and values returned by the functions, and through external variables.
