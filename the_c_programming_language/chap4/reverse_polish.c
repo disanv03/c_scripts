@@ -4,13 +4,24 @@
 
 #include <stdio.h>
 #include <stdlib.h>     /* for atof() */
+#include <ctype.h>
 
 #define MAXOP 100       /* max size of operand or operator */
 #define NUMBER '0'      /* signal that a number was found */
 
+#define MAXVAL 100      /* maximum depth of val stack   */
+#define BUFSIZE 100
+
+int sp = 0;             /* next free stack position      */
+double val[MAXVAL];     /* value stack                  */
+char buf[BUFSIZE];      /* buffer for ungetch */
+int bufp = 0;           /* next free position in buf */
+
 int getop(char []);
 void push(double);
 double pop(void);
+int getch(void);
+void ungetch(int);
 
 /* reverse Polish calculator */
 int main() {
@@ -41,7 +52,7 @@ int main() {
                     printf("error: zero divisor\n");
                 break;
             case '\n':
-                printf("\t%.8g\n", pop());
+                printf("\t%.8g\n", pop()); /* g: automatically selects either normal floating-point notation or scientific notation, g stand for general specifier */
                 break;
             default:
                 printf("error: unknown command %s\n", s);
@@ -53,10 +64,6 @@ int main() {
 
 /* Because + and * are commutative operators, the order in which the popped operands are combined is irrelevant, but for - and / the left and right operand must be distinguished.
  * */
-
-#define MAXVAL 100      /* maximum depth of val stack   */
-int sp = 0;             /* next free stack position      */
-double val[MAXVAL];     /* value stack                  */
 
 /* push: push f onto value stack */
 void push(double f) {
@@ -82,9 +89,6 @@ double pop(void) {
  * the stack or stack position --the representation can be hidden.
  */
 
-#include <ctype.h>
-int getch(void);
-void ungetch(int);
 
 /* getop: get next character or numeric operand */
 int getop(char s[]) {
@@ -96,21 +100,17 @@ int getop(char s[]) {
         return c;       /* not a number */
     i = 0;
     if (isdigit(c))     /* collect integer part */
-        while (isdigit(s[++i] = c = getch()))
+        while (isdigit(s[++i] = c = getch()))   /* value held in s[i] is what is used in the evaluation */
             ;
     if (c == '.')       /* collect fraction part */
         while (isdigit(s[++i] = c = getch()))
             ;
     s[i] = '\0';
     if (c != EOF)
-        ungetch(c);
-    return NUMBER;
+        ungetch(c);     /* "push back" character into the input buffer. */
+    return NUMBER;      /* flag indicating than getop processed a numeric value */
 }
 
-#define BUFSIZE 100
-
-char buf[BUFSIZE];      /* buffer for ungetch */
-int bufp = 0;           /* next free position in buf */
 
 int getch(void) {       /* get a (possibly pushed-back) character */ 
     return (bufp > 0) ? buf[--bufp] : getchar();
