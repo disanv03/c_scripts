@@ -247,3 +247,11 @@ The continue statement is related to break, but less often used; it causes the n
 > "[...] Because C arrays begin at position zero, indexes will be zero or positive, and so a negative value like -1 is convenient for signaling failure."
 
 > "A program is just a set of definition of variables and functions. Communication between the functions is by arguments and values returned by the functions, and through external variables.
+
+#### External Variables
+
+> "A C program consists of a set of external objects, which are either variables or functions. The adjective 'external' is used in contrast to 'internal', which describes the arguments and variables defined inside functions."
+
+> "We will see later how to define external variables and functions that are visible only within a single source file. Because external variables are globally accessible, they provide an alternative to function arguments and return values for communicationg data between functions. Any function may access an external variable by referring to it by name, if the name has been declared somehow."
+
+> "External variables are also useful because of their greater scope and lifetime. Automatic variables are internal to a function; they come into existence when then function is entered, and disappear when it is left. External variables, on the other hand, are permanent, so they can retain values from one function invocation to the next. Thus if two functions must share some data, yet neither calls the other, it is often most convenient if the shared data is kept in external variables rather than being passed in and out via arguments."
