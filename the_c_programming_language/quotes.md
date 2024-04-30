@@ -255,3 +255,45 @@ The continue statement is related to break, but less often used; it causes the n
 > "We will see later how to define external variables and functions that are visible only within a single source file. Because external variables are globally accessible, they provide an alternative to function arguments and return values for communicationg data between functions. Any function may access an external variable by referring to it by name, if the name has been declared somehow."
 
 > "External variables are also useful because of their greater scope and lifetime. Automatic variables are internal to a function; they come into existence when then function is entered, and disappear when it is left. External variables, on the other hand, are permanent, so they can retain values from one function invocation to the next. Thus if two functions must share some data, yet neither calls the other, it is often most convenient if the shared data is kept in external variables rather than being passed in and out via arguments."
+
+#### Scope Rules
+
+It is important to distinguish between the declaration of an external variable and its definiton. A declaration announces the properties of a variable (primarly its type); a definiton also causes storage to be set aside.
+
+
+If lines:
+```c
+    int sp;
+    double val[MAXVAL];
+```
+appear outside of any function, they define the external variables sp and val, cause storage to be set aside, and also serve as the declarations for the rest of that source file. On the other hand, the lines
+```c
+    extern int sp;
+    extern double val[];
+```
+declare for the rest of the source file that sp is an int and that val is a double array (whose size is determined elsewhere), but they do not create the variables or reserve storage for them.
+
+
+There must be only one definition of an external variable among all the files that make up the source program; other files may contain extern declarations to acces it.
+
+
+```c
+    /* in file1: */
+
+    extern int sp;
+    extern double val[];
+
+    void push(double f) { ... }
+    
+    double pop(void) { ... }
+```
+
+```c
+    /* in file2: */
+    int sp = 0;
+    double val[MAXVAL];
+```
+
+source: page 73.
+
+#### Header Files
