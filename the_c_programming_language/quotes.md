@@ -246,9 +246,9 @@ The continue statement is related to break, but less often used; it causes the n
 
 > "[...] Because C arrays begin at position zero, indexes will be zero or positive, and so a negative value like -1 is convenient for signaling failure."
 
-> "A program is just a set of definition of variables and functions. Communication between the functions is by arguments and values returned by the functions, and through external variables.
+> "A program is just a set of definition of variables and functions. Communication between the functions is by arguments and values returned by the functions, and through external variables."
 
-#### External Variables
+####  External Variables
 
 > "A C program consists of a set of external objects, which are either variables or functions. The adjective 'external' is used in contrast to 'internal', which describes the arguments and variables defined inside functions."
 
@@ -296,4 +296,12 @@ There must be only one definition of an external variable among all the files th
 
 source: page 73.
 
-#### Header Files
+#### Static Variables
+
+> "static storage class should be used only when a program requires the value of a varaible to persist between different function calls, like in recursive calls" Exploring C - YPK
+
+
+The static declaration, applied to an external variable or function, limits the scope of that object to the rest of the source file being compiled.
+External static thus provides a way to hide names like `buf` and `bufp` in the getch-ungetch combination, which must be external so they can be shared, yet which should not be visible to users(place where function is call) of getch and ungetch.
+
+source: page 75.
