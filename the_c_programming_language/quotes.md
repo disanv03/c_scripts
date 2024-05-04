@@ -305,3 +305,34 @@ The static declaration, applied to an external variable or function, limits the 
 External static thus provides a way to hide names like `buf` and `bufp` in the getch-ungetch combination, which must be external so they can be shared, yet which should not be visible to users(place where function is call) of getch and ungetch.
 
 source: page 75.
+
+#### Initialization
+
+In the absence of explicit initialization, external and static variables are guaranteed to be initialized to zero; automatic and register variables have undefined (i.e, garbage) initial values.
+
+
+For external and static variables, the initializer must be a constant expression;
+
+
+For automatic and register variables, the initializer is not restricted to being a constant: it may be any expression involving previously defined values, even function calls.
+
+In effect, initialization of automatic variables are just shorthand for assignement statements. Which form to prefer is largely a matter of taste. We have generally used explicit assignments, because initializes in declarations are harder to see and further away from the point of use.
+
+
+An array may be initialized by following its declaration with a list of initializers enclosed in braces and separated by commas.
+
+
+Character arrays are a special case of initialization; a string may be used instead of the braces and commans notation:
+
+```c
+    char pattern = "ould";
+    /* is a shorthand for the longest but equivalent */
+    char pattern = { 'o', 'u', 'l', 'd', '\0' };
+```
+
+
+#### Recursion
+
+C functions may be used recursively; that is, a function may call itself either directly or indirectly.
+
+When a function calls itself recursively, each invocation gets a fresh set of all the automatic variables, independent of the previous set.
