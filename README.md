@@ -9,7 +9,9 @@
     - [Key notes](./the_c_programming_language/quotes.md)
 - [The C puzzle book](./c_puzzle_book_1982), Alan R. Feuer (1982)
 
-
+### Online Challenges:
+- [Advent of code](./advent_of_code)
+- [Coding game](./coding_game)
+  
 ### Appendix:
-
 - [Precedence Operator](./overall_notes/precedence_operator.md)
