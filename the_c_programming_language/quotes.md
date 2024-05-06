@@ -336,3 +336,40 @@ Character arrays are a special case of initialization; a string may be used inst
 C functions may be used recursively; that is, a function may call itself either directly or indirectly.
 
 When a function calls itself recursively, each invocation gets a fresh set of all the automatic variables, independent of the previous set.
+
+#### The C Preprocessor
+
+C provides certain language facilities by means of a preprocessor, which is conceptionally a separate first step in compilation.
+
+###### Macro Substitution
+
+```c
+    #define name replacement text
+```
+
+It calls for a macro substitution of the simplest kind - subsequent occurences of the token name will be replaced by the replacement text.
+
+The scope of a name defined with #define is from its point of definition to the end of the source file being compiled.
+
+
+It is also possible to define macros with arguments, so the replacement text can be different for different calls of the macro.
+
+```c
+    #define max(A, B) ((A) > (B) ? (A) : (B))
+    
+    x = max(p+q, r+s);
+    /* will be replaced by the line */
+    x = ((p+q) > (r+s) ? (p+q) : (r+s))
+```
+
+
+Note, macros are essentially textual replacements, ensure proper precedence by adding parentheses to the macro definiton
+
+```c
+    #define square(x) x * x
+
+    square(z+1) /* => z + 1 * z + 1, wrong precedence */
+```
+
+
+
