@@ -372,4 +372,25 @@ Note, macros are essentially textual replacements, ensure proper precedence by a
 ```
 
 
+#### Pointers
 
+The `void *` pointer is the proper type for a generic pointer.
+
+
+As a pointer, `void *` can point to any data type, but you cannot directly dereference a `void *` without first casting it to another pointer type that points to a specific data type.
+
+
+Before the adoption of `void *` as a generic pointer, `char *` was frequently used for this purpose. This is because a `char` in C is defined to be 1 byte, and `char *` can access each byte of memory individually.
+
+
+Using `void *` pointer is like positioning a cursor at a starting point in memory. At this stage, the pointer simply indicates where something is located but doesn't provide information about what exactly is at that location or how it should be interpreted. 
+
+
+The unary operator `&` gives the address of an object. This operator only applies to objects in memory: variables and array elements.
+
+
+The unary operator `*` is the indirection or dereferencing operator; when applied to a pointer, it accesses the object the pointer points to.
+
+##### Pointers and Function arguments
+
+Since C passes argument to functions by value, there is no direct way for the called function to alter a variable on the calling function. The way to obtain the desired effect is for the calling program to pass pointers to the values to be changed.
