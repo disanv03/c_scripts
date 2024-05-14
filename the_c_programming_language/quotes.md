@@ -394,3 +394,21 @@ The unary operator `*` is the indirection or dereferencing operator; when applie
 ##### Pointers and Function arguments
 
 Since C passes argument to functions by value, there is no direct way for the called function to alter a variable on the calling function. The way to obtain the desired effect is for the calling program to pass pointers to the values to be changed.
+
+##### Pointers and Arrays
+
+Any operations that can be achieved by array subscripting can also be done with pointers.
+
+
+The correspondence between indexing and pointer arithmetic is very close. By definiton, the value of a variable or expression of type array is the address of element zero of the array. Since the name of an array is a synonym for the location of the initial element, the assignment `pa=&a[0]` can also be written as `pa = a`;
+
+Rather more surprising, at first sight, is the fact that a reference to a[i] can also be written as *(a+1). In evaluating a[i], C converts it to *(a+i) immediately; the two forms are equivalent.
+
+
+In short, an array-and-index expression is equivalent to one written as a pointer and offset.
+
+
+An array name has a special behavior that distinguishes it from regular variables. Instead, it acts as a constant pointer to the first element of the array. The key distinction is that while 'a' behaves like a pointer, you cannot change its value. That is, 'a' is a constant pointer, 'a' is not a modifiable value.
+
+
+The array name 'a' gives the address of the first element, but itself is not stored anywhere as a separate entity. It's more of a compile-time constructthat refers to the memory location where the array elements are stored.
