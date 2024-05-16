@@ -424,3 +424,17 @@ When an array name is passed to a function, what is passed is the location of th
 ```
 
 #### Address Arithmetic
+
+```c
+    /* strlen: return length of string s */
+    int strlen(char *s) {
+        char *p = s;
+        
+        while (*p != '\0')
+            p++;
+        return p - s;
+    }
+```
+
+In the while loop the pointer increment until is own address is equal to `\0`
+    
