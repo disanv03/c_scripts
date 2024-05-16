@@ -404,11 +404,23 @@ The correspondence between indexing and pointer arithmetic is very close. By def
 
 Rather more surprising, at first sight, is the fact that a reference to a[i] can also be written as *(a+1). In evaluating a[i], C converts it to *(a+i) immediately; the two forms are equivalent.
 
+In C, `[ ]` is metaphorically equivalent to `* +` becoming `* (array_name + subscript)`
 
 In short, an array-and-index expression is equivalent to one written as a pointer and offset.
-
 
 An array name has a special behavior that distinguishes it from regular variables. Instead, it acts as a constant pointer to the first element of the array. The key distinction is that while 'a' behaves like a pointer, you cannot change its value. That is, 'a' is a constant pointer, 'a' is not a modifiable value.
 
 
 The array name 'a' gives the address of the first element, but itself is not stored anywhere as a separate entity. It's more of a compile-time constructthat refers to the memory location where the array elements are stored.
+
+When an array name is passed to a function, what is passed is the location of the initial element. Within the called function, this argument is a local variable, and so an array name parameter is a pointer, that is, a variable containing an address.
+
+```c
+    /* as formal parameters in a function definition, */
+    char s[];
+    /* and */
+    char *s;
+    /* are equivalent; we prefer the latter because it says more explicitly that the variable is a pointer */
+```
+
+#### Address Arithmetic
