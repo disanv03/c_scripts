@@ -438,3 +438,51 @@ When an array name is passed to a function, what is passed is the location of th
 
 In the while loop the pointer increment until is own address is equal to `\0`
     
+#### Character Pointers & Functions
+
+A string constant is accessed by a pointer to its first element.
+
+```c
+char *pmessage;
+
+/* assigns to pmessage a pointer to the character array */
+pmessage = "now is the time";
+```
+
+There is an important difference between these defintions:
+
+```c
+char amessage[] = "now is the time"; /* an array */
+char *pmessage = "now is the time";  /* a pointer */
+```
+
+In C, an assignement operations returns the value that was assigned.
+
+```c
+/* strcpy: copy t to s; pointer version 2 */
+void strcpy(char *s, char *t) {
+    while ((*s++ = *t++) != '\0')
+        ;
+}
+```
+
+Interesting idiom, frequently used in C:
+
+```c
+/* the comparison against '\0' is redundant, since the question
+* is merely whether the expresion is zero */
+
+/* strcpy: copy t to s: pointer version 3 */
+void strcpy(char *s, char *t) {
+    while (*s++ = *t++)
+        ;
+}
+/* '\0' has an integer value of 0 */
+```
+
+Standard idiom for pushing and popping a stack:
+
+```c
+    *p++ = val;     /* push val onto stack */
+    val = *--p;    /* pop top of stack into val */   
+```
