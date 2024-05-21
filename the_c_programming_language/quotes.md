@@ -486,3 +486,20 @@ Standard idiom for pushing and popping a stack:
     *p++ = val;     /* push val onto stack */
     val = *--p;    /* pop top of stack into val */   
 ```
+
+NOTE:
+
+It's great practice to `return 0` indicating equality.
+
+```c
+int strncmp(char *s, char *t, int n) {
+    for ( ; *s == *t; s++, t++)
+        if (*s == '\0' || --n <= 0)
+            return 0;
+    return *s - *t;
+}
+```
+
+In this case, if either condition is met, (`*s == '\0' || --n <= 0`), the function return 0, indicating that the strings are equal.
+Else we return the difference (`*s - *t`) indicating whether the character from 's' is greater than or less than.
+
