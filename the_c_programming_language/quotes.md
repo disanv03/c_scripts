@@ -455,6 +455,9 @@ There is an important difference between these defintions:
 char amessage[] = "now is the time"; /* an array */
 char *pmessage = "now is the time";  /* a pointer */
 ```
+Arrays have their own storage, while pointers reference existing storage, typically read-only in the case of string literals.
+Arrays and pointers are fundamentally different in C, although they can be accessed similarly in many contexts.
+The main differences are the memory allocation and size. The similarities are, accessing elements (both can be used to access elements using the subscript operator `[]`, notation, and (pointer)arithmetic.
 
 In C, an assignement operations returns the value that was assigned.
 
@@ -502,4 +505,11 @@ int strncmp(char *s, char *t, int n) {
 
 In this case, if either condition is met, (`*s == '\0' || --n <= 0`), the function return 0, indicating that the strings are equal.
 Else we return the difference (`*s - *t`) indicating whether the character from 's' is greater than or less than.
+
+##### Pointer Arrays; Pointers to pointers
+
+```c
+    char *lineptr[MAXLINES]
+```
+This line says that lineptr is an array of MAXLINES elements, each element of which is a pointer to a char.
 
