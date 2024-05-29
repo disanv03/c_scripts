@@ -117,6 +117,7 @@ to convert the value of n to double before passing it to sqrt.
 
 #### Increment and Decrement Operators
 
+
 In a context where no value is wanted, just the incrementing effect, prefix and postfix are the same.
 
 But there are situations where one or the other is specifically called for:
@@ -229,6 +230,7 @@ for (i = 0, j = strlen(s)-1; i < j; i++, j--)
 
 #### Break & Continue
 
+
 It is sometimes convenient to be able to exit from a loop other than by testing at the top or bottom (for/while loop or do/while loop). The break statement provides an early exit from for, while, and do. A break causes the innermost enclosing loop or switch to be exited immediately.
 
 
@@ -257,6 +259,7 @@ The continue statement is related to break, but less often used; it causes the n
 > "External variables are also useful because of their greater scope and lifetime. Automatic variables are internal to a function; they come into existence when then function is entered, and disappear when it is left. External variables, on the other hand, are permanent, so they can retain values from one function invocation to the next. Thus if two functions must share some data, yet neither calls the other, it is often most convenient if the shared data is kept in external variables rather than being passed in and out via arguments."
 
 #### Scope Rules
+
 
 It is important to distinguish between the declaration of an external variable and its definiton. A declaration announces the properties of a variable (primarly its type); a definiton also causes storage to be set aside.
 
@@ -308,6 +311,7 @@ source: page 75.
 
 #### Initialization
 
+
 In the absence of explicit initialization, external and static variables are guaranteed to be initialized to zero; automatic and register variables have undefined (i.e, garbage) initial values.
 
 
@@ -333,15 +337,17 @@ Character arrays are a special case of initialization; a string may be used inst
 
 #### Recursion
 
+
 C functions may be used recursively; that is, a function may call itself either directly or indirectly.
 
 When a function calls itself recursively, each invocation gets a fresh set of all the automatic variables, independent of the previous set.
 
 #### The C Preprocessor
 
+
 C provides certain language facilities by means of a preprocessor, which is conceptionally a separate first step in compilation.
 
-###### Macro Substitution
+#### Macro Substitution
 
 ```c
     #define name replacement text
@@ -374,6 +380,7 @@ Note, macros are essentially textual replacements, ensure proper precedence by a
 
 #### Pointers
 
+
 The `void *` pointer is the proper type for a generic pointer.
 
 
@@ -393,9 +400,11 @@ The unary operator `*` is the indirection or dereferencing operator; when applie
 
 ##### Pointers and Function arguments
 
+
 Since C passes argument to functions by value, there is no direct way for the called function to alter a variable on the calling function. The way to obtain the desired effect is for the calling program to pass pointers to the values to be changed.
 
 ##### Pointers and Arrays
+
 
 Any operations that can be achieved by array subscripting can also be done with pointers.
 
@@ -440,6 +449,7 @@ When an array name is passed to a function, what is passed is the location of th
 In the while loop the pointer increment until is own address is equal to `\0`
     
 #### Character Pointers & Functions
+
 
 A string constant is accessed by a pointer to its first element.
 
