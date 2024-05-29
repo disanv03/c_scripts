@@ -16,9 +16,9 @@
 
 ##### Introduction
 
-> "A sequence of characters in double quotes, like "hello, world\n", is called a character string or string constant"
+> "A sequence of characters in double quotes, like `hello, world\n`, is called a character string or string constant"
 
-> "An escape sequence like \n provides a general and extensible mechanism for representing hard-to-type or invisible characters."
+> "An escape sequence like `\n` provides a general and extensible mechanism for representing hard-to-type or invisible characters."
 
 > "If an arithmetic operator has integer operands, an integer operation is performed. If an arithmetic operator has one floating-point operand and one integer operand, however, the interger will be converted to floating point before the operation is done."
 
@@ -420,7 +420,8 @@ When an array name is passed to a function, what is passed is the location of th
     char s[];
     /* and */
     char *s;
-    /* are equivalent; we prefer the latter because it says more explicitly that the variable is a pointer */
+    /* are equivalent; we prefer the latter because it says more
+     * explicitly that the variable is a pointer */
 ```
 
 #### Address Arithmetic
