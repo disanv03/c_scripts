@@ -1,24 +1,28 @@
-/* pointer Arrays; Pointers to pointers
- * The input collect and save the characers of each line, and build an
- * array of pointers to the lines. It will also have to count the number
- * of input lines, since that information is needed for sorting and printing
+/* Program that sort a set of text lines into alphabetic order,
+ * a stripped-down version of the UNIX program 'sort'.
+ */
+
+/* input -> collect and save the charaters of each line, and build an
+ * array of pointers to the lines.
  *
- * The ouput routine has to print the lines in the order in which they appear
- * in the array of pointers.
+ * output -> print the lines in the order in which they appear in the array 
+ * of pointers.
  */
 
 #include <stdio.h>
 #include <string.h>
 
 #define MAXLINES 5000           /* max #lines to be sorted      */
+
 char *lineptr[MAXLINES];        /* pointers to text lines       */
+
 int readlines(char *lineptr[], int nlines);
 void writelines(char *lineptr[], int nlines);
 
 void qsort(char *lineptr[], int left, int right);
 
 /* sort input lines     */
-main() {
+int main() {
     int nlines;                 /* number of input lines read   */
 
     if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {

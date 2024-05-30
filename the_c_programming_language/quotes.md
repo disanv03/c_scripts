@@ -514,3 +514,27 @@ Else we return the difference (`*s - *t`) indicating whether the character from 
 ```
 This line says that lineptr is an array of MAXLINES elements, each element of which is a pointer to a char.
 
+
+#### Initialization of Pointer Arrays
+
+
+Ideal application for an internal `static` array.
+
+```c
+/* month_name: return name of n-th month */
+char *month_name(int n) {
+    static char *name[] = {
+        "Illegal month",
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    };
+
+    return (n < 1 || n > 12) ? name[0] : name[n];
+}
+```
+
+The `static` keyword ensures that the array `name` retains its value across
+multiple calls of the same function. This means that the array is only initialized once.
+
