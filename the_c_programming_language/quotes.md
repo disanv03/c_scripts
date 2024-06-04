@@ -548,3 +548,19 @@ char *month_name(int n) {
 The `static` keyword ensures that the array `name` retains its value across
 multiple calls of the same function. This means that the array is only initialized once.
 
+#### Command-line Arguments
+
+> "In environments that support C, there is a way to pass command-line arguments or parameters to a program when it begins executing. When main is called, it is called with two arguments. The first (conventionally called argc, for argument count) is the number of command-line arguments the program was invoked with; the second (argv, for argument vector) is a pointer to an array of character strings that contain the arguments, one pers string."
+
+> "A common convention for C programs on UNIX systems is that an arguments that begins with a minus sign introduces an optional flag or parameter. If we choose -x (for except) to signal the inversion, and -n (number) to request line numbering, then the command `find -x -n pattern` will print each line that doesn't match the pattern, preceded by its line number"
+
+
+How the -x flag work. Here the table of truth: (code page 105)
+
+| `strstr(line, *argv) != NULL` | `except` | `!= except` | Result          |
+|-------------------------------|----------|-------------|-----------------|
+| 1 (substring found)           | 0        | 1 != 0      | 1 (print line)  |
+| 0 (substring not found)       | 0        | 0 != 0      | 0 (skip line)   |
+| 1 (substring found)           | 1        | 1 != 1      | 0 (skip line)   |
+| 0 (substring not found)       | 1        | 0 != 1      | 1 (print line)  |
+
