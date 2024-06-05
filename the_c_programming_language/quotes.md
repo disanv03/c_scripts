@@ -564,3 +564,7 @@ How the -x flag work. Here the table of truth: (code page 105)
 | 1 (substring found)           | 1        | 1 != 1      | 0 (skip line)   |
 | 0 (substring not found)       | 1        | 0 != 1      | 1 (print line)  |
 
+
+### Pointers to Functions
+
+> "A sort often consists of three parts - a comparison that determines the ordering of any pair of objects, an exchange that reverses their order, and a sorting algorithm that makes comparisons and exchanges until the objects are in order."
