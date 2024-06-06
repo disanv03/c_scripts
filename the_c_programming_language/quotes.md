@@ -568,3 +568,55 @@ How the -x flag work. Here the table of truth: (code page 105)
 ### Pointers to Functions
 
 > "A sort often consists of three parts - a comparison that determines the ordering of any pair of objects, an exchange that reverses their order, and a sorting algorithm that makes comparisons and exchanges until the objects are in order."
+
+> "Any pointer can be cast to void * and back again without loss of information, so we can call qsort by casting arguments to void *."
+
+`int (*comp)(void *, void *)`
+says that comp is a pointer to a function that has two void * arguments and returns an int.
+
+
+whereas `int *comp(void *, void *) /* wrong */` says that comp is a function returning a pointer to an int, which is very different.
+
+### Complicated Declarations
+
+```c
+    int *f();   /* f: function returning pointer to int */
+
+    int (*pf)();    /* pf: pointer to function returning int */
+```
+
+'dcl' -> declaration
+
+> "It's good to know that 'declaration' can be quite an art to understand, with all their subtleties."
+
+```c
+    char **argv;    /* equivalent of char *argv[];  */
+```
+
+```c
+    int array1[13];
+    int array2[13];
+    int (*daytab)[13];  /* daytab is a pointer to array of 13 integers */
+    daytab = &array1;
+    daytab = &array2;
+```
+
+```c
+    int *daytab[13];    /* daytab: array[13] of pointer to int */
+```
+
+```c
+    void *comp() {} /* comp: function returning pointer to void */
+
+    void (*comp)() {}   /* comp: pointer to function returning void */
+```
+
+```c
+    char (*(*x())[])();
+    /* x: function returning pointer to array[] of pointer to function returning char */
+    char (*(*x[3])())[5];
+    /* x: array[3] of pointer to function returning pointer to array[5] of char */
+```
+
+`char (*(*x())[])()`
+"x is a function returning a pointer to an array of pointers to functions returning char"
