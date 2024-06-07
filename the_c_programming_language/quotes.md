@@ -620,3 +620,63 @@ whereas `int *comp(void *, void *) /* wrong */` says that comp is a function ret
 
 `char (*(*x())[])()`
 "x is a function returning a pointer to an array of pointers to functions returning char"
+
+## Structures
+
+> "A structure is a collection of one or more variables, possibly of different types, grouped together under a single name for convenient handling. Structures help to organize complicated data, particulary in large programs, because they permit a group of related variables to be treated as a unit instead of as separate entities."
+
+```c
+    /* Basics of Structures 
+     * Let us create a basic point object
+     * Two components can be placed in a structure declared like this:
+     */
+    struct point {
+        int x;
+        int y;
+    };
+```
+
+The keyword `struct` introduces a structure declaration, which is a list of declarations enclosed in braces.
+An optional name called a **structure tag** may follow the word `struct`.
+The tag names this king of structure, and can be used subsequently as a shorthand for the part of the declaration in braces.
+The variables named in a structure are called members.
+
+
+A `struct` declarations defines a type. The right brace that terminates the list of members may be followed by a list of variables, just as for any basic type. That is,
+```c
+    struct { ... } x, y, z;
+    /* is syntactically analogous to */
+    int x, y, z;
+    /* in the sense that each statement declares x, y and z to be
+     * variables of the named type and causes space to be set aside for them
+     */
+```
+
+A structure declaration that is not followed by a list of variables reserves no storage; it merely describes a template or shape of a structure.
+If the declaration is tagged, however, the tag can be used later in definitions of instances of the structure.
+
+For example, `struct point pt;` defines a variable pt which is a structure of type `struct point`
+
+A structure can be initialized by following its definition with a list of initializers, each a constant expression, for the members:
+`struct maxpt = { 320, 200 };`
+
+
+The structure member operator `.` connects the structure name and the member name. To print the coordinates of the point pt:
+```c
+    printf("%d, %d", pt.x, pt.y);
+```
+
+Structures can be nested.
+```c
+    struct rect {
+        struct point pt1;
+        struct point pt2;
+    };
+
+    struct rect screen;
+    
+    screen.pt1.x;   /* refers to the x coordinate of the pt1 member of screen */
+```
+
+
+
