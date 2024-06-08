@@ -678,5 +678,22 @@ Structures can be nested.
     screen.pt1.x;   /* refers to the x coordinate of the pt1 member of screen */
 ```
 
+##### Structures and Functions
 
+> "The only legal operations on a structure are copying it (as a unit/member by member), taking its address with &, and accessing its members."
 
+> "The `.` operator is used to access members of a structure, by adding the specific offset on the base address."
+
+> "A structure name ('s') represents the entire block of memory for the structure"
+> "You cannot use ('s') as a pointer to the first member unlike array. Instead, you use the address-of operator ('&') to get a pointer to the structure."
+
+> "Pointers to structures are so frequently used that an alternative notation is provided as a shorthand. If p is a pointer to a structure, then `p->member-of-structure`
+
+```c
+    struct rect r, *rp = &r;
+    /* then these four expressions are equivalent: */
+    r.pt1.x
+    rp->pt1.x
+    (r.pt1).x
+    (rp->pt1).x
+```
