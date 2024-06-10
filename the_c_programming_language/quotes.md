@@ -697,3 +697,47 @@ Structures can be nested.
     (r.pt1).x
     (rp->pt1).x
 ```
+
+#### Arrays of Structures
+
+```c
+    struct key {
+        char *word;
+        int count;
+    } keytab[NKEYS];
+    
+    /* this could also be written */
+    struct key {
+        char *word;
+        int count;
+    };
+    struct key keytab[NKEYS];
+```
+
+Since the structure `keytab` contains a constant set of names, it is easiest to make it an external variable and initialize it once for all when it is defined. The structure initialization is analogous to earlier ones - the definition is followed by a list of initializers enclosed in braces:
+
+```c
+    struct key {
+        char *word;
+        int count;
+    } keytab[] = {
+        "auto", 0,
+        "break", 0,
+        "case", 0,
+        "char", 0,
+        "const", 0,
+        "continue", 0,
+        "default", 0,
+        "unsigned", 0,
+        "void", 0,
+        "volatile", 0,
+        "while", 0
+    };
+    /* as usual, the number of entries in the array will be computed
+     * if the initializers are present and the [ ] is left empty. */
+```
+
+
+
+
+
