@@ -739,6 +739,13 @@ Since the structure `keytab` contains a constant set of names, it is easiest to 
 
 #### Self-referential Structures
 
-
+The binary tree data structure use a self-reference.
+```c
+    struct tnode {              /* the tree node:           */
+        char *word;             /* points to the text       */
+        int count;              /* number of occurrences    */
+        struct tnode *left;     /* left child               */
+        struct tnode *right;    /* right child              */
+```
 
 
