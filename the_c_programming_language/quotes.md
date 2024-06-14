@@ -748,4 +748,51 @@ The binary tree data structure use a self-reference.
         struct tnode *right;    /* right child              */
 ```
 
+#### Table Lookup
+
+When a line like `#define IN 1` is encountered, the name IN and the replacement text 1 are stored in a table. Later, when IN appears in a statement like `state = IN;` it must be replaced by 1.
+
+There are two routines that manipulate the names and replacement texts.
+
+- `install(s,t)` records the name s and the replacement text in a table
+- `lookup(s)` search for s in the table
+
+
+A block in the list is a structure containing pointers to the name, the replacement text, and the next block in the list.
+
+```c
+    struct list {               /* table entry:         */
+        struct nlist *next;     /* next entry in chain  */
+        char *name;             /* defined name         */
+        char *defn;             /* stand for definiton: replacement text */
+    };
+```
+
+#### Typedef
+
+C provides a facility called `typedef` for creating new data type names.
+
+```c
+    /* for example, the declaration */
+    typedef int Length;
+    /* makes the name Length a synonym for int */
+    /* the type Length can be used in declarations,
+    * casts, etc, in exaclty the same ways that the int type can be */
+    Length len, maxlen;
+    Length *lengths[s];
+```
+
+Notice that the type being declared in a `typedef` appears in the position of a variable name, not right after the word `typedef`. Syntactically, `typedef`is like the storage classes `extern`, `static`, etc. We have used capitalized names for `typedef`s, to make them stand out.
+
+
+> "It must be emphasized that a `typedef` declaration does not create a new type in any sense; it merely adds a new name for some existing type."
+
+
+Besides purely aesthetic issues, there are two main reasons for using `typedef`s:
+    - The first is to parameterize a program against portability problems.
+    - The second is to provide better documentation for a program.
+
+
+#### Unions
+
 
