@@ -789,8 +789,11 @@ Notice that the type being declared in a `typedef` appears in the position of a 
 
 
 Besides purely aesthetic issues, there are two main reasons for using `typedef`s:
-    - The first is to parameterize a program against portability problems.
-    - The second is to provide better documentation for a program.
+
+
+- The first is to parameterize a program against portability problems.
+
+- The second is to provide better documentation for a program.
 
 
 #### Unions
