@@ -795,4 +795,10 @@ Besides purely aesthetic issues, there are two main reasons for using `typedef`s
 
 #### Unions
 
+A **union** is a variable that may hold (at different times) objects of different types and sizes, with the compiler keeping track of size and alignment requirements. Unions provide a way to manipulate different kinds of data in a single area of storage.
 
+> "In effect, a union is a structure in which all members have offset zero from the base, the structure is big enough to hold the "widest" member, and the alignment is appropriate for all of the types in the union."
+
+> "A union may only be initialized with a value of the type of its first member."
+
+> "Unions, like structures, are derived datatypes which group together a number of variables. However, the way the two treat these variables is totally different. While the elements of a structure enable us to access different locations in memory, the elements of a union serve as different names by which the same portion of memory can be accessed."
