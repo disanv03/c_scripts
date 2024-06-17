@@ -805,3 +805,29 @@ A **union** is a variable that may hold (at different times) objects of differen
 > "A union may only be initialized with a value of the type of its first member."
 
 > "Unions, like structures, are derived datatypes which group together a number of variables. However, the way the two treat these variables is totally different. While the elements of a structure enable us to access different locations in memory, the elements of a union serve as different names by which the same portion of memory can be accessed."
+
+
+#### Bit-fields
+
+> "Using bit fields in C is analogous to creating a custom-tailored word"
+
+> "The `:` operator is known as the bit field width specifier, it's used to specify the number of bits that a particular field within a structure will occupy"
+
+
+```c
+    struct {
+        unsigned int field1 : 3;
+        unsigned int field2 : 5;
+        unsigned int field3 : 6;
+    };
+```
+
+- `field1` will use 3 bits, `field2` will use 5 bits etc...
+
+
+> "When you use the `:` operator to define bit fields in a struct, the compiler packs these field tightly together"
+
+
+### Chapter 7 - Input and Output
+
+> "We will not present the entire library here, since we are more interested in writing C programs that use it."
