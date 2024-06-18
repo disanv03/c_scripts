@@ -831,3 +831,28 @@ A **union** is a variable that may hold (at different times) objects of differen
 ### Chapter 7 - Input and Output
 
 > "We will not present the entire library here, since we are more interested in writing C programs that use it."
+
+> "The library implements a simple model of text input and output. A text stream consists of a sequence of lines; each line ends with a newline character. If the system doesn't operate that way, the library does whatever necessary to make it appear as if it does."
+
+##### Variable-length Argument Lists
+
+This section contains an implementation of a minimal version of `printf`, to show how to write a function that processes a variable-length argument list in a portable way.
+
+```c
+    /* the proper declaration for printf is */
+    int printf(char *fmt, ...);
+    /* where the declaration ... means that the number and types of these
+     * arguments may vary */
+
+    /* minprintf is declared as */
+    void minprintf(char *fmt, ...);
+    /* since we will not return the character count that printf does. */
+```
+
+The tricky bit is how `minprintf` walks along the argumnent list when the list doesn't even have a name. The standard header `<stdarg.h>` contains a set of macro definitions that define how to step through an argument list. The implementation of this header will vary from machine to machine, but the interface it presents is uniform.
+
+
+The type `va_list` is used to declare a variable that will refer to each argument in turn; in `minprintf`, this variable is call `ap` for "argument pointer". The macro `va_start` initializes `ap` to point to the first unnamed argument. It must be called once before `ap` is used. There must be at least one named argument; the final named argument is used by `va_start` to get started.
+
+
+See: minprintf.c
