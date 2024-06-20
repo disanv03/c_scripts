@@ -856,3 +856,48 @@ The type `va_list` is used to declare a variable that will refer to each argumen
 
 
 See: minprintf.c
+
+#### Formatted Input - Scanf
+
+> "`scanf` stops when it exhausts its format string, or when some input fails to match the control specification. It returns as its value the number of succesfully matched and assigned input items. This can be used to decide how many items were found."
+
+> "There is also a function `sscanf` that reads from a string instead of the standard input"
+
+```c
+    int sscanf(char *string, char *format, arg1, arg2, ...);
+```
+
+It scans the `string` according to the format in `format` and stores the resulting values through `arg1`, `arg2`, etc. These arguments must be pointers.
+
+
+The format string usually contains conversion specifications, which are used to control conversion of input. The format string may contain:
+
+
+- Blanks or tabs, which are not ignored.
+- Ordinary characters (not %), which are expected to match the next non-white space character of the input stream
+- Conversion specifications, consisting of the characters %, an optional assignment suppression character *, an optional number specifying a maximum field width, an optional h, l or L indicating the width of the target, and a conversion character.
+
+```c
+#include <stdio.h>
+
+int main() {
+    const char *input = "123456 789 1234.56 7890";
+    int first;
+    double third;
+    long int fourth;
+    
+    // Using sscanf to read the integers and floating-point numbers with specified width and length
+    // Suppress assignment of the second number
+    if (sscanf(input, "%5d %*4hd %lf %ld", &first, &third, &fourth) == 3) {
+        printf("First number (max width 5): %d\n", first);
+        printf("Third number (double): %lf\n", third);
+        printf("Fourth number (long int): %ld\n", fourth);
+    } else {
+        printf("Error reading input string.\n");
+    }
+
+    return 0;
+}
+``` 
+
+
