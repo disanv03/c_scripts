@@ -945,4 +945,30 @@ For formatted input or output of files, the functions `fscanf` and `fprintf` may
     int fprintf(FILE *fp, char *format, ...)
 ```
 
+#### Error Handling - Stderr and Exit
+
+> "`stderr`is not a traditional file; it is a stream."
+
+> "`exit` terminates program execution when it is called. The argument of `exit` is available to whatever process called this one, so the success or failure of the program can be tested by another program that uses this one as a sub-process. Conventionally, a return value of 0 signals that all is well; non-zero values usually signal abnormal situtations. `exit` calls `fclose` for each open output file, to flush out any buffered output.
+
+
+> "within `main`, `return` expr is equivalent to `exit(expr)`."
+
+
+We have generally not worried about exit status in our small illustrative programs, but any serious program should take care to return sensible, useful status values.
+
+
+#### Line Input and Output
+
+The standard library provides an input and output routine `fgets` that is similar to the `getline` function that we have used in earlier chapter.
+
+```c
+    char *gets(char *line, int maxline, FILE *fp)
+```
+
+`fgets` reads the next input line (including the newline) from file `fp` into the character array `line`; at most `maxline-1` characters will be read.
+
+Normally `fgets` return `line`; on end of file or error it return `NULL`.
+
+
 
