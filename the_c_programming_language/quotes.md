@@ -901,3 +901,48 @@ int main() {
 ``` 
 
 
+#### File Access
+
+> "The examples so far have all read the standard input and written the standard ouput, which are automatically defined for a program by the local operating system."
+
+> "The next step is to write a program that accesses a file that is not already connected to the program."
+
+```c
+    FILE *fp;
+    FILE *fopen(char *name, char *mode);
+```
+
+This say that `fp`is a pointer to a `FILE`, and `fopen` returns a pointer to a `FILE`. Notice that `FILE` is a type name, like `int`, not a structure tag; it is defined with a `typedef`
+
+```c
+    /* the call of fopen in a program is: */
+    fp = fopen(name, mode);
+
+    /* getc returns the next character from the stream referred by fp
+     * it returns EOF for end of the file or error */
+    int getc(FILE *fp);
+    
+    /* putc writes the character c to the file fp and returns the 
+     * character written, or EOF if an error occurs. */
+    int putc(int c, FILE *fp)
+```
+
+
+When a C program is started, the operating system environment is responsible for opening three files and providing pointers for them. These files are the standard input, the standard ouput, and the standard error; the corresponding file pointers are called `stdin`, `stdout`, and `stderr`, and are declared in `<stdio.h>`. Normally `stdin` is connected to the keyboard and `stdout` and `stdout` are connected to the screen, but `stdin` and `stdout` may be redirected to files or pipes...
+
+
+`getchar` and `putchar` can be defined in terms of `getc`, `putc`, `stdin` and `stdput` as follows:
+
+```c
+    #define getchar()   getc(stdin)
+    #define putchar()   putc((c, stdout)
+```
+
+For formatted input or output of files, the functions `fscanf` and `fprintf` may be used. These are identical to `scanf` and `printf`, except that the first argument is a file pointer that specifies the file to be read or written; the format string is the second argument.
+
+```c
+    int fscanf(FILE *fp, char *format, ...)
+    int fprintf(FILE *fp, char *format, ...)
+```
+
+
