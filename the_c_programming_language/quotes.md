@@ -998,16 +998,16 @@ The standard library most useful functions:
 - `c` is `int` that can be represented as an unsigned char or `EOF`
 - Function returns `int`
 
-| Function      | Description                                                                                          | Parameters |
-|---------------|------------------------------------------------------------------------------------------------------|------------|
-| `isalpha(c)`  | Non-zero if `c` is alphabetic, 0 if not                                                              | `c` is `int` |
-| `isupper(c)`  | Non-zero if `c` is upper case, 0 if not                                                              | `c` is `int` |
-| `islower(c)`  | Non-zero if `c` is lower case, 0 if not                                                              | `c` is `int` |
-| `isdigit(c)`  | Non-zero if `c` is a digit, 0 if not                                                                 | `c` is `int` |
-| `isalnum(c)`  | Non-zero if `isalpha(c)` or `isdigit(c)`, 0 if not                                                   | `c` is `int` |
-| `isspace(c)`  | Non-zero if `c` is blank, tab, newline, return, formfeed, or vertical tab                            | `c` is `int` |
-| `toupper(c)`  | Return `c` converted to upper case                                                                   | `c` is `int` |
-| `tolower(c)`  | Return `c` converted to lower case                                                                   | `c` is `int` |
+| Function      | Description                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------------|
+| `isalpha(c)`  | Non-zero if `c` is alphabetic, 0 if not                                                              |
+| `isupper(c)`  | Non-zero if `c` is upper case, 0 if not                                                              |
+| `islower(c)`  | Non-zero if `c` is lower case, 0 if not                                                              |
+| `isdigit(c)`  | Non-zero if `c` is a digit, 0 if not                                                                 |
+| `isalnum(c)`  | Non-zero if `isalpha(c)` or `isdigit(c)`, 0 if not                                                   | 
+| `isspace(c)`  | Non-zero if `c` is blank, tab, newline, return, formfeed, or vertical tab                            | 
+| `toupper(c)`  | Return `c` converted to upper case                                                                   | 
+| `tolower(c)`  | Return `c` converted to lower case                                                                   | 
 
 # `<math.h>` Functions Summary
 
@@ -1026,5 +1026,4 @@ The standard library most useful functions:
 | `sqrt(x)`       | Square root of `x` (x > 0)                            | `x` is `double`   |
 | `fabs(x)`       | Absolute value of `x`                                 | `x` is `double`   |
 
-### Legend
 
