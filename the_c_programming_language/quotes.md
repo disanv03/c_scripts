@@ -980,17 +980,17 @@ The standard library most useful functions:
 
 ##### `<string.h>` Functions Summary
 
-| Function          | Description                                                                    | Parameters        |
-|-------------------|--------------------------------------------------------------------------------|-------------------|
-| `strcat(s, t)`    | Concatenate `t` to the end of `s`                                              | `s` and `t` are `char*` |
-| `strncat(s, t, n)`| Concatenate `n` characters of `t` to the end of `s`                            | `s` and `t` are `char*`, `n` is `int` |
-| `strcmp(s, t)`    | Return negative, zero, or positive for `s < t`, `s == t`, `s > t`              | `s` and `t` are `char*` |
-| `strncmp(s, t, n)`| Same as `strcmp` but only for the first `n` characters                         | `s` and `t` are `char*`, `n` is `int` |
-| `strcpy(s, t)`    | Copy `t` to `s`                                                                | `s` and `t` are `char*` |
-| `strncpy(s, t, n)`| Copy at most `n` characters of `t` to `s`                                      | `s` and `t` are `char*`, `n` is `int` |
-| `strlen(s)`       | Return length of `s`                                                           | `s` is `char*`    |
-| `strchr(s, c)`    | Return pointer to the first occurrence of `c` in `s`, or `NULL` if not present | `s` is `char*`, `c` is `int` |
-| `strrchr(s, c)`   | Return pointer to the last occurrence of `c` in `s`, or `NULL` if not present  | `s` is `char*`, `c` is `int` |
+| Function          | Description                                                                    |
+|-------------------|--------------------------------------------------------------------------------|
+| `strcat(s, t)`    | Concatenate `t` to the end of `s`                                              |
+| `strncat(s, t, n)`| Concatenate `n` characters of `t` to the end of `s`                            |
+| `strcmp(s, t)`    | Return negative, zero, or positive for `s < t`, `s == t`, `s > t`              |
+| `strncmp(s, t, n)`| Same as `strcmp` but only for the first `n` characters                         |
+| `strcpy(s, t)`    | Copy `t` to `s`                                                                |
+| `strncpy(s, t, n)`| Copy at most `n` characters of `t` to `s`                                      |
+| `strlen(s)`       | Return length of `s`                                                           |
+| `strchr(s, c)`    | Return pointer to the first occurrence of `c` in `s`, or `NULL` if not present |
+| `strrchr(s, c)`   | Return pointer to the last occurrence of `c` in `s`, or `NULL` if not present  |
 
 
 ##### `<ctype.h>` Functions Summary
@@ -1014,16 +1014,16 @@ The standard library most useful functions:
 - All functions take one or two `double` arguments and return a `double`.
 
 
-| Function        | Description                                           | Parameters        |
-|-----------------|-------------------------------------------------------|-------------------|
-| `sin(x)`        | Sine of `x`, where `x` is in radians                  | `x` is `double`   |
-| `cos(x)`        | Cosine of `x`, where `x` is in radians                | `x` is `double`   |
-| `atan2(y, x)`   | Arctangent of `y/x`, in radians                       | `y`, `x` are `double` |
-| `exp(x)`        | Exponential function \( e^x \)                       | `x` is `double`   |
-| `log(x)`        | Natural (base e) logarithm of `x` (x > 0)             | `x` is `double`   |
-| `log10(x)`      | Common (base 10) logarithm of `x` (x > 0)             | `x` is `double`   |
-| `pow(x, y)`     | \( x^y \)                                             | `x`, `y` are `double` |
-| `sqrt(x)`       | Square root of `x` (x > 0)                            | `x` is `double`   |
-| `fabs(x)`       | Absolute value of `x`                                 | `x` is `double`   |
+| Function        | Description                                           |
+|-----------------|-------------------------------------------------------|
+| `sin(x)`        | Sine of `x`, where `x` is in radians                  |
+| `cos(x)`        | Cosine of `x`, where `x` is in radians                |
+| `atan2(y, x)`   | Arctangent of `y/x`, in radians                       |
+| `exp(x)`        | Exponential function \( e^x \)                        |
+| `log(x)`        | Natural (base e) logarithm of `x` (x > 0)             |
+| `log10(x)`      | Common (base 10) logarithm of `x` (x > 0)             |
+| `pow(x, y)`     | \( x^y \)                                             |
+| `sqrt(x)`       | Square root of `x` (x > 0)                            |
+| `fabs(x)`       | Absolute value of `x`                                 |
 
 
