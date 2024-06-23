@@ -1009,7 +1009,7 @@ The standard library most useful functions:
 | `toupper(c)`  | Return `c` converted to upper case                                                                   | 
 | `tolower(c)`  | Return `c` converted to lower case                                                                   | 
 
-# `<math.h>` Functions Summary
+###### `<math.h>` Functions Summary
 
 - All functions take one or two `double` arguments and return a `double`.
 
