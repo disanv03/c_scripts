@@ -978,7 +978,7 @@ The standard library most useful functions:
 - `s`, `t` are `char*`
 - `c`, `n` are `int`
 
-##### `<string.h>` Functions Summary
+# `<string.h>` Functions Summary
 
 | Function          | Description                                                                    | Parameters        |
 |-------------------|--------------------------------------------------------------------------------|-------------------|
@@ -991,7 +991,6 @@ The standard library most useful functions:
 | `strlen(s)`       | Return length of `s`                                                           | `s` is `char*`    |
 | `strchr(s, c)`    | Return pointer to the first occurrence of `c` in `s`, or `NULL` if not present | `s` is `char*`, `c` is `int` |
 | `strrchr(s, c)`   | Return pointer to the last occurrence of `c` in `s`, or `NULL` if not present  | `s` is `char*`, `c` is `int` |
-
 
 ##### `<ctype.h>` Functions Summary
 
@@ -1008,23 +1007,6 @@ The standard library most useful functions:
 | `isspace(c)`  | Non-zero if `c` is blank, tab, newline, return, formfeed, or vertical tab                            | `c` is `int` |
 | `toupper(c)`  | Return `c` converted to upper case                                                                   | `c` is `int` |
 | `tolower(c)`  | Return `c` converted to lower case                                                                   | `c` is `int` |
-
-# `<math.h>` Functions Summary
-
-- All functions take one or two `double` arguments and return a `double`.
-
-
-| Function        | Description                                           | Parameters        |
-|-----------------|-------------------------------------------------------|-------------------|
-| `sin(x)`        | Sine of `x`, where `x` is in radians                  | `x` is `double`   |
-| `cos(x)`        | Cosine of `x`, where `x` is in radians                | `x` is `double`   |
-| `atan2(y, x)`   | Arctangent of `y/x`, in radians                       | `y`, `x` are `double` |
-| `exp(x)`        | Exponential function \( e^x \)                       | `x` is `double`   |
-| `log(x)`        | Natural (base e) logarithm of `x` (x > 0)             | `x` is `double`   |
-| `log10(x)`      | Common (base 10) logarithm of `x` (x > 0)             | `x` is `double`   |
-| `pow(x, y)`     | \( x^y \)                                             | `x`, `y` are `double` |
-| `sqrt(x)`       | Square root of `x` (x > 0)                            | `x` is `double`   |
-| `fabs(x)`       | Absolute value of `x`                                 | `x` is `double`   |
 
 ### Legend
 
