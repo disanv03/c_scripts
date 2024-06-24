@@ -1057,9 +1057,9 @@ In the UNIX file system, there are nine bits of permission information associate
 __Mapping Permissions to Binary and Octal:__
 
 
-r (read) = 4 (100 in binary)
-w (write) = 2 (010 in binary)
-x (execute) = 1 (001 in binary)
+- r (read) = 4 (100 in binary)
+- w (write) = 2 (010 in binary)
+- x (execute) = 1 (001 in binary)
 
 
 
