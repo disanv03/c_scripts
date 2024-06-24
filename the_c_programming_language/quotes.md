@@ -1027,3 +1027,52 @@ The standard library most useful functions:
 | `fabs(x)`       | Absolute value of `x`                                 |
 
 
+#### The UNIX System Interface
+
+The UNIX operating system provides its services through a set of system call, which are in effect functions within the operating system that may be called by user programs.
+
+
+In the UNIX operating system, all input and output is done by reading or writing files, because all peripheral devices, even keyboard and screen, are files in the file system. This means that a single homogeneous interface handles all communication between a program and peripheral devices.
+
+
+Since input and output involking keyboard and screen is so commom, special arragements exist to make this convenient. When the command interpreter (the "shell") runs a programs, three files are open, with file descriptos 0, 1, and 2, called the standard input, the standard output, and the standard error. If a program reads 0, and writes 1 and 2, it can do input and output without worrying about opening files.
+
+
+The user of a program can redirect I/O to and from files with `<` and `>`:
+`prog <infile >outfile`
+
+
+In this case, the shell changes the default assignements for the file descriptors 0 and 1 to the named files.
+
+
+> "In all cases, the file assignements are changed by the shell, not by the program"
+
+
+##### Low level I/O  - Read and Write
+
+In the UNIX file system, there are nine bits of permission information associated with a file that control read, write and execute access for the owner of the file, for the owner's group, and for all others. Thus a three-digit octal number is convenient for specifying the permissions.
+
+
+
+__Mapping Permissions to Binary and Octal:__
+
+
+r (read) = 4 (100 in binary)
+w (write) = 2 (010 in binary)
+x (execute) = 1 (001 in binary)
+
+
+
+| System Call | Return Value                                      | Description                                                                                               |
+|-------------|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `open`      | >= 0                                              | On success, returns a file descriptor (a non-negative integer).                                           |
+|             | -1 and sets `errno`                               | On failure, returns -1 and sets `errno` to indicate the error.                                            |
+| `read`      | > 0                                               | On success, returns the number of bytes read.                                                             |
+|             | 0                                                 | On end-of-file, returns 0.                                                                                |
+|             | -1 and sets `errno`                               | On failure, returns -1 and sets `errno` to indicate the error.                                            |
+| `creat`     | >= 0                                              | On success, returns a file descriptor (a non-negative integer).                                           |
+|             | -1 and sets `errno`                               | On failure, returns -1 and sets `errno` to indicate the error.                                            |
+| `write`     | >= 0                                              | On success, returns the number of bytes written.                                                          |
+|             | -1 and sets `errno`                               | On failure, returns -1 and sets `errno` to indicate the error.                                            |
+
+> "Termination of a program via `exit` or return from the main program closes all open files"
