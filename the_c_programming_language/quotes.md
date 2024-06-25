@@ -1076,3 +1076,35 @@ __Mapping Permissions to Binary and Octal:__
 |             | -1 and sets `errno`                               | On failure, returns -1 and sets `errno` to indicate the error.                                            |
 
 > "Termination of a program via `exit` or return from the main program closes all open files"
+
+
+#### Random Access - Lseek
+
+The system call `lseek` provides a way to move around in a file without reading or writing any data;
+
+```c
+    long lseek(int fd, long offset, int origin);
+```
+
+sets the current position in the file whose descriptor is `fd` to `offset`, which is taken relative to the location specified by `origin`.
+
+
+For example, the following function reads any number of bytes from any arbitrary place in a file. It returns the number read, or -1 on error
+```c
+    #include "syscalls.h"
+    
+    /* get: read n bytes from position pos */
+    int get(int fd, long pos, char *buf, int n) {
+        if (lseek(fd, pos, 0) >= 0) /* get to pos */
+            return read(fd, buf, n);
+        else
+            return -1;
+    }
+```
+
+The return value from `lseek` is a long that gives the new position in the file, or -1 if an error occurs.
+
+
+#### Listing Directories
+
+> "Let us begin with a short review of UNIX file system structure. A directory is a file that contains a list of filenames and some indication of where they are located. The 'location' is an index into another table called the 'inode list'. The *inode* for a file is where all information about the file except its name is kept. A directory entry generally consists of only two items, the filename and an inode number."
