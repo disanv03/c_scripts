@@ -14,3 +14,19 @@ __Compilers__
 
 > "In C, the newline character has no significance at all"
 
+
+#### Loop and Control Constructs
+
+```c
+    /* conditional expression */
+    if (x == 0) printf("x is zero");
+    /* is exactly equivalent to */
+    if (!x) printf("x is zero");
+
+    /* logical connectives */
+    if (a > 10 && a < 20)
+        printf("a is within range");
+    /* this could be negated: */
+    if (!(a > 10 && a < 20))
+        printf("a is not within range");
+```
