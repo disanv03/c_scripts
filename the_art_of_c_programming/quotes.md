@@ -30,3 +30,41 @@ __Compilers__
     if (!(a > 10 && a < 20))
         printf("a is not within range");
 ```
+
+
+#### Arithmetic and Logic
+
+> "... and then the different branches of arithmetic -- Ambition, Distraction, Uglification, and Derision". Alice's Adventures in Wonderland
+
+
+__ASCII coding system in binary__
+
+
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+|---|---|---|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+- Bit 7: Not used in standard ASCII
+- Bit 6: 0=Digit, 1=Letter  
+- Bit 5: 0=Upper case, 1=digit/lower case
+- Bit 4: 0= a-o, 1=digit/p-z  
+- Bit 3:  
+- Bit 2:  
+- Bit 1:  
+- Bit 0: 
+
+
+#### AND (&)
+
+> "The AND operation compares two bit patterns and produces a third result pattern. If corresponding pairs of bits are both 1 the result bit for that position is set to 1. Under all other circumstances it is set to 0"
+
+```c
+    /* toupper, convert lower case to their upper case equivalents */
+    toupper(char c) {
+        char mask;
+        mask = 223;
+        return (c & mask);
+    }
+```
+
+Binary value of 223: `11011111` bit 5 is forced to zero, and the other bits are left unchanged.
