@@ -68,3 +68,94 @@ __ASCII coding system in binary__
 ```
 
 Binary value of 223: `11011111` bit 5 is forced to zero, and the other bits are left unchanged.
+
+
+> "a bit that is set, i.e., 1, is considered "true"; a cleared bit, or 0, is "false". Thus, in the result of `z = x & y`, each bit is set if and only if the corresponding bit is set in both `x` and `y`."
+
+
+#### OR
+
+> "If either of the corresponding pairs of bits is a `1` the result bit for that column is `1`. Only if both bits are zero is the result zero"
+
+```
+    p   01101010
+    q   00100011
+    p|q 01101011
+```
+
+```c
+    /* tolower: lower case letters from either upper of lower case arguments/*
+    tolower(char c){
+        char mask;
+        mask = 32;  /* 00100000 */
+        return (c | mask);
+    }
+
+    /* you can see that bit 5 is forced to 1 */
+```
+
+#### XOR
+
+This is short for eXclusive OR. It's like OR except that it excludes the condition that both bits are '1'.
+
+```
+    p   01101010
+    q   00100011
+    p^q 01001001
+
+    1^1 = 0
+```
+
+Now we can write the function swapcase
+
+```c
+    /* swapcase: converts lower to upper case and vice versa */
+    swapcase(char c) {
+        char mask;
+        mask = 32;
+        return (c ^ mask);
+    }
+```
+
+
+#### NOT
+
+> "There's one remaining logical operator, NOT. This inverts every bit in a field."
+
+```
+    p   01110001
+    ~p  10001110
+```
+
+#### Shifts
+
+> "If you shift a bit pattern left and fill in to the right with zeros it has the effect of multiplying by 2"
+
+```
+    p   00010011 = 19
+    <<  00100110 = 38
+
+    /* this can be done directly with */
+    y = x << 1;
+    /* will shift x left 1 bit and put the result in y */
+
+    /* similary: */
+    p = r << 4;
+    /* would shift r 4 bits left, resulting in a multiplication by 16 */
+```
+
+Here a "mulitply by ten" technique:
+
+```c
+    times10(int n) {
+        int m, p;
+        m = n << 1;
+        p = m << 2;
+        return (m + p);
+    }
+```
+
+Right shifts are also possible: `a = b >> 2;`, would shift b 2 bits right and put the result in a.
+
+> "Normally, a right shift is equivalent to a divide by 2, as you'd expect, but there are exceptions to this rule which we'll come across later."
+

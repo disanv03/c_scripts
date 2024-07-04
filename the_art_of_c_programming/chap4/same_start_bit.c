@@ -2,3 +2,10 @@
  * start with the same bit, and zero if they start with different bits
  */
 
+int same_start(p, q) {
+    char mask;
+    mask = 128;
+    return (p & mask == q & mask);
+}
+    
+
