@@ -159,3 +159,37 @@ Right shifts are also possible: `a = b >> 2;`, would shift b 2 bits right and pu
 
 > "Normally, a right shift is equivalent to a divide by 2, as you'd expect, but there are exceptions to this rule which we'll come across later."
 
+
+#### Strings, Arrays, and pointers
+
+##### Strings and Pointers
+
+ 
+| Number | Character |
+|--------|-----------|
+| 38012  | t         |
+| 38013  | h         |
+| 38014  | i         |
+| 38015  | s         |
+| 38016  |           |
+| 38017  | m         |
+| 38018  | e         |
+| 38019  | s         |
+| 38020  | s         |
+| 38021  | a         |
+| 38022  | g         |
+| 38023  | e         |
+| 38024  | 0         | 
+
+0 = [ASCII null delimiter]
+
+When C compiles a statement like `s = "this message";` it sets up a set of consecutive bytes somewhere in memory [...]. You'll notice that there's a delimiter provided by the system, which is a zero byte. That's not ASCII zero (whose value is 48) but ASCII null (i.e., all bits set to '0').
+
+
+The variable `s` is set to `38012`. In other words, it is not the string but rather a pointer to the string. For the moment it is enough to note that it is pointer to strings, rather than the strings themselves, that are passed around in a C program.
+
+
+Even in the `"printf("some output");` the argument that is really passed to printf is the pointer to the string "some output".
+
+
+#### Arrays
