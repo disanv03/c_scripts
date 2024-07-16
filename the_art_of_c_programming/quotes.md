@@ -213,8 +213,10 @@ Even in the `"printf("some output");` the argument that is really passed to prin
 Let's illustrate pointer manipulation by writing string functions.
 So first we want a function that is passed a pointer to the string, and will return the number of bytes the string contains:
 
-```
-    /* string length */
+```c
+    /* Writing String functions that mimic BASIC's LEN, LEFT$, RIGHT$, and MID$ */
+
+    /* len: return string length */
     int len(char s[]) {
         int k;
         k = 0;
