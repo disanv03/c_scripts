@@ -197,3 +197,83 @@ Even in the `"printf("some output");` the argument that is really passed to prin
 
 
 #### Arrays
+
+```c
+    char s[30];
+    
+    /* transfer the string "some stuff" to the array s */
+    strcpy(s, "some stuff");
+```
+
+> An array name is a pointer to the beginning of the array. However, there is one difference: an array name is a constant and you can't do arithmetic with it whereas a pointer can be manipulated in any way you like.
+
+#### String Functions
+
+
+Let's illustrate pointer manipulation by writing string functions.
+So first we want a function that is passed a pointer to the string, and will return the number of bytes the string contains:
+
+```
+    /* string length */
+    int len(char s[]) {
+        int k;
+        k = 0;
+        while (s[k++])
+            ;
+        return (k-1);
+    }
+
+    /* left: copy the lefmost 'n' char from string to sub array */
+    void left(const char string[], char sub[], int n) {
+        int i;
+        for (i = 0; i < n && string[i] != '\0'; i++) {
+            sub[i] = string[i];
+        }
+        sub[i] = '\0';
+    }
+
+    /* right: copy rightmost n char */
+    void right(const *string, char *sub, int n) {
+        int length = strlen(string);
+        int start = length - n; /* starting index for copying */
+        
+        if (start < 0)
+            start = 0;  /* ensure we don't start before beginning of the string */
+        int i, j;
+        for (i = start, j = 0; i < length; i++, j++) {
+            sub[j] = string[i];
+        }
+        sub[j] = '\0';
+    }
+
+    /* substring: takes a string and two numeric arguments: one for
+     * starting position and one for the number of char to transfer */
+    void substring(const char *string, char *sub, int start, int length) {
+        int string_length = strlen(string);
+        
+        /* ensure starting index is within bounds */
+        if (start < 0 || start >= string_length) {
+            sub[0] = '\0';
+            return;
+        }
+        
+        /* ensure length doesn't exceed */
+        if (start + length > string_length) {
+            length = string_length - start;
+        }
+
+        int i;
+        for (i = 0; i < length && string[start + i] != '\0'; i++) 
+            sub[i] = string[start + i];
+        sub[i] = "\0';
+    }
+
+}
+```
+
+
+#### More about Pointers
+
+    
+        
+        
