@@ -274,8 +274,45 @@ So first we want a function that is passed a pointer to the string, and will ret
 ```
 
 
-#### More about Pointers
+## More about Pointers
 
-    
+Let's revise the len function using pointer.
+
+```c
+    int len(char *s) {
+        char *begin;
+        begin = s;
+        while (*s++)
+            ;
+        return (s - begin - 1);  
+    }
+```
+
+This is clearly a very close relative of the original len function. We're just missing a few square brackets, and we have to store the initial pointer value rather than setting a counter to zero.
+
+
+```c
+    /* let's write strcpy */
+    /* strcpy: copy move string about from source to target */
+    char *strcpy(char *dest, const char *src) {
+        char *dest_start = dest;
+        while (*src)
+            *dest++ = *src++;
+        *dest = '\0';
+        return dest_start;
+    }
         
+    /* strcat: concatenate two strings together */
+    char *strcat(char *string, const char *extra) {
+        char *dest_strat = string;
+        string += strlen(string);
+        while (*extra)
+            *string++ = *extra++;
+        *string = '\0';
+        return dest_start;
+    }
+```
+
+**Projects:**
+
         
