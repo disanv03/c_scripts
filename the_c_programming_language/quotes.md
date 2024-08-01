@@ -329,9 +329,9 @@ An array may be initialized by following its declaration with a list of initiali
 Character arrays are a special case of initialization; a string may be used instead of the braces and commans notation:
 
 ```c
-    char pattern = "ould";
+    char pattern[] = "ould";
     /* is a shorthand for the longest but equivalent */
-    char pattern = { 'o', 'u', 'l', 'd', '\0' };
+    char pattern[] = { 'o', 'u', 'l', 'd', '\0' };
 ```
 
 
