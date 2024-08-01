@@ -315,4 +315,77 @@ This is clearly a very close relative of the original len function. We're just m
 
 **Projects:**
 
+```c
+    /* Write a function dayO which takes a pointer *date pointing to a string
+    * giving a date, in the format "March 18 1937", and returns a pointer *day
+    * to a string that gives the corresponding day of the week
+    */
+    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    const char *months[] = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+    const char *days_of_week[] = {
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        "Saturday"
+    };
+    
+    int month_to_number(const char *month) {
+        for (int i = 0; i < 12; i++) {
+            if (strcmp(months[i], month) == 0) {
+                return i + 1;
+            }
+        }
+        return -1; /* month not found */
+    }
+
+    const char *dayO(const char *date) {
+        char month_str[20];
+        int day, year;
+        sscanf(date, "%s %d %d", month_str, &day, &year);
         
+        int month = month_to_number(month_str);
+        if (month == -1) return NULL;
+
+        /* adjust month and year for January and February */
+        if (month == 1 || month == 2) {
+            month += 12;
+            year --;
+        }
+
+        /* Zeller's Congruence Algorithm
+         * Used to determine the day of the week for any given date
+         * 
+         * K = the year within the century (1937 % 100 = 37)
+         * J = century (2001 / 100 = 20)
+         */        
+         
+        int K = year % 100;
+        int J = year / 100;
+        
+        /* Zeller's Congruence formula */
+        int f = day + (13*(month+1))/5 + K + K/4 + J/4 + 5*J;
+        int day_of_week = f%7;
+
+        day_of_week = (day_of_week + 6) % 7;
+    
+        return days_of_week[day_of_week];
+    }
+
+    int main() {
+        const char *date = "March 18 1937";
+        const char *day = dayO(date);
+        if (day != NULL) {
+            printf("The day of the week for %s is %s.\n", date, day);
+        else {
+            printf("Invalid date format.\n");
+        }
+        return 0;
+    }
+```
+
+
