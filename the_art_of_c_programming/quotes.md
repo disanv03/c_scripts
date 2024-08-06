@@ -388,4 +388,136 @@ This is clearly a very close relative of the original len function. We're just m
     }
 ```
 
+```c
+    /* Write a perpetual calendar which, given the month and year, prints
+     * out which days of that month fall on which dates, in the usual
+     * calendar format:
+     *
+     * August                                       1986
+     * SUN  MON     TUE     WED     THU     FRI     SAT
+     *                                      1       2
+     * 3    4       5       6       7       8       9
+     * 10   11      12      13      14      15      16
+     * [...]
+     * 24   25      26      27      28      29      30
+     * 31                              
+     *
+     */
+
+     #include <stdio.h>
+     #include <stdlib.h>
+     #include <string.h>
+    
+     const char *months[] = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+     };
+    
+     const char *days_of_week[] = {
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        "Saturday"
+     };
+
+     int month_to_number(const char *month) {
+        for (int i = 0; i < 12; i++) {
+            if (strcmp(months[i], month) == 0)
+                return i + 1;
+        }
+        return -1; /* month nor found */
+     }
+     
+     const char *dayO(const char *date) {
+        char month_str[20];
+        int day, year;
+        sscanf(date, "%s %d %d", month_str, &day, &year);
+        
+        int month = month_to_number(month_str);
+        if (month == -1) return NULL;
+
+        /* adjust month and year for January and February */
+        if (month == 1 || month == 2) {
+            month += 12;
+            year--;
+        }
+        
+        /* Zeller's Congruence Algorithm */
+        int K = year % 100;
+        int J = year / 100;
+        
+        /* Zeller's Congruence formula */
+        int f = day + (13*(month+1))/5 + K + K/4 + J/4 + 5*J;
+        int day_of_week = f % 7;
+
+        day_of_week = (day_of_week + 6) % 7;
+        return days_of_week[day_of_week];
+     }
+
+     int days_in_month(int month, int year) {
+        if (month == 2) {
+            /* check for leap year */
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) {
+                return 29;
+            else {
+                return 28;
+             }
+            }
+        }
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            return 30;
+        }
+        return 31;
+    }
+    
+    void print_calendar(int month, int year) {
+        char first_date[20];
+        snprintf(first_date, sizeof(first_date), "%s 1 %d", months[month-1], year);
+        const char *first_day = dayO(first_date);
+        int start_day = -1;
+        for (int i = 0; i < 7; i++) {
+            if (strcmp(days_of_week[i], first_day) == 0) {
+                start_day = i;
+                break;
+            }
+        }
+        if (start_day == -1) {
+            printf("invalid date.\n");
+            return;
+        }
+        printf("%s %d\n", months[month-1], year);
+        printf("SUN MON TUE WED THU FRI SAT\n");
+
+        int days = day_in_month(month, year);
+        int day = 1;
+        
+        for (int i = 0; i < start_day; i++)
+            printf("    ");
+        
+        for (int i = start_day; i < 7; i++)
+            printf("%-5d", day++)
+        printf("\n");
+
+        while (day <= days) {
+            for (int i = 0; i < 7 && day <= days; i++)
+                printf("%-5d", day++)
+
+            printf("\n");
+        }
+    }
+
+    int main() {
+        int month, year;
+        printf("Enter month (1-12): ");
+        scanf("%d", &month);
+        printf("enter year: ");
+        scanf("%d", &year);
+
+        if (mont < 1 || month > 12) {
+            printf("invalid month. enter a value between 1 and 12);
+            return 1;
+        }
+
+        print_calendar(month, year);
+        return 0;
+    }
+```
 
