@@ -234,9 +234,11 @@ There are numerous library functions available for I/O. These can be classified 
 
 > "The screen and keyboard together are called a console. Console I/O functions can be further classified into two categories - formatted and unformatted console I/O functions.
 
+
 #### Unformatted console I/O functions
 
-So far, for input we have consistently used the __scanf()__ function.However, for some situations, the __scanf()__ function has one glaring weakness... you need to hit the Enter key before the function can digest what you have typed. __getch()___ and __getche()__ are two functions which serve this purpose. These functions returns the character that has been most recently typed. The 'e' in __getche() function means it echoes(displays) the character that you typed to the screen.
+
+> So far, for input we have consistently used the __scanf()__ function.However, for some situations, the __scanf()__ function has one glaring weakness... you need to hit the Enter key before the function can digest what you have typed. __getch()___ and __getche()__ are two functions which serve this purpose. These functions returns the character that has been most recently typed. The 'e' in __getche() function means it echoes(displays) the character that you typed to the screen.
 
 - There is no keyword available in C for doing input/output
 - All I/O in C is done using standard library functions
