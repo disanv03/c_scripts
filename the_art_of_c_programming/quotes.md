@@ -423,7 +423,7 @@ This is clearly a very close relative of the original len function. We're just m
             if (strcmp(months[i], month) == 0)
                 return i + 1;
         }
-        return -1; /* month nor found */
+        return -1; /* month not found */
      }
      
      const char *dayO(const char *date) {
@@ -470,6 +470,7 @@ This is clearly a very close relative of the original len function. We're just m
     
     void print_calendar(int month, int year) {
         char first_date[20];
+        /* snprintf: write to the array of char (string) with max n size of characters */
         snprintf(first_date, sizeof(first_date), "%s 1 %d", months[month-1], year);
         const char *first_day = dayO(first_date);
         int start_day = -1;
@@ -511,7 +512,7 @@ This is clearly a very close relative of the original len function. We're just m
         printf("enter year: ");
         scanf("%d", &year);
 
-        if (mont < 1 || month > 12) {
+        if (month < 1 || month > 12) {
             printf("invalid month. enter a value between 1 and 12);
             return 1;
         }
