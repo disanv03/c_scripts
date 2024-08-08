@@ -499,7 +499,7 @@ This is clearly a very close relative of the original len function. We're just m
 
         while (day <= days) {
             for (int i = 0; i < 7 && day <= days; i++)
-                printf("%-5d", day++)
+                printf("%-5d", day++) /* -: left-aligned, 5 char wide, d: deciaml */
 
             printf("\n");
         }
@@ -522,3 +522,39 @@ This is clearly a very close relative of the original len function. We're just m
     }
 ```
 
+## Floats and Other types
+
+> "She can't do Subtraction", said the White Queen. "Can you do Division? devide a loaf by a knife - what's the answer to that?"
+
+
+The unsigned form allows you to tell the compiler that you want to think about the number as always being positive, and you get a doubled maximum value as an advantage.
+
+### **Declaring Structures**
+
+```c
+    /* definition of a cat_entry */
+    struct cat_entry {
+        int item_no;
+        char description[30];
+        float price;
+        int stock_level;
+    };
+
+    /* catalog is an array of 200 elements, each of which has the
+     * the cat_entry structure
+     */
+    struct cat_entry catalog[200];
+
+    /* cat_entry has become just another type
+     * Here a pointer to objects of that type
+     */
+    struct cat_entry *p;
+    /* you can now use p to point anywhere in the catalog */
+```
+
+
+
+    
+
+
+    
