@@ -552,7 +552,30 @@ The unsigned form allows you to tell the compiler that you want to think about t
     /* you can now use p to point anywhere in the catalog */
 ```
 
+## Defining Your Own Types
 
+
+Defining structures comes close to defining completely new types. Well, you can do that, too, with a typedef statement.
+
+```c
+    /* declares int and month to be equivalent */
+    typedef int month;
+    /* so now you can write */
+    month date1, date2;
+    /* date1 and date2 are declared to be of type month and so are ints */
+    
+    /* better yet, cat_entry above could be given a synonym: */
+    typedef struct cat_entry catalog;
+    /* and then */
+    catalog unipart[5000], great_universal_stores[2000];
+```
+
+None of this provides you with any new programming tools. What it does achieve is a readability improvement.
+
+## Constants and Initializers
+
+
+    
 
     
 
