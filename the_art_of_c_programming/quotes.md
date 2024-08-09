@@ -574,10 +574,50 @@ None of this provides you with any new programming tools. What it does achieve i
 
 ## Constants and Initializers
 
+The exponent form for large or small numbers is allowed
 
-    
+```c
+    float very_big_number;
+    very_big_number = 1.3e9;
+    /* will allocate 1,300,000,000 to the variable */
+```
 
-    
+## Character Constants
+
+We've spent some time looking at string constants, and you might imagine that a C character can be seen simply as a string of length 1. However, this isn't so, because a string of length 1 occupies 2 bytes, the second containing the null delimiter. So we need a way of allocating a value to a single byte.
+
+```c
+    char c;
+    c = 'A';
+```
+
+In other words, when you use a single quotes marks you are setting the value of a single bytes; double quote marks identify a string, as we've seen before.
+
+## Handling Control Characters
+
+Control characters are those that have some effect (on a printer, say) but don't actually print a symbol. And if you can't print it, how can you put it between quote marks?
 
 
-    
+However, there are some control characters that are so commonly needed that C makes special provision for them. Each is preceded by a backslash, called, in the jargon, an *escape*.
+
+
+Here's the complete set:
+
+
+| Escape Sequence | Description                |
+|-----------------|----------------------------|
+| `\n`            | newline                    |
+| `\t`            | tab                        |
+| `newline`       | newline                    |
+| `tab50`         | tab                        |
+| `\b`            | backspace                  |
+| `\r`            | carriage return            |
+| `\f`            | form feed                  |
+| `\\`            | backslash                  |
+| `\'`            | single quote               |
+| `\ddd`          | octal number               |
+| `\0`            | ASCII null                 |
+
+
+
+
