@@ -619,5 +619,47 @@ Here's the complete set:
 | `\0`            | ASCII null                 |
 
 
+## Octal and Hecadecimal Constants
+
+There are times when a constant, although numeric, doesn't *really* represent a number and isn't a character either. Mask patterns of logical operations are good examples. That because is the *bit patterns* rather than the numbers they represent which are significant. So in cases like these, it would be nice to have format that translates to binary more easily than decimal does. C allows us to declare constants in either base 8(octal) or base 16(hexadecimal). In the former case, each digit can be directly encoded from a group of 3 bits, and in the latter case, groups of 4 bits.
+
+
+| Octal | Binary | Hexadecimal | Binary |
+|-------|--------|-------------|--------|
+| 0     | 000    | 0           | 0000   |
+| 1     | 001    | 1           | 0001   |
+| 2     | 010    | 2           | 0010   |
+| 3     | 011    | 3           | 0011   |
+| 4     | 100    | 4           | 0100   |
+| 5     | 101    | 5           | 0101   |
+| 6     | 110    | 6           | 0110   |
+| 7     | 111    | 7           | 0111   |
+|       |        | 8           | 1000   |
+|       |        | 9           | 1001   |
+|       |        | A           | 1010   |
+|       |        | B           | 1011   |
+|       |        | C           | 1100   |
+|       |        | D           | 1101   |
+|       |        | E           | 1110   |
+|       |        | F           | 1111   |
+
+
+So, for example, the pattern `10000001` can be seen as `10  000 001` giving `2  0   1` in octal or `1000    0001` giving `8     1` in hexadecimal
+
+
+That work because three binary digits can represent exaclty one octal digit, reflecting the fact that three binary places cover the full range of a single octal digit.
+
+
+C needs a way to distinguish between decimal, octal, and hexadecimal constants. If there is a leading zero, the constant is taken as octal. If there is a leading zero followed by an 'x' the constant is hexadecimal.
+
+```c
+    /* 10000001 */
+    mask = 129;
+    mask = 0201;
+    mask = 0x81;
+
+    /* are all equivalent statements */
+```
+
 
 
