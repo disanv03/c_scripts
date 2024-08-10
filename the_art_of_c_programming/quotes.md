@@ -661,5 +661,52 @@ C needs a way to distinguish between decimal, octal, and hexadecimal constants. 
     /* are all equivalent statements */
 ```
 
+## Initializers
 
+It's possible to initialize the value of a variable when you declare it:
+
+```c
+    int t = 7;
+    /* is equivalent to */
+    int t;
+    t = 7;
+
+    /* an array can be initialized in a similar way */
+    int discount[3] = {0,7,12};
+    /* is equivalent to */
+    int discount[3];
+    discount[0] = 0;
+    discount[1] = 7;
+    discount[2] = 12;
+```
+
+## Initializing Pointers
+
+```c
+    int a[50], *p;
+    p = a;
+    /* will make p point to the beginning of the array a
+     * because a is itself a pointer to the beginning of the array */
+
+    int fred, *p;
+    p = &fred;
+    /* p is now a pointer to fred. */
+
+    /* &a[0] = array name, here a */
+    int a[50], *p;
+    p = a;
+    /* is exactly equivalent to */
+    int a[50], *p;
+    p = &a[0];
+
+    /* if you want to search an array from top to bottom */
+    int a[50], *p, *q;
+    p = a;
+    q = &a[49];
+    while (*p++ != *q--)
+            ;
+    /* checking whether there is a pair of symmetric elements
+     * (one from the start and one from the end)
+     */
+```
 
