@@ -710,3 +710,52 @@ It's possible to initialize the value of a variable when you declare it:
      */
 ```
 
+## Chapter 7: Input
+
+> "The last time she saw them they were trying to put the dormouse in the teapot" -- Alice's Adventures in Wonderland
+
+#### Primitive Input
+
+
+At the simple level, C provides a function getchar which returns the next character input from the keyboard.
+
+
+The most obvious extension to getchar is to allow a set of characters to be input to a buffer for subsequent processing. We'll write a function getbuf for this.
+
+
+The function `getbuf` reads characters one by one from the input using `getchar()` and stores each character into the memory location pointed to by the buffer provided.
+
+```c
+    #define BUFSIZE 40
+    #define DELIM 13 /* ASCII code for carriage return */
+
+    /* here the first attempt of the getbuf function */
+    void getbuf(char *buffer) {
+        char *bptr;
+        for (bptr = buffer; bptr < buffer + BUFSIZE; bptr++) {
+            *bptr = getchar();
+            if (*bptr == DELIM)
+                return;
+        }
+    }
+
+    /* here the modern C style */
+    void getbuf(char *buffer) {
+        char *bptr = buffer;
+        
+        for (; bptr < buffer + BUFSIZE; bptr++) {
+            int ch = getchar(); /* using int for getchar() to handle EOF properly */
+            if (ch == EOF)
+                break;
+            
+            *bptr = (char)ch;
+            if (*bptr == DELIM)
+                return;
+        }
+    }
+    
+```
+
+`EOF` is typically defined as `-1`. It is a special constant defined in `<stdio.h>`. This value is distinct from all valid `char` values, which ensures that it can be used to detect the end of input reliably.
+    
+    
