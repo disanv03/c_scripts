@@ -754,6 +754,17 @@ The function `getbuf` reads characters one by one from the input using `getchar(
         }
     }
     
+    /* another attempt with a while loop */
+    void getbuf(char *buffer) {
+        int num_chars;
+        num_chars = 0;
+        
+        while ((*buffer++ = getchar()) != DELIM && num_chars < BUFSIZE)
+            num_chars++;
+
+        *buffer = '\0';
+    }
+    
 ```
 
 `EOF` is typically defined as `-1`. It is a special constant defined in `<stdio.h>`. This value is distinct from all valid `char` values, which ensures that it can be used to detect the end of input reliably.
