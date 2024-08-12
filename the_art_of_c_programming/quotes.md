@@ -770,3 +770,45 @@ The function `getbuf` reads characters one by one from the input using `getchar(
 `EOF` is typically defined as `-1`. It is a special constant defined in `<stdio.h>`. This value is distinct from all valid `char` values, which ensures that it can be used to detect the end of input reliably.
     
     
+## Order of precedence
+
+In the list of operator precedence, the operators that appear first have the highest precedence and are evaluated before those at the end.
+
+```c
+    (), [ ]
+    *(pointer), &(adress), -(negative), !, ~, ++, --
+    *(multiply), /, %
+    +, -(minus)
+    >>, <<
+    <, >, <=, >=
+    ==, !=
+    &(bitwise and), ^, | 
+    &&, ||
+    =, +=, -=, *=, /=, %=, >>=, <<=, &=, ^=, |=
+```
+
+The highest the priority operators are those at the top of the list, and those on the same lines have equal priority.
+
+```c
+    /* Modify getbuf function so that it stores characters with ASCII codes
+     * incremented by one compared to the input char.
+     */
+    
+    void getbuf(char *buffer) {
+        int num_chars = 0;
+        int ch;
+        
+        while (num_chars < BUFSIZE) {
+            ch = getchar();
+            if (ch == DELIM || ch == EOF) {
+                break;
+            }
+            *buffer++ = ch + 1;
+            num_chars++;
+        }
+        *buffer = '\0';
+    }
+```
+
+
+## Strings to Numbers
