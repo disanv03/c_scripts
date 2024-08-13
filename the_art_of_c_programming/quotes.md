@@ -812,3 +812,117 @@ The highest the priority operators are those at the top of the list, and those o
 
 
 ## Strings to Numbers
+
+> "My opinion is that you should never make things difficult until you've made them simple."
+
+```c
+    #include <ctype.h>      /* for isdigit function */
+    #include <stdbool.h>    /* for using bool, true, false */
+
+    int convert(const char *p) {
+        int result = 0;
+        int sign = 1;
+        
+        /* check for negative sign */
+        if (*p == '-') {
+            sign = -1;
+            p++; /* move pointer to the next char */
+        }
+        
+        /* convert string to integer */
+        while (true) {
+            if (!isdigit(*p)) {     
+                /* current char is not a digit, return the result */
+                return result * sign;
+            }
+            result = result * 10 + (*p - '0');
+            p++;
+        }
+    }
+
+    /* NOTE:
+     * isdigit() return true if *p is a digit, the ! operator negates 
+     * the result. Making 0 true, that the case when is not a digit.
+     * The if block is then executed.
+     */
+```
+
+This algorithm has two requirements for it to work correctly. First, as I've
+ already pointed out, there must be a sign preceding the digits, and second,
+ there must be at least one digit, because the first character in the string
+ is added into result regardless of what it is.
+
+
+This means that atoi must ensure that theses conditions exit before calling
+ convert.
+
+```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <ctype.h>
+    #include <string.h>
+
+    #define BUFSIZE 1024
+    
+    int convert(const char *num);
+    int setup(const char *buffer, char *num);
+    
+    int custom_atoi(const char *buffer) {
+        char num[BUFSIZE + 1]; /* there's a chance that we need one more byte for the sign */
+        if (!setup(buffer, num)) {
+            printf("Not an integer\n");
+            exit(EXIT_FAILURE);
+        }
+        return convert(num);
+    }
+
+    int setup(const char *buffer, char *num) {
+        const char *start = buffer;
+
+        /* skip non-digit char at beginning */
+        while (!isdigit(*buffer)) {
+            if (!*buffer) /* if we reach EO String without finding a digit */
+                return 0;
+            buffer++;
+        }
+
+        /* check if the char before is a negative sign */
+        if (buffer > start && *(buffer-1) == '-') {
+            *num = '-'; /* add the nagative sign */
+        }
+        /* cpy the digits */
+        while (isdigit(*buffer)) {
+            *num++ = *buffer++;
+        }
+
+        *num = '\0';
+        return 1;
+    }
+
+    int convert(const char *num) { ... }
+
+```
+
+> "In C, characters are internally represented as integers based on their ASCII values"
+
+```c
+    char c = 'A';       /* 'A' has an ASCII value of 65 */
+    int i = 65;
+    
+    /* %zu specifier to print values of type size_t */
+    printf("size of char: %zu bytes\n", sizeof(c)); /* 1 bytes */
+    printf("size of int: %zu bytes\n", sizeof(i));  /* 4 bytes */
+    
+    printf("char c as integer: %d\n", c); /* output -> 65 */
+```
+
+```c
+    int isdigit(char c) {
+        if (c >= '0' && c <= '9')
+            return 1;
+        else
+            return 0;
+    }
+
+    /* That clear in this case that c is representing a digit */
+```
