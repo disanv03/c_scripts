@@ -926,3 +926,87 @@ This means that atoi must ensure that theses conditions exit before calling
 
     /* That clear in this case that c is representing a digit */
 ```
+
+## A Feeble Excuse
+
+> "Getchar isn't the only way to grab things from the outside world. There's a function called scanf which does the job in a way that mirrors the operation of printf"
+
+
+```c
+    /* Substitution cypher program.
+     * On first running, this should request as input a permutation of
+     * the alphabet that will be used instead of the original one.
+     * String of 26 uppercase letters needed as an input.
+     */
+
+    #include <stdio.h>
+    #include <string.h>
+    #include <ctype.h>
+
+    #define ALPHABET_LENGTH 26
+    
+    /* create_mapping: create the substitution cipher mapping */
+    void create_mapping(char mapping[], const char permutation[]) {
+        for (int i = 0; i < ALPHABET_LENGTH; i++) {
+            mapping[i] = permutation[i];
+        }
+    }
+    
+    /* encode_message: encode a msg using the mapping */
+    void encode_message(char mapping[], const char message[], char encoded[]) {
+        int len = strlen(message);
+        for (int i = 0; i < len; i++) {
+            if (isalpha(message[i])) {
+                if (isupper(message[i])) {
+                    /* map uppercase letters */ 
+                    encoded[i] = mapping[message[i] - 'A'];
+                }
+                else {
+                    /* map lowercase */
+                    encoded[i] = tolower(mapping[message[i] - 'a']);
+                }
+            }
+            else {
+                /* non-alpha char remain unchanged */
+                encoded[i] = message[i];
+            }
+        }
+        encoded[len] = '\0';
+    }
+
+    int main() {
+        char permutation[ALPHABET_LENGTH + 1];  /* for null-terminator */
+        char mapping[ALPHABET_LENGTH];
+        char message[256];
+        char encoded[256];
+        
+        /* input permutation */
+        printf("Enter a permutation of alphabet: ");
+        scanf("%s", permutation);
+
+        /* create the mapping */
+        create_mapping(mapping, permutation);
+    
+        /* loop to encode multiple msgs */
+        while (1) {
+            printf("Enter a message to encode (or type EXIT to quit): ");
+            scanf(" %[^\n]", message); /* read line of input, and skip leading whitespace */
+            
+            if (strcmp(message, "EXIT") == 0)
+                break;
+
+            /* encode msg */
+            encode_message(mapping, message, encoded);
+            
+            /* output the encoded msg */
+            printf("Encoded message: %s\n", encoded);
+        }
+        
+        return 0;
+    }
+    
+```
+
+> "When `scanf` encounters a space, it knows that is should skip over any whitespace characters before processing the next input according to the next specifier"
+
+By default `scanf` skips leading whitespace when using format specifiers like `%s` or `%d` , but does not skip them when using custom format specifiers like `"%[^\n]"` (or `%c`) 
