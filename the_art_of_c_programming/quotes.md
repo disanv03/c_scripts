@@ -1058,3 +1058,17 @@ There's a function sprintf that acts like printf except that the data it assembl
     }
 ```
 
+The junior two digits are shifted right to allow space for the '.' to be inserted.
+
+```c
+    out[0] = $
+    out[1] = (space)
+    out[2] = 3
+    out[3] = 8
+    out[4] = 4
+    out[5] = 5
+    out[6] = 5 (modified later)
+    out[7] = \0 (implicitly added by sprintf)
+```
+
+So you can see how a string can be manipulated in a very flexible way, whereas a straight printf would not have allowed such tinkering.
