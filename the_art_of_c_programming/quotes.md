@@ -1010,3 +1010,51 @@ This means that atoi must ensure that theses conditions exit before calling
 > "When `scanf` encounters a space, it knows that is should skip over any whitespace characters before processing the next input according to the next specifier"
 
 By default `scanf` skips leading whitespace when using format specifiers like `%s` or `%d` , but does not skip them when using custom format specifiers like `"%[^\n]"` (or `%c`) 
+
+
+## Output
+
+> "The first thing she heard was a general chorus of 'There goes Bill!' then the Rabbit's voice alone—'Catch him, you by the hedge!' then silence, and then another confusion of voices—'Hold up his head—Brandy now—Don't choke him—How was it, old fellow? What happened to you? Tell us all about it!'" *Alice's Adventures in Wonderland*
+
+We'll now turn our attention to more ways of getting the machine to talk to us...
+
+
+**Printf format specifiers**:
+
+- o: convert to octal
+- x: convert to hexadecimal
+- u: convert to unsigned decimal
+- s: print as a string
+- f: convert to decimal (from floating point)
+
+`printf("%s%6.3f", p, x);`
+
+If `p` is a pointer to the string "First value is:" and `x` holds the value 5.813, you'll get the display `First value is: 5.813`
+
+
+Notice that I've specified the length of the floating point value (6 char, 3 of them decimal places), but left C to make up its own mind about the length of the string. This clearly presents no problem, because C knows where the string ends from the terminating null. Howevern C will convert the floating point number to a string before printing it, so the same should be true for the `f` conversion (and, indeed, all the others).
+
+**Example** with `3.43` with `%6.3f`
+- `.3f`: print the float with 3 digits after the decimal point, giving `3.430`
+- `6`: specifies the minimum field width. The total width of the printed number, including the digits and decimal point, is 5 char, since the minimum field width is 6, an extra space will be added to the left.
+
+
+In other words the number is pushed as far right as possible (i.e., right justified). It is possible to force left justification by preceding the length specifier with a minus sign like this `printf("%s%-6.3f", p, x);`
+
+#### Printing to Memory
+
+There's a function sprintf that acts like printf except that the data it assembles isn't ouput at all, but passed to a string.
+
+```c
+    void printmoney(int cents) {
+        char out[8] = " ";  /* init empty char array of size 8 */
+        *out = '$';         /* first char to $ */
+        sprintf(out + 1, "%5d", cents);     /* 5 char wide, right-jus, start from out[i] */
+        /* next 3 lines modify the string to insert a decimal point */
+        *(out + 6) = *(out + 5);    /* cpy char at pos 5 to pos 6 */
+        *(out + 5) = *(out + 4);    /* cpy char at pos 4 to pos 5 */
+        *(out + 4) = '.';           /* insert decimal point at pos 4 */
+        printf(out);
+    }
+```
+
