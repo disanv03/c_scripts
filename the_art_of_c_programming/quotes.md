@@ -1072,3 +1072,19 @@ The junior two digits are shifted right to allow space for the '.' to be inserte
 ```
 
 So you can see how a string can be manipulated in a very flexible way, whereas a straight printf would not have allowed such tinkering.
+
+
+## Primitive Output
+
+We could write a function called type that makes the computer behave as a typewriter until a delimiter(reffered to as DELIM) is encountered.
+
+```c
+    void type() {
+        char c;
+        while((c = getchar()) != DELIM)
+            putchar(c);
+    }
+
+```
+
+If you could change the standard input to a disc file, for example, we could use this routine as it stands to copy file to the screen. For that we need to alter the standard I/O devices. We shall return to this problem in Chapter 12.
