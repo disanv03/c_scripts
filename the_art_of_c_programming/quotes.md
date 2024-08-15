@@ -619,7 +619,7 @@ Here's the complete set:
 | `\0`            | ASCII null                 |
 
 
-## Octal and Hecadecimal Constants
+## Octal and Hecadecimal Constants
 
 There are times when a constant, although numeric, doesn't *really* represent a number and isn't a character either. Mask patterns of logical operations are good examples. That because is the *bit patterns* rather than the numbers they represent which are significant. So in cases like these, it would be nice to have format that translates to binary more easily than decimal does. C allows us to declare constants in either base 8(octal) or base 16(hexadecimal). In the former case, each digit can be directly encoded from a group of 3 bits, and in the latter case, groups of 4 bits.
 
@@ -661,7 +661,7 @@ C needs a way to distinguish between decimal, octal, and hexadecimal constants. 
     /* are all equivalent statements */
 ```
 
-## Initializers
+## Initializers
 
 It's possible to initialize the value of a variable when you declare it:
 
@@ -680,7 +680,7 @@ It's possible to initialize the value of a variable when you declare it:
     discount[2] = 12;
 ```
 
-## Initializing Pointers
+## Initializing Pointers
 
 ```c
     int a[50], *p;
