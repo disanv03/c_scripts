@@ -1093,3 +1093,29 @@ If you could change the standard input to a disc file, for example, we could use
 ## More about Control Constructs
 
 > "At the end of three yards I shall repeat them --for fear of your forgetting them. At the end of four, I shall say good-bye. And at the end of five, I shall go!"
+
+
+Write more compact code using the conditional operator
+```c
+        int abs(value) {
+            return (value < 0 ? -value : value);
+        }
+
+        int is_even(int number) {
+            return (number % 2 == 0) ? 1 : 0;
+        }
+``` 
+
+### Leaping out of Loops
+
+```c
+    for (i = 0; i < 100; i++) {
+        if (!*p)
+            break;
+        *q++ = *p++;
+    }
+```
+
+The keyword `break` has the effect of breaking out of the smallest enclosing loop.
+It doesn't matter what kind of loop it is.
+
