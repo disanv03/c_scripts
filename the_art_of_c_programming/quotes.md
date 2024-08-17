@@ -1091,3 +1091,5 @@ If you could change the standard input to a disc file, for example, we could use
 
 
 ## More about Control Constructs
+
+> "At the end of three yards I shall repeat them --for fear of your forgetting them. At the end of four, I shall say good-bye. And at the end of five, I shall go!"
