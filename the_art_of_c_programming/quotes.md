@@ -1088,3 +1088,6 @@ We could write a function called type that makes the computer behave as a typewr
 ```
 
 If you could change the standard input to a disc file, for example, we could use this routine as it stands to copy file to the screen. For that we need to alter the standard I/O devices. We shall return to this problem in Chapter 12.
+
+
+## More about Control Constructs
