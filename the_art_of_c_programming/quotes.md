@@ -1119,3 +1119,24 @@ Write more compact code using the conditional operator
 The keyword `break` has the effect of breaking out of the smallest enclosing loop.
 It doesn't matter what kind of loop it is.
 
+
+### Continuing
+
+It's also possible to jump to the end of a loop without leaving it. In other words you can conditionally bypass a chunk of the code in the loop.
+
+```c
+    /* For example:
+     * Let bypass any zeros in the source array from the above code
+     */
+    for (i = 0; i < 100; i++) {
+        if (!*p)
+            break;
+        if (*p++ == '0')
+            continue;
+        q++ = *(p-1);
+    }
+```
+
+> "Experience gives you a feel for what construct is mort natural in a
+given circumstance"
+
