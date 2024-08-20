@@ -1140,3 +1140,18 @@ It's also possible to jump to the end of a loop without leaving it. In other wor
 > "Experience gives you a feel for what construct is mort natural in a
 given circumstance"
 
+### Multiway Switches
+
+C provides a mechanism for dealing directly with multiway branches, called the switch statement.
+
+The `default` keyword doesn't have to be the final case. In fact, there is no significance at all in the order in which the case appear.
+
+### Do not pass Go
+
+About the only situation where a 'goto' would make sense to use would be a series of nested loops at the center of which is a confition, which, if true, requires the whole block of loops to be exited.
+Using break in that case wouldn't make sense, because it only breaks out of the smallest enclosing loop.
+
+
+## Chapter 10: Recursion
+
+
