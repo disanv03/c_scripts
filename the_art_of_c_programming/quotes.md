@@ -1154,4 +1154,20 @@ Using break in that case wouldn't make sense, because it only breaks out of the 
 
 ## Chapter 10: Recursion
 
+```c
+    /* conventional loop */
+    int factorial(int n) {
+        int result;
+        result = 1;
+        while (n--)
+            result *= n;
+        return result;
+    }
 
+    /* recursive way */
+    int factorial(int n) {
+        if (n == 1)
+            return 1;
+        return n*factorial(n-1);
+    }
+```
