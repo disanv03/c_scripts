@@ -1154,6 +1154,10 @@ Using break in that case wouldn't make sense, because it only breaks out of the 
 
 ## Chapter 10: Recursion
 
+> "Among the first things for which children are berated when they are learning their mother tongue is any attempt at a circular definition. "A chair is a chair with...", "You can't explain something by using the word you're explaining!" they're told firmly.
+
+> "Actually, with certain restrictions, circular definitions are perfectly legitimate, and they provide a powerful tool for the programmer. An equivalent of a circular definition is a function which calls itself."
+
 ```c
     /* conventional loop */
     int factorial(int n) {
@@ -1171,3 +1175,8 @@ Using break in that case wouldn't make sense, because it only breaks out of the 
         return n*factorial(n-1);
     }
 ```
+
+## Chapter 11: Structures
+
+> "When I use a word." Humpty-Dumpty said. in a rather scornful tone. "it means just what I choose it to mean- neither more nor less . . .. When I make a word do a lot of work . .. I always pay it extra." -- Through the Looking Glass
+
