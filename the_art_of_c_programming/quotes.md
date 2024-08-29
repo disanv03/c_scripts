@@ -207,6 +207,7 @@ Even in the `"printf("some output");` the argument that is really passed to prin
 
 > An array name is a pointer to the beginning of the array. However, there is one difference: an array name is a constant and you can't do arithmetic with it whereas a pointer can be manipulated in any way you like.
 
+
 #### String Functions
 
 
@@ -1176,7 +1177,191 @@ Using break in that case wouldn't make sense, because it only breaks out of the 
     }
 ```
 
+`char *p[200];` p is a contiguous block of memory that can hold 200 pointers.
+
 ## Chapter 11: Structures
 
 > "When I use a word." Humpty-Dumpty said. in a rather scornful tone. "it means just what I choose it to mean- neither more nor less . . .. When I make a word do a lot of work . .. I always pay it extra." -- Through the Looking Glass
 
+
+### Playing with Structures
+
+```c
+    struct cat_entry {
+        int item_no;
+        char description[30];
+        float price;
+        int stock_level;
+    };
+
+    struct cat_entry catalog[5000];
+
+    /* identify a strucure member */
+    structure_name.member
+    catalog[147].stock_level -= n;
+
+    /* C philosophy is, to refer to their element with pointers */
+    pointer_to_strucutre_name->member;
+
+    /* declare pointer to struct cat_entry */
+    struct cat_entry *pcat;
+    /* then if pcat is pointing to catalog[147] */
+    pcat->stock_level -= n;
+    /* of course, pcat could have been set up with */
+    pcat = &catalog[147];
+    /* but it's more likely to have been determined by some search routine */
+```
+
+### The Storeman's Mate
+
+Let's pull some ideas together for dealing with comings and goings of catalog items.
+
+- Add entry to catalog
+- Delete entry from catalog
+- Alter stock level
+- Check price of item
+
+We can use a switch on a function called menu which display the menu and returns the user's choice.
+
+```c
+    main() {
+        int hell_frozen_over = 0;
+        char menu();
+
+        while (!hell_frozen_over)
+            switch(menu()) {
+                case '1': add();
+                    break;
+                case '2": delete();
+                    break;
+                case '3': alter_stock();
+                    break;
+                case '4': check_price();
+                    break;
+                default: exit(0);
+            }
+    }
+
+    menu() {
+        printf("options are\n");
+        printf("1) Add Entry to Catalog\n");
+        printf("2) Delete Entry from Catalog\n");
+        printf("3) Alter Stock Level\n);
+        printf("4) Check Price of Item\n");
+        printf("Hit any other key to exit:")
+        return (getchar());
+    }
+
+
+    /* delete: indicated being deleted by setting item_no field to zero 
+     * final record catalog[499] set to -1 to act as a delimiter
+     */
+     delete() {
+        struct cat_entry *p;
+        int target, new_item_no;
+        p = catalog;
+        
+        printf("Enter item no for deletion:");
+        scanf("%d", &target);
+        while (p->item_no != target) {
+            if (p->item_no < 0) {
+                printf("Not found\");
+                return;
+            }
+            p++;
+        }
+        printf("Confirm deletion of %s(y/n)", p->description);
+        c = getchar();
+        if (c  == 'y' | c == 'Y')
+            p->item_no = 0;
+     }
+
+    /* add: look for first zero item number, and shovel new data */
+    add() {
+        struct cat_entry *p;
+        p = catalog;
+        
+        while (p->item_no) {
+            if (p->item_no) {
+                printf("No room\n");
+                return;
+            }
+            p++;
+        }
+        
+        printf("Enter item number:");
+        scanf("%d", &(p->item_no));
+
+        /* check if item number already exists */
+        struct cat_entry *check = catalog;
+        
+        while (check->item_no != -1) {
+            if (check->item_no == new_item_no) {
+                printf("item number taken!");
+                return;
+            }
+            check++;
+        }
+        
+        /* add new item */
+        p->item_no = new_item_no;
+        printf("Enter description:");
+        scanf("%s", &(p->description));
+        printf("Enter price:");
+        scanf("%f", &(p->price));
+        p->stock_level = 0;
+    }
+
+    /* alter_stock: alter stock level */
+    void alter_stock() {
+        struct cat_entry *p;
+        p = catalog;
+        int target, new_stock;
+        
+        printf("Enter item no to alter stock: ");
+        scanf("%d", &target);
+        
+        while (p->item_no != -1) {
+            if(p->item_no == target) {
+                printf("current stock lvl %d\n", p->stock_level);
+                printf("enter new stock lvl: ");
+                scanf("%d", &new_stock);
+                p->stock_level = new_stock;
+                printf("stock lvl updated.\n");
+                return;
+            }
+            p++;
+        }
+        printf("item not found\n");
+    }
+
+    /* check_price: retrieve the price of any given entry */
+    void check_price() {
+        struct cat_entry *p;
+        p = catalog;
+        int target;
+        
+        printf("enter item number to check his price: ");
+        scanf("%d", &target);
+        
+        while (p->item_no != -1) {
+            if (p->item_no == target) {
+                printf("the price of %s is: %.2f\n", p->description, p->price);
+                return;
+            }
+            p++;
+        }
+        printf("item not found\n");
+    }
+
+
+    /* print_catalog_items: print all item number */
+    void print_catalog_times() {
+        struct cat_entry *p = catalog;
+        while (p->item_no != -1) {
+            if (p->item_no != 0)
+                printf("%d", p->item_no);
+            p++;
+        }
+    }
+```
