@@ -1364,4 +1364,46 @@ We can use a switch on a function called menu which display the menu and returns
             p++;
         }
     }
+
+    /* find_key: returns a pointer to the appropriate record */
+    struct cat_entry* find_key(int target) {
+        struct cat_entry *p = catalog;
+        while (p->item_no != target) {
+            if (p->item_no < 0)
+                return 0;
+            p++;
+        }
+        return p;
+    }
+    
+
 ```
+
+### Recursive Structures
+
+
+> "Here a recursive structure that consists of a pair of pointers, one of which points to a word, and the orther points to another structure of the same kind"
+
+```c
+    struct list {
+        char *head;
+        struct list *tail;
+    }
+```
+
+### Projects
+
+```c
+    /* Write an additional menu functions that will order the entries by ascending item_no*/
+    void insertion_sort() {
+    }
+
+    /* Display entire current catalog */
+
+    /* Revise find_key so that it will also accept a description to search on */
+    struct cat_entry* find_key() {
+    }
+
+    /* display all catalog entries whose stock level is below 20 */
+```
+
