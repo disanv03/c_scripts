@@ -1394,16 +1394,67 @@ We can use a switch on a function called menu which display the menu and returns
 ### Projects
 
 ```c
-    /* Write an additional menu functions that will order the entries by ascending item_no*/
-    void insertion_sort() {
+    /* Write an additional menu functions that will order the entries by ascending item_n
+     * sort: order entries in ascending item_no 
+     */
+    void sort() {
+        int count = 0;
+        struct cat_entry *p = catalog;
+        
+        /* count active entries */
+        while (p->item_no != -1) {
+            if (p->item_no != 0)
+                count++;
+            p++
+        }
+        
+        if (count <= 1)
+            return;
+
+        struct cat_entry temp;
+        for (int i = 0; i < count-1; i++) {
+            for (int j = 0; j < count-i-1; j++) {
+                if (catalog[j].item_no > catalog[j+1].item_no) {
+                    temp = catalog[j];
+                    catalog[j] = catalog[j+1];
+                    catalog[j+1] = temp;
+                }
+            }
+        }
+
+    printf("catalog sorted by item number.\n");
+
     }
 
-    /* Display entire current catalog */
-
-    /* Revise find_key so that it will also accept a description to search on */
-    struct cat_entry* find_key() {
+    /* print_catalog: display entire current catalog */
+    void print_catalog() {
+        struct cat_entry *p = catalog;
+        while (p->item_no != -1)
+            printf("No: %d\n", p->item_no);
+            p++;
+        }
+        printf("\n");
     }
 
-    /* display all catalog entries whose stock level is below 20 */
+    /* find_key: adding an argument that it will also accept a description to search on */
+    struct cat_entry* find_key(int item_no, const char* description) {
+        struct cat_entry *p = catalog; 
+        while (p->item_no != -1) {
+            if ((item_no != -1 && p->item_no == item_no) || (description != NULL && strcmp(p->description, description) == 0))
+                return p;
+            p++;
+        }
+        retrun NULL;
+    }
+
+    /* reoder: display all catalog entries whose stock level is below 20 */
+    void reorder() {
+        struct cat_entry *p = catalog;
+        while (p->item_no != -1) {
+            if (p->stock_level < 20)
+                printf("item no: %d have a stock below 20", p->item_no);
+            p++;
+        }
+    }
 ```
 
