@@ -1458,3 +1458,21 @@ We can use a switch on a function called menu which display the menu and returns
     }
 ```
 
+## Chapter 12: File-Handling
+
+### I/O Redirection
+
+Most modern operating systems do not concern themselves directly with peripheral devices such as keyboards and printers, but rather with notional entities called channels which are then associated with specific device drivers.
+Thus a program communicates with a channel and the channel is linked to a device. The advantage of this mechanism is that the program need not be changed if the source of its input data changes, or its output is to be transferred to a disk file, say, rather than the printer. Only the channel/device assignment needs to be altered.
+
+All C I/O is handled in this channel oriented way. Thus the getchar function does not (strictly) transfer a character from the keyboard to main memory; it transfers it from a channel, which by default is assigned to the keyboard, to main memory. This channel is referred to as stdin(for standard input). There is a corresponding channel stdout whose default assignment is the screen.
+
+
+A typical mechanism for informing the operating system of this redirection of I/O might be `cprogram < a:data.text > b:newdata.text`
+
+### Error Messages
+
+
+There is one difficulty with this arrangement: any runtime error messages would be redirected along with the output data and the results could be somewhat mystifying. To get over this problem there is a third standard channel called stderr to which error messages are sent.
+
+### Buffered File I/O
