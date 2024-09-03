@@ -1524,6 +1524,51 @@ There is one difficulty with this arrangement: any runtime error messages would 
      * Just replace putc(c, out_cid); with putc(c, stdout);
      * or come to that: putchar(c);
      */
-``` 
+```
+
+`fopen` tells us whether it was successful in opening file. It does this by returning a channel identifier value of zero if the file could not be opened for any reason.
+
+Typically, `putc` and `fclose` also will report failure. EOF may be returnned by `putc`, and a non-zero value by `fclose`.
+
+```c
+    /* So a more robust filecopy would be with those test included: */
+    if ((in_cid = fopen(source, "r")) == 0) {
+        printf("No file %s", source);
+        exit(0);
+    }
+
+    if ((out_cid = fopen(dest, "w")) == 0) {
+        printf("Cannot open %s", dest);
+        exit(0);
+    }
 
 
+    while ((c = getc(in_cid)) != EOF)
+            if (putc(c, out_cid) == EOF) {
+                printf("disk error");
+                exit(0);
+            }
+    }
+```
+
+            
+### Random Access Files
+
+C provides a library function that effectively allows you to think about a file as a character array on disk, and it provides a mechanism for setting the "array subscript".
+
+
+The general form of this function is: `lseek(cid, skip_bytes, start);`
+
+`0` if the skip is to be computed from the beginning of the file
+`1` if the skip is to be computed from the current position
+`2` if the skip is to be computed from the end of the file
+
+For instance `lseek(cid, 200, 0);` will set the system up so that the next getc will read the 200th byte in the file.
+
+
+A subsequent call `lseek(cid, 50, 1);` would arrange for byte 250 to be read nextd; or, of course, written next, with `putc`.
+
+
+Leaving the file in "append" state with `lseek(cid, 0, 2);` which moves the subscript to the end of the file (start-2) and skipts 0 bytes.
+
+### The Square Table
