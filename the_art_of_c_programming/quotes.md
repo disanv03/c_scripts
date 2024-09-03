@@ -1476,3 +1476,54 @@ A typical mechanism for informing the operating system of this redirection of I/
 There is one difficulty with this arrangement: any runtime error messages would be redirected along with the output data and the results could be somewhat mystifying. To get over this problem there is a third standard channel called stderr to which error messages are sent.
 
 ### Buffered File I/O
+
+- `fopen`   :   open a channel to a file
+- `getc`    :   get a character from a channel
+- `putc`    :   send a character to a channel
+- `fscanf`  :   like scanf, but access a channel rather than the keyboard
+- `fprintf` :   like printf, but access a channel rather than the screen
+- `fclose`  :   flush a channel buffer and close a file
+
+```c
+    /* creating a file */
+    int main() {
+        FILE *cid;  /* channel id */
+        int n;
+        cid = fopen("square.dat", "w");
+        for (n = 1; n < 101; n++)
+            fprintf(cid, "%d %d\n", n, n*n);
+        fclose(cid);
+    }
+
+    /* get the data back again */
+        FILE *cid;
+        int n, v, vsq;
+        cid = fopen("squares.dat", "r");
+        for (n = 1; n < 101; n++) {
+            fscanf(cid, "%d %d", &v, &vsq);
+            printf("%d %d", v, vsq);
+        }
+        fclose(cid);    /* free the channel identifier */
+
+    /* filecopy utility */
+    FILE *in_cid, *out_cid;
+    char source[20], dest[20], c;
+    printf("File from:");
+    scanf("%s", source);
+    printf("File to:");
+    scanf("%s", dest);
+    in_cid = fopen(source, "r");
+    out_cid = fopen(dest, "w");
+    while ((c = getc(in_cid)) != EOF)
+            putc(c, out_cid);
+    fclose(in_cid);
+    fclose(out_cid);
+    
+    /* if you want a specific 'display file on screen'
+     * you don't need to open an output file at all.
+     * Just replace putc(c, out_cid); with putc(c, stdout);
+     * or come to that: putchar(c);
+     */
+``` 
+
+
