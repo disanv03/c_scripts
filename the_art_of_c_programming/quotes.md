@@ -1571,4 +1571,168 @@ A subsequent call `lseek(cid, 50, 1);` would arrange for byte 250 to be read nex
 
 Leaving the file in "append" state with `lseek(cid, 0, 2);` which moves the subscript to the end of the file (start-2) and skipts 0 bytes.
 
-### The Square Table
+```c
+    /* using lseek to set up the position in the file */
+    int main() {
+        FILE *in_cid;
+        int n, skip, v, vsq;
+        in_cid = fopen("square.dat", "r");
+        printf("No. to be squared");
+        scanf("%d", &n);
+        skip = 10*(n-1);
+        lseek(in_cid, skip, 0);
+        fscanf(in_cid, "%d %d", &v, &vsq);
+        printf("%d squared is %d", v, vsq);
+    }
+    /* fscanf is used to read the whole record */
+```
+
+### Binary Search
+
+Binary search algorithm can be stated like this:
+
+> "Examine the middle entry in the file. If this is the target record, the job is done. If its key field is greater than the target field, the target record must lie in the bottom half of the file. Otherwise it must lie in the top half of the file. In either case half the file has been eliminated from the search, and the process is repeated, at each stage eliminating half the remaining entries."
+
+
+```c
+    /* display square root of a given number using binary search */
+    main() {
+        FILE *in_cid;
+        int top_rec, bottom_rec, mid_rec, key, square, skip, sqrt;
+        top_rec = 100; bottom_rec = 1; key = 0;
+        mid_rec = 50;
+        in_cid = fopen("square.dat", "r");
+        printf("Enter no. to be square rooted"); scanf("%d", &square); 
+        while (square != key) {
+            skip = 10*(mid_rec - 1);
+            lseek(in_cid, skip, 0);
+            fscanf(in_cid, "%d %d", &sqrt, &key);
+            if (key > square)
+                top_rec= mid_rec - 1;
+            else 
+                bottom_rec = mid_rec + 1;
+            mid_rec = (top_rec + bottom_rec) / 2;
+        }
+        printf("square root is %d\n", sqrt);
+    }
+```
+
+```c
+    /* write the function search_file which accpets the arguments file name,
+     * number of record in the file, the record length, the position of the 
+     * first byte of the key, the length in bytes of the key, and the target key.
+     *
+     * n = search_file("data", 2000, 25, 7, 3, test_int);
+     * will look for the int "test_int" in bytes 7, 8, 9 of a 2000 record file
+     * called "data", each of whose records is 25 bytes long.
+     *
+     */
+    
+    /* search_file: binary search to find a specific integer key within each record */
+    int search_file(char *filename, int filesize, int recsize, int startbyte, int numbytes, int target) {
+        FILE *in_cid;
+        int top_rec, bottom_rec, mid_rec;
+        int key = 0;    /* extracted key from current record    */
+        int skip = 0;   /* byte offset to seek                  */
+        char sub[numbytes+1];
+        char record[recsize+1];
+
+        top_rec = filesize;
+        bottom_rec = 0;
+
+        if ((in_cid = fopen(filename, "r")) == 0) {
+            printf("no file %s", filename);
+            return -1;
+        }
+
+        while (bottom_rec <= top_rec) {
+            mid_rec = (top_rec + bottom_rec) / 2;
+            skip = recsize*(mid_rec-1);
+
+            lseek(in_cid, skip, 0);
+            fscanf(in_cid, "%s", record);
+            
+            strncpy(sub, record + startbyte, numbytes);
+            sub[numbytes] = '\0';
+            key = atoi(sub);
+
+            if (key == target) {
+                fclose(in_cid);
+                return mid_rec + 1;     /* record number (1-based index) */
+            }
+            else if (key > target) {
+                top_rec = mid_rec - 1;
+            }
+            else {
+                bottom_rec = mid_rec + 1;
+            }
+        }
+        return -1;
+    }
+```        
+
+   
+### Projects:
+
+```c
+    /* The binary search algorithm only work if the record are sorted into key order. Write a function that will sort the file into ascending order of any numeric keyfield */
+
+    typedef struct {
+        char *data;
+        int key;
+    } Record;
+
+    int extract_key(const char *record, int startbyte, int numbytes) {
+        char sub[numbytes + 1];
+        strncpy(sub, record + startbyte, numbytes);
+        sub[numbytes] = '\0';
+        return atoi(sub);
+    }
+    
+    int compare_records(const void *a, const void *b) {
+        Record *recA = (Record *)a;
+        Record *recB = (Record *)b;
+        return (recA->key - recB->key);
+    }
+    
+    void sort_file(char *filename, int filesize, int recsize, int startbyte, int numbytes) {
+        FILE *in_cid;
+        int num_records = filesize / recsize;
+        Record *records = malloc(num_records * sizeof(Record));
+
+        if ((in_cid = fopen(filename, "r")) == NULL) {
+            printf("no file %s\n", filename);
+            free(records);
+            return;
+        }
+        
+        /* read records into the array */
+        for (int i = 0; i < num_records; i++) {
+            records[i].data = malloc(recsize + 1);
+            fread(records[i].data, 1, recsize, in_cid);
+            records[i].data[recsize] = '\0';
+            records[i].key = extract_key(records[i].data, startbyte, numbytes);
+        }
+        fclose(in_cid);
+        
+        /* sort the records */
+        qsort(records, num_records, sizeof(Record), compare_records);
+
+        
+        /* write the sorted records back to file */
+        if ((in_cid = fopen(filename, "w")) == NULL) {
+            printf("cound not open file %s for writing\n", in_cid);
+            for (int i = 0; i < num_records; i++) 
+                free(records[i].data);
+            free(records);
+            return;
+        }
+        for (int i = 0; i < num_records; i++) {
+            fwrite(records[i].data, 1, recsize, in_cid);
+            free(records[i].data);
+        }
+        fclose(in_cid);
+        free(records);
+}
+               
+```
