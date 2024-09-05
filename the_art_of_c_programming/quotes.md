@@ -1694,7 +1694,29 @@ Binary search algorithm can be stated like this:
         Record *recB = (Record *)b;
         return (recA->key - recB->key);
     }
-    
+
+    void swap(Record v[], int i, int j) {
+        Record temp = v[i];
+        v[i] = v[j];
+        v[j] = temp;
+    }
+
+    /* qsort: using lomuto partition */
+    void qsort(Record v[], int left, int right) {
+        int i, last;
+        if (left >= right)
+            return;
+        swap(v, left, (left+right)/2);
+        last = left;
+        for (i = left+1; i <= right; i++) 
+            if (compare_records(&v[i], &v[left]) < 0)
+                swap(v, ++last, i);
+
+        swap(v, left, last);
+        qsort(v, left, last-1);
+        qsort(v, last+1, right);
+    }
+   
     void sort_file(char *filename, int filesize, int recsize, int startbyte, int numbytes) {
         FILE *in_cid;
         int num_records = filesize / recsize;
@@ -1716,8 +1738,7 @@ Binary search algorithm can be stated like this:
         fclose(in_cid);
         
         /* sort the records */
-        qsort(records, num_records, sizeof(Record), compare_records);
-
+        qsort(records, 0, num_records-1);
         
         /* write the sorted records back to file */
         if ((in_cid = fopen(filename, "w")) == NULL) {
