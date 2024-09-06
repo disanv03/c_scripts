@@ -1395,7 +1395,7 @@ We can use a switch on a function called menu which display the menu and returns
 
 ```c
     /* Write an additional menu functions that will order the entries by ascending item_n
-     * sort: order entries in ascending item_no 
+     * sort: order entries in ascending item_no, bubble way
      */
     void sort() {
         int count = 0;
@@ -1421,9 +1421,7 @@ We can use a switch on a function called menu which display the menu and returns
                 }
             }
         }
-
-    printf("catalog sorted by item number.\n");
-
+        printf("catalog sorted by item number.\n");
     }
 
     /* print_catalog: display entire current catalog */
@@ -1757,3 +1755,60 @@ Binary search algorithm can be stated like this:
 }
                
 ```
+
+### Debugging
+
+> "cats miaow, dogs bark, politicians tell imaginative versions of the truth, and programmers make mistakes"
+
+```c
+    /* missing a semicolon */
+    p = p + x
+    q = q + y;
+
+    /* the compiler will see this code as */
+    p = p + xq = q + y;
+```
+
+This leads to an important observation: what the compiler sees as an error may not be the error you actually made.
+
+### Runtime Errors
+
+> "If a C program is well-structured, it will consist of a number of short functions, each standing alone as a kind of mini-program (but perhaps callling other functions). And main will just put them all together in a clear way. So there's a sort of tree-like hierarchy of functions..."
+
+
+> "There's a hoary old tale of a tramp sitting beside a heap of twigs striking matches"
+
+```c
+    /* power: return x power of y */
+    int power(int x, int y) {
+        if (y == 0)
+            return 1;
+        
+        int x0 = x;
+        while (y > 1) {
+            x *= x0;
+            y--;
+        }
+        return x;
+    }
+
+    /* debug: print out dubug information */
+    void debug(char *message, int value) {
+        char *message;
+        int value;
+        printf(">>%s %d", message, value);
+    }
+
+    /* debug_improved: that tracks down each times variable is called */
+    #define MAX_VARS 10
+    int _count[MAX_VARS] = {0}
+
+    void debug_improved(const char *message, int value, int refno) {
+        _count[refno]++;
+        
+        printf(">>Ref %d: %s = %d: count = %d\n", refno, message, value, _count[refno]);
+    }
+
+```
+
+    
