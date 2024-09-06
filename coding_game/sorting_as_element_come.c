@@ -3,7 +3,6 @@
  * Insertion sort algorithm.
  *
  * input =>
- * 5
  * 34
  * 23
  * 45
