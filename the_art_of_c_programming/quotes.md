@@ -1811,4 +1811,35 @@ This leads to an important observation: what the compiler sees as an error may n
 
 ```
 
-    
+### Rational Arithmetic
+
+> "See a number as a pair of integers whose value is one of them divided by the other. Thus 3.2 appears as 32/10 or possibly 16/5. In general, let's talk about a number A as the pair (a,a') whose value is a/a'. It's obvious where the term rational arithmetic comes from; each number is a ratio of integers."
+
+```c
+    /* function to find the GCD using the Euclidean Algorithm */
+    int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    /* The euclidean algorithm is based on the principle that the GCD of 
+     * two numbers also divides their difference.
+     */
+```
+
+```c
+    /* Practical Organization   */
+    typedef struct {
+        int top;
+        int bottom;
+    } rat;
+
+    rat n, *p;
+    p = &n;
+```
+
+
