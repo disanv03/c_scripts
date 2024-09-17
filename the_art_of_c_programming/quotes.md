@@ -1,16 +1,23 @@
-## The Art of C programming
+# The Art of C programming
 
-#### Compilers and Interpreters
+## Compilers and Interpreters
 
->__Interpreter__:
-> "when the program is executed, to take each line in turn, translate it into machine code and then run the machine code. When the translation of a line takes place, the resulting machine code overwrites that from the previous line, so that if a line of source code appear in a loop which is executed 200 times, it also must be translated 200 times"
+>__Interpreter__: > "when the program is executed, to take each line in
+turn, translate it into machine code and then run the machine code. When
+the translation of a line takes place, the resulting machine code
+overwrites that from the previous line, so that if a line of source code
+appear in a loop which is executed 200 times, it also must be translated
+200 times"
 
 
->__Compilers__:
-> "The obvious alternative is to translate the entire source code into a single machine code program, and then run the machine code. This will clearly execute faster, and there are no translations during execution. A translator that adopts this approach is called a compiler."
+>__Compilers__: > "The obvious alternative is to translate the entire
+source code into a single machine code program, and then run the machine
+code. This will clearly execute faster, and there are no translations
+during execution. A translator that adopts this approach is called
+a compiler."
 
 
-#### The Skeleton of a C program
+## The Skeleton of a C program
 
 > "All C programs consist of a series of functions"
 
@@ -19,26 +26,29 @@
 > "In C, the newline character has no significance at all"
 
 
-#### Loop and Control Constructs
+## Loop and Control Constructs
 
 ```c
-    /* conditional expression */
-    if (x == 0) printf("x is zero");
-    /* is exactly equivalent to */
-    if (!x) printf("x is zero");
+    /* conditional expression */ 
+    if (x == 0) 
+        printf("x is zero"); 
+    /* is exactly equivalent to */ 
+    if (!x) 
+        printf("x is zero");
 
-    /* logical connectives */
+    /* logical connectives */ 
     if (a > 10 && a < 20)
         printf("a is within range");
-    /* this could be negated: */
+    /* this could be negated: */ 
     if (!(a > 10 && a < 20))
         printf("a is not within range");
 ```
 
 
-#### Arithmetic and Logic
+## Arithmetic and Logic
 
-> "... and then the different branches of arithmetic -- Ambition, Distraction, Uglification, and Derision". Alice's Adventures in Wonderland
+> "... and then the different branches of arithmetic -- Ambition,
+Distraction, Uglification, and Derision". Alice's Adventures in Wonderland
 
 
 __ASCII coding system in binary__
@@ -60,7 +70,9 @@ __ASCII coding system in binary__
 
 #### AND (&)
 
-> "The AND operation compares two bit patterns and produces a third result pattern. If corresponding pairs of bits are both 1 the result bit for that position is set to 1. Under all other circumstances it is set to 0"
+> "The AND operation compares two bit patterns and produces a third result
+pattern. If corresponding pairs of bits are both 1 the result bit for
+that position is set to 1. Under all other circumstances it is set to 0"
 
 ```c
     /* toupper, convert lower case to their upper case equivalents */
@@ -71,15 +83,19 @@ __ASCII coding system in binary__
     }
 ```
 
-Binary value of 223: `11011111` bit 5 is forced to zero, and the other bits are left unchanged.
+Binary value of 223: `11011111` bit 5 is forced to zero, and the other
+bits are left unchanged.
 
 
-> "a bit that is set, i.e., 1, is considered "true"; a cleared bit, or 0, is "false". Thus, in the result of `z = x & y`, each bit is set if and only if the corresponding bit is set in both `x` and `y`."
+> "a bit that is set, i.e., 1, is considered "true"; a cleared bit,
+or 0, is "false". Thus, in the result of `z = x & y`, each bit is set
+if and only if the corresponding bit is set in both `x` and `y`."
 
 
 #### OR
 
-> "If either of the corresponding pairs of bits is a `1` the result bit for that column is `1`. Only if both bits are zero is the result zero"
+> "If either of the corresponding pairs of bits is a `1` the result bit
+for that column is `1`. Only if both bits are zero is the result zero"
 
 ```
     p   01101010
@@ -100,7 +116,8 @@ Binary value of 223: `11011111` bit 5 is forced to zero, and the other bits are 
 
 #### XOR
 
-This is short for eXclusive OR. It's like OR except that it excludes the condition that both bits are '1'.
+This is short for eXclusive OR. It's like OR except that it excludes
+the condition that both bits are '1'.
 
 ```
     p   01101010
@@ -164,9 +181,9 @@ Right shifts are also possible: `a = b >> 2;`, would shift b 2 bits right and pu
 > "Normally, a right shift is equivalent to a divide by 2, as you'd expect, but there are exceptions to this rule which we'll come across later."
 
 
-#### Strings, Arrays, and pointers
+## Strings, Arrays, and pointers
 
-##### Strings and Pointers
+#### Strings and Pointers
 
  
 | Number | Character |
@@ -187,16 +204,23 @@ Right shifts are also possible: `a = b >> 2;`, would shift b 2 bits right and pu
 
 0 = [ASCII null delimiter]
 
-When C compiles a statement like `s = "this message";` it sets up a set of consecutive bytes somewhere in memory [...]. You'll notice that there's a delimiter provided by the system, which is a zero byte. That's not ASCII zero (whose value is 48) but ASCII null (i.e., all bits set to '0').
+When C compiles a statement like `s = "this message";` it sets up a set of
+consecutive bytes somewhere in memory [...]. You'll notice that there's
+a delimiter provided by the system, which is a zero byte. That's not
+ASCII zero (whose value is 48) but ASCII null (i.e., all bits set to '0').
 
 
-The variable `s` is set to `38012`. In other words, it is not the string but rather a pointer to the string. For the moment it is enough to note that it is pointer to strings, rather than the strings themselves, that are passed around in a C program.
+The variable `s` is set to `38012`. In other words, it is not the string
+but rather a pointer to the string. For the moment it is enough to
+note that it is pointer to strings, rather than the strings themselves,
+that are passed around in a C program.
 
 
-Even in the `"printf("some output");` the argument that is really passed to printf is the pointer to the string "some output".
+Even in the `"printf("some output");` the argument that is really passed
+to printf is the pointer to the string "some output".
 
 
-#### Arrays
+## Arrays
 
 ```c
     char s[30];
@@ -208,11 +232,12 @@ Even in the `"printf("some output");` the argument that is really passed to prin
 > An array name is a pointer to the beginning of the array. However, there is one difference: an array name is a constant and you can't do arithmetic with it whereas a pointer can be manipulated in any way you like.
 
 
-#### String Functions
+## String Functions
 
 
 Let's illustrate pointer manipulation by writing string functions.
-So first we want a function that is passed a pointer to the string, and will return the number of bytes the string contains:
+So first we want a function that is passed a pointer to the string,
+and will return the number of bytes the string contains:
 
 ```c
     /* Writing String functions that mimic BASIC's LEN, LEFT$, RIGHT$, and MID$ */
@@ -240,8 +265,10 @@ So first we want a function that is passed a pointer to the string, and will ret
         int length = strlen(string);
         int start = length - n; /* starting index for copying */
         
+        /* ensure we don't start before beginning of the string */
         if (start < 0)
-            start = 0;  /* ensure we don't start before beginning of the string */
+            start = 0;  
+
         int i, j;
         for (i = start, j = 0; i < length; i++, j++) {
             sub[j] = string[i];
@@ -289,7 +316,11 @@ Let's revise the len function using pointer.
     }
 ```
 
-This is clearly a very close relative of the original len function. We're just missing a few square brackets, and we have to store the initial pointer value rather than setting a counter to zero.
+This is clearly a very close relative of the original len function. We're
+just missing a few square brackets, and we have to store the initial
+pointer value rather than setting a counter to zero.
+
+
 
 
 ```c
@@ -500,7 +531,8 @@ This is clearly a very close relative of the original len function. We're just m
 
         while (day <= days) {
             for (int i = 0; i < 7 && day <= days; i++)
-                printf("%-5d", day++) /* -: left-aligned, 5 char wide, d: deciaml */
+                printf("%-5d", day++) 
+            /* -: left-aligned, 5 char wide, d: deciaml */
 
             printf("\n");
         }
@@ -523,12 +555,16 @@ This is clearly a very close relative of the original len function. We're just m
     }
 ```
 
+
+
 ## Floats and Other types
 
 > "She can't do Subtraction", said the White Queen. "Can you do Division? devide a loaf by a knife - what's the answer to that?"
 
 
-The unsigned form allows you to tell the compiler that you want to think about the number as always being positive, and you get a doubled maximum value as an advantage.
+The unsigned form allows you to tell the compiler that you want to think
+about the number as always being positive, and you get a doubled maximum
+value as an advantage.
 
 ### **Declaring Structures**
 
@@ -556,7 +592,8 @@ The unsigned form allows you to tell the compiler that you want to think about t
 ## Defining Your Own Types
 
 
-Defining structures comes close to defining completely new types. Well, you can do that, too, with a typedef statement.
+Defining structures comes close to defining completely new types. Well,
+you can do that, too, with a typedef statement.
 
 ```c
     /* declares int and month to be equivalent */
@@ -571,7 +608,8 @@ Defining structures comes close to defining completely new types. Well, you can 
     catalog unipart[5000], great_universal_stores[2000];
 ```
 
-None of this provides you with any new programming tools. What it does achieve is a readability improvement.
+None of this provides you with any new programming tools. What it does
+achieve is a readability improvement.
 
 ## Constants and Initializers
 
@@ -585,21 +623,31 @@ The exponent form for large or small numbers is allowed
 
 ## Character Constants
 
-We've spent some time looking at string constants, and you might imagine that a C character can be seen simply as a string of length 1. However, this isn't so, because a string of length 1 occupies 2 bytes, the second containing the null delimiter. So we need a way of allocating a value to a single byte.
+We've spent some time looking at string constants, and you might imagine
+that a C character can be seen simply as a string of length 1. However,
+this isn't so, because a string of length 1 occupies 2 bytes, the second
+containing the null delimiter. So we need a way of allocating a value
+to a single byte.
 
 ```c
     char c;
     c = 'A';
 ```
 
-In other words, when you use a single quotes marks you are setting the value of a single bytes; double quote marks identify a string, as we've seen before.
+In other words, when you use a single quotes marks you are setting the
+value of a single bytes; double quote marks identify a string, as we've
+seen before.
 
 ## Handling Control Characters
 
-Control characters are those that have some effect (on a printer, say) but don't actually print a symbol. And if you can't print it, how can you put it between quote marks?
+Control characters are those that have some effect (on a printer, say)
+but don't actually print a symbol. And if you can't print it, how can
+you put it between quote marks?
 
 
-However, there are some control characters that are so commonly needed that C makes special provision for them. Each is preceded by a backslash, called, in the jargon, an *escape*.
+However, there are some control characters that are so commonly needed
+that C makes special provision for them. Each is preceded by a backslash,
+called, in the jargon, an *escape*.
 
 
 Here's the complete set:
@@ -622,7 +670,15 @@ Here's the complete set:
 
 ## Octal and Hecadecimal Constants
 
-There are times when a constant, although numeric, doesn't *really* represent a number and isn't a character either. Mask patterns of logical operations are good examples. That because is the *bit patterns* rather than the numbers they represent which are significant. So in cases like these, it would be nice to have format that translates to binary more easily than decimal does. C allows us to declare constants in either base 8(octal) or base 16(hexadecimal). In the former case, each digit can be directly encoded from a group of 3 bits, and in the latter case, groups of 4 bits.
+There are times when a constant, although numeric, doesn't *really*
+represent a number and isn't a character either. Mask patterns of logical
+operations are good examples. That because is the *bit patterns* rather
+than the numbers they represent which are significant. So in cases like
+these, it would be nice to have format that translates to binary more
+easily than decimal does. C allows us to declare constants in either
+base 8(octal) or base 16(hexadecimal). In the former case, each digit
+can be directly encoded from a group of 3 bits, and in the latter case,
+groups of 4 bits.
 
 
 | Octal | Binary | Hexadecimal | Binary |
@@ -645,13 +701,19 @@ There are times when a constant, although numeric, doesn't *really* represent a 
 |       |        | F           | 1111   |
 
 
-So, for example, the pattern `10000001` can be seen as `10  000 001` giving `2  0   1` in octal or `1000    0001` giving `8     1` in hexadecimal
+So, for example, the pattern `10000001` can be seen as `10  000 001`
+giving `2  0   1` in octal or `1000    0001` giving `8     1` in
+hexadecimal
 
 
-That work because three binary digits can represent exaclty one octal digit, reflecting the fact that three binary places cover the full range of a single octal digit.
+That work because three binary digits can represent exaclty one octal
+digit, reflecting the fact that three binary places cover the full range
+of a single octal digit.
 
 
-C needs a way to distinguish between decimal, octal, and hexadecimal constants. If there is a leading zero, the constant is taken as octal. If there is a leading zero followed by an 'x' the constant is hexadecimal.
+C needs a way to distinguish between decimal, octal, and hexadecimal
+constants. If there is a leading zero, the constant is taken as octal. If
+there is a leading zero followed by an 'x' the constant is hexadecimal.
 
 ```c
     /* 10000001 */
@@ -718,13 +780,18 @@ It's possible to initialize the value of a variable when you declare it:
 #### Primitive Input
 
 
-At the simple level, C provides a function getchar which returns the next character input from the keyboard.
+At the simple level, C provides a function getchar which returns the
+next character input from the keyboard.
 
 
-The most obvious extension to getchar is to allow a set of characters to be input to a buffer for subsequent processing. We'll write a function getbuf for this.
+The most obvious extension to getchar is to allow a set of characters to
+be input to a buffer for subsequent processing. We'll write a function
+getbuf for this.
 
 
-The function `getbuf` reads characters one by one from the input using `getchar()` and stores each character into the memory location pointed to by the buffer provided.
+The function `getbuf` reads characters one by one from the input using
+`getchar()` and stores each character into the memory location pointed
+to by the buffer provided.
 
 ```c
     #define BUFSIZE 40
@@ -745,7 +812,8 @@ The function `getbuf` reads characters one by one from the input using `getchar(
         char *bptr = buffer;
         
         for (; bptr < buffer + BUFSIZE; bptr++) {
-            int ch = getchar(); /* using int for getchar() to handle EOF properly */
+            /* using int for getchar() to handle EOF properly */
+            int ch = getchar();
             if (ch == EOF)
                 break;
             
@@ -768,12 +836,15 @@ The function `getbuf` reads characters one by one from the input using `getchar(
     
 ```
 
-`EOF` is typically defined as `-1`. It is a special constant defined in `<stdio.h>`. This value is distinct from all valid `char` values, which ensures that it can be used to detect the end of input reliably.
-    
-    
+`EOF` is typically defined as `-1`. It is a special constant defined in
+`<stdio.h>`. This value is distinct from all valid `char` values, which
+ensures that it can be used to detect the end of input reliably.
+
+
 ## Order of precedence
 
-In the list of operator precedence, the operators that appear first have the highest precedence and are evaluated before those at the end.
+In the list of operator precedence, the operators that appear first have
+the highest precedence and are evaluated before those at the end.
 
 ```c
     (), [ ]
@@ -788,7 +859,8 @@ In the list of operator precedence, the operators that appear first have the hig
     =, +=, -=, *=, /=, %=, >>=, <<=, &=, ^=, |=
 ```
 
-The highest the priority operators are those at the top of the list, and those on the same lines have equal priority.
+The highest the priority operators are those at the top of the list,
+and those on the same lines have equal priority.
 
 ```c
     /* Modify getbuf function so that it stores characters with ASCII codes
@@ -848,14 +920,14 @@ The highest the priority operators are those at the top of the list, and those o
      */
 ```
 
-This algorithm has two requirements for it to work correctly. First, as I've
- already pointed out, there must be a sign preceding the digits, and second,
- there must be at least one digit, because the first character in the string
- is added into result regardless of what it is.
+This algorithm has two requirements for it to work correctly. First,
+as I've already pointed out, there must be a sign preceding the digits,
+and second, there must be at least one digit, because the first character
+in the string i added into result regardless of what it is.
 
 
-This means that atoi must ensure that theses conditions exit before calling
- convert.
+This means that atoi must ensure that theses conditions exit before
+calling convert.
 
 ```c
     #include <stdio.h>
@@ -869,7 +941,8 @@ This means that atoi must ensure that theses conditions exit before calling
     int setup(const char *buffer, char *num);
     
     int custom_atoi(const char *buffer) {
-        char num[BUFSIZE + 1]; /* there's a chance that we need one more byte for the sign */
+        /* there's a chance that we need one more byte for the sign */
+        char num[BUFSIZE + 1]; 
         if (!setup(buffer, num)) {
             printf("Not an integer\n");
             exit(EXIT_FAILURE);
@@ -991,7 +1064,8 @@ This means that atoi must ensure that theses conditions exit before calling
         /* loop to encode multiple msgs */
         while (1) {
             printf("Enter a message to encode (or type EXIT to quit): ");
-            scanf(" %[^\n]", message); /* read line of input, and skip leading whitespace */
+            /* read line of input, and skip leading whitespace */
+            scanf(" %[^\n]", message); 
             
             if (strcmp(message, "EXIT") == 0)
                 break;
@@ -1010,7 +1084,9 @@ This means that atoi must ensure that theses conditions exit before calling
 
 > "When `scanf` encounters a space, it knows that is should skip over any whitespace characters before processing the next input according to the next specifier"
 
-By default `scanf` skips leading whitespace when using format specifiers like `%s` or `%d` , but does not skip them when using custom format specifiers like `"%[^\n]"` (or `%c`) 
+By default `scanf` skips leading whitespace when using format specifiers
+like `%s` or `%d` , but does not skip them when using custom format
+specifiers like `"%[^\n]"` (or `%c`)
 
 
 ## Output
@@ -1030,17 +1106,27 @@ We'll now turn our attention to more ways of getting the machine to talk to us..
 
 `printf("%s%6.3f", p, x);`
 
-If `p` is a pointer to the string "First value is:" and `x` holds the value 5.813, you'll get the display `First value is: 5.813`
+If `p` is a pointer to the string "First value is:" and `x` holds the
+value 5.813, you'll get the display `First value is: 5.813`
 
 
-Notice that I've specified the length of the floating point value (6 char, 3 of them decimal places), but left C to make up its own mind about the length of the string. This clearly presents no problem, because C knows where the string ends from the terminating null. Howevern C will convert the floating point number to a string before printing it, so the same should be true for the `f` conversion (and, indeed, all the others).
+Notice that I've specified the length of the floating point value (6 char,
+3 of them decimal places), but left C to make up its own mind about the
+length of the string. This clearly presents no problem, because C knows
+where the string ends from the terminating null. Howevern C will convert
+the floating point number to a string before printing it, so the same
+should be true for the `f` conversion (and, indeed, all the others).
 
-**Example** with `3.43` with `%6.3f`
-- `.3f`: print the float with 3 digits after the decimal point, giving `3.430`
-- `6`: specifies the minimum field width. The total width of the printed number, including the digits and decimal point, is 5 char, since the minimum field width is 6, an extra space will be added to the left.
+**Example** with `3.43` with `%6.3f` - `.3f`: print the float with
+3 digits after the decimal point, giving `3.430` - `6`: specifies the
+minimum field width. The total width of the printed number, including the
+digits and decimal point, is 5 char, since the minimum field width is 6,
+an extra space will be added to the left.
 
 
-In other words the number is pushed as far right as possible (i.e., right justified). It is possible to force left justification by preceding the length specifier with a minus sign like this `printf("%s%-6.3f", p, x);`
+In other words the number is pushed as far right as possible (i.e., right
+justified). It is possible to force left justification by preceding the
+length specifier with a minus sign like this `printf("%s%-6.3f", p, x);`
 
 #### Printing to Memory
 
@@ -1050,7 +1136,8 @@ There's a function sprintf that acts like printf except that the data it assembl
     void printmoney(int cents) {
         char out[8] = " ";  /* init empty char array of size 8 */
         *out = '$';         /* first char to $ */
-        sprintf(out + 1, "%5d", cents);     /* 5 char wide, right-jus, start from out[i] */
+        /* 5 char wide, right-jus, start from out[i] */
+        sprintf(out + 1, "%5d", cents);     
         /* next 3 lines modify the string to insert a decimal point */
         *(out + 6) = *(out + 5);    /* cpy char at pos 5 to pos 6 */
         *(out + 5) = *(out + 4);    /* cpy char at pos 4 to pos 5 */
@@ -1059,7 +1146,8 @@ There's a function sprintf that acts like printf except that the data it assembl
     }
 ```
 
-The junior two digits are shifted right to allow space for the '.' to be inserted.
+The junior two digits are shifted right to allow space for the '.' to
+be inserted.
 
 ```c
     out[0] = $
@@ -1072,12 +1160,14 @@ The junior two digits are shifted right to allow space for the '.' to be inserte
     out[7] = \0 (implicitly added by sprintf)
 ```
 
-So you can see how a string can be manipulated in a very flexible way, whereas a straight printf would not have allowed such tinkering.
+So you can see how a string can be manipulated in a very flexible way,
+whereas a straight printf would not have allowed such tinkering.
 
 
 ## Primitive Output
 
-We could write a function called type that makes the computer behave as a typewriter until a delimiter(reffered to as DELIM) is encountered.
+We could write a function called type that makes the computer behave as
+a typewriter until a delimiter(reffered to as DELIM) is encountered.
 
 ```c
     void type() {
@@ -1088,7 +1178,10 @@ We could write a function called type that makes the computer behave as a typewr
 
 ```
 
-If you could change the standard input to a disc file, for example, we could use this routine as it stands to copy file to the screen. For that we need to alter the standard I/O devices. We shall return to this problem in Chapter 12.
+If you could change the standard input to a disc file, for example,
+we could use this routine as it stands to copy file to the screen. For
+that we need to alter the standard I/O devices. We shall return to this
+problem in Chapter 12.
 
 
 ## More about Control Constructs
@@ -1117,13 +1210,14 @@ Write more compact code using the conditional operator
     }
 ```
 
-The keyword `break` has the effect of breaking out of the smallest enclosing loop.
-It doesn't matter what kind of loop it is.
+The keyword `break` has the effect of breaking out of the smallest
+enclosing loop. It doesn't matter what kind of loop it is.
 
 
 ### Continuing
 
-It's also possible to jump to the end of a loop without leaving it. In other words you can conditionally bypass a chunk of the code in the loop.
+It's also possible to jump to the end of a loop without leaving it. In
+other words you can conditionally bypass a chunk of the code in the loop.
 
 ```c
     /* For example:
@@ -1143,14 +1237,19 @@ given circumstance"
 
 ### Multiway Switches
 
-C provides a mechanism for dealing directly with multiway branches, called the switch statement.
+C provides a mechanism for dealing directly with multiway branches,
+called the switch statement.
 
-The `default` keyword doesn't have to be the final case. In fact, there is no significance at all in the order in which the case appear.
+The `default` keyword doesn't have to be the final case. In fact, there
+is no significance at all in the order in which the case appear.
 
 ### Do not pass Go
 
-About the only situation where a 'goto' would make sense to use would be a series of nested loops at the center of which is a confition, which, if true, requires the whole block of loops to be exited.
-Using break in that case wouldn't make sense, because it only breaks out of the smallest enclosing loop.
+About the only situation where a 'goto' would make sense to use would be
+a series of nested loops at the center of which is a confition, which,
+if true, requires the whole block of loops to be exited.  Using break
+in that case wouldn't make sense, because it only breaks out of the
+smallest enclosing loop.
 
 
 ## Chapter 10: Recursion
@@ -1214,14 +1313,16 @@ Using break in that case wouldn't make sense, because it only breaks out of the 
 
 ### The Storeman's Mate
 
-Let's pull some ideas together for dealing with comings and goings of catalog items.
+Let's pull some ideas together for dealing with comings and goings of
+catalog items.
 
 - Add entry to catalog
 - Delete entry from catalog
 - Alter stock level
 - Check price of item
 
-We can use a switch on a function called menu which display the menu and returns the user's choice.
+We can use a switch on a function called menu which display the menu
+and returns the user's choice.
 
 ```c
     main() {
@@ -1379,7 +1480,7 @@ We can use a switch on a function called menu which display the menu and returns
 
 ```
 
-### Recursive Structures
+## Recursive Structures
 
 
 > "Here a recursive structure that consists of a pair of pointers, one of which points to a word, and the orther points to another structure of the same kind"
@@ -1434,11 +1535,14 @@ We can use a switch on a function called menu which display the menu and returns
         printf("\n");
     }
 
-    /* find_key: adding an argument that it will also accept a description to search on */
+    /* find_key: adding an argument that it will also accept a description 
+     * to search on 
+     */
     struct cat_entry* find_key(int item_no, const char* description) {
         struct cat_entry *p = catalog; 
         while (p->item_no != -1) {
-            if ((item_no != -1 && p->item_no == item_no) || (description != NULL && strcmp(p->description, description) == 0))
+            if ((item_no != -1 && p->item_no == item_no) || 
+            (description != NULL && strcmp(p->description, description) == 0))
                 return p;
             p++;
         }
@@ -1460,18 +1564,33 @@ We can use a switch on a function called menu which display the menu and returns
 
 ### I/O Redirection
 
-Most modern operating systems do not concern themselves directly with peripheral devices such as keyboards and printers, but rather with notional entities called channels which are then associated with specific device drivers.
-Thus a program communicates with a channel and the channel is linked to a device. The advantage of this mechanism is that the program need not be changed if the source of its input data changes, or its output is to be transferred to a disk file, say, rather than the printer. Only the channel/device assignment needs to be altered.
+Most modern operating systems do not concern themselves directly
+with peripheral devices such as keyboards and printers, but rather
+with notional entities called channels which are then associated with
+specific device drivers.  Thus a program communicates with a channel
+and the channel is linked to a device. The advantage of this mechanism
+is that the program need not be changed if the source of its input data
+changes, or its output is to be transferred to a disk file, say, rather
+than the printer. Only the channel/device assignment needs to be altered.
 
-All C I/O is handled in this channel oriented way. Thus the getchar function does not (strictly) transfer a character from the keyboard to main memory; it transfers it from a channel, which by default is assigned to the keyboard, to main memory. This channel is referred to as stdin(for standard input). There is a corresponding channel stdout whose default assignment is the screen.
+All C I/O is handled in this channel oriented way. Thus the getchar
+function does not (strictly) transfer a character from the keyboard
+to main memory; it transfers it from a channel, which by default is
+assigned to the keyboard, to main memory. This channel is referred to
+as stdin(for standard input). There is a corresponding channel stdout
+whose default assignment is the screen.
 
 
-A typical mechanism for informing the operating system of this redirection of I/O might be `cprogram < a:data.text > b:newdata.text`
+A typical mechanism for informing the operating system of this redirection
+of I/O might be `cprogram < a:data.text > b:newdata.text`
 
 ### Error Messages
 
 
-There is one difficulty with this arrangement: any runtime error messages would be redirected along with the output data and the results could be somewhat mystifying. To get over this problem there is a third standard channel called stderr to which error messages are sent.
+There is one difficulty with this arrangement: any runtime error messages
+would be redirected along with the output data and the results could be
+somewhat mystifying. To get over this problem there is a third standard
+channel called stderr to which error messages are sent.
 
 ### Buffered File I/O
 
@@ -1524,9 +1643,12 @@ There is one difficulty with this arrangement: any runtime error messages would 
      */
 ```
 
-`fopen` tells us whether it was successful in opening file. It does this by returning a channel identifier value of zero if the file could not be opened for any reason.
+`fopen` tells us whether it was successful in opening file. It does this
+by returning a channel identifier value of zero if the file could not
+be opened for any reason.
 
-Typically, `putc` and `fclose` also will report failure. EOF may be returnned by `putc`, and a non-zero value by `fclose`.
+Typically, `putc` and `fclose` also will report failure. EOF may be
+returnned by `putc`, and a non-zero value by `fclose`.
 
 ```c
     /* So a more robust filecopy would be with those test included: */
@@ -1552,22 +1674,27 @@ Typically, `putc` and `fclose` also will report failure. EOF may be returnned by
             
 ### Random Access Files
 
-C provides a library function that effectively allows you to think about a file as a character array on disk, and it provides a mechanism for setting the "array subscript".
+C provides a library function that effectively allows you to think about
+a file as a character array on disk, and it provides a mechanism for
+setting the "array subscript".
 
 
 The general form of this function is: `lseek(cid, skip_bytes, start);`
 
-`0` if the skip is to be computed from the beginning of the file
-`1` if the skip is to be computed from the current position
-`2` if the skip is to be computed from the end of the file
+`0` if the skip is to be computed from the beginning of the file `1`
+if the skip is to be computed from the current position `2` if the skip
+is to be computed from the end of the file
 
-For instance `lseek(cid, 200, 0);` will set the system up so that the next getc will read the 200th byte in the file.
-
-
-A subsequent call `lseek(cid, 50, 1);` would arrange for byte 250 to be read nextd; or, of course, written next, with `putc`.
+For instance `lseek(cid, 200, 0);` will set the system up so that the
+next getc will read the 200th byte in the file.
 
 
-Leaving the file in "append" state with `lseek(cid, 0, 2);` which moves the subscript to the end of the file (start-2) and skipts 0 bytes.
+A subsequent call `lseek(cid, 50, 1);` would arrange for byte 250 to be
+read nextd; or, of course, written next, with `putc`.
+
+
+Leaving the file in "append" state with `lseek(cid, 0, 2);` which moves
+the subscript to the end of the file (start-2) and skipts 0 bytes.
 
 ```c
     /* using lseek to set up the position in the file */
@@ -1615,19 +1742,22 @@ Binary search algorithm can be stated like this:
     }
 ```
 
+
 ```c
-    /* write the function search_file which accpets the arguments file name,
-     * number of record in the file, the record length, the position of the 
-     * first byte of the key, the length in bytes of the key, and the target key.
+    /* write the function search_file which accpets the arguments
+     * file name, number of record in the file, the record length, 
+     * the position of the first byte of the key, the length in bytes
+     * of the key, and the target key.  
      *
      * n = search_file("data", 2000, 25, 7, 3, test_int);
-     * will look for the int "test_int" in bytes 7, 8, 9 of a 2000 record file
-     * called "data", each of whose records is 25 bytes long.
-     *
+     * will look for the int "test_int" in bytes 7, 8, 9 of a 2000 record
+     * file called "data", each of whose records is 25 bytes long.
      */
-    
-    /* search_file: binary search to find a specific integer key within each record */
-    int search_file(char *filename, int filesize, int recsize, int startbyte, int numbytes, int target) {
+
+    /* search_file: binary search to find a specific integer key within
+     * each record */
+    int search_file(char *filename, int filesize, int recsize, 
+                    int startbyte, int numbytes, int target) {
         FILE *in_cid;
         int top_rec, bottom_rec, mid_rec;
         int key = 0;    /* extracted key from current record    */
@@ -1673,7 +1803,9 @@ Binary search algorithm can be stated like this:
 ### Projects:
 
 ```c
-    /* The binary search algorithm only work if the record are sorted into key order. Write a function that will sort the file into ascending order of any numeric keyfield */
+    /* The binary search algorithm only work if the record are sorted into
+    key order. Write a function that will sort the file into ascending
+    order of any numeric keyfield */
 
     typedef struct {
         char *data;
@@ -1715,7 +1847,8 @@ Binary search algorithm can be stated like this:
         qsort(v, last+1, right);
     }
    
-    void sort_file(char *filename, int filesize, int recsize, int startbyte, int numbytes) {
+    void sort_file(char *filename, int filesize, int recsize, 
+                   int startbyte, int numbytes) {
         FILE *in_cid;
         int num_records = filesize / recsize;
         Record *records = malloc(num_records * sizeof(Record));
@@ -1756,6 +1889,7 @@ Binary search algorithm can be stated like this:
                
 ```
 
+
 ### Debugging
 
 > "cats miaow, dogs bark, politicians tell imaginative versions of the truth, and programmers make mistakes"
@@ -1769,7 +1903,8 @@ Binary search algorithm can be stated like this:
     p = p + xq = q + y;
 ```
 
-This leads to an important observation: what the compiler sees as an error may not be the error you actually made.
+This leads to an important observation: what the compiler sees as an
+error may not be the error you actually made.
 
 ### Runtime Errors
 
@@ -1806,7 +1941,8 @@ This leads to an important observation: what the compiler sees as an error may n
     void debug_improved(const char *message, int value, int refno) {
         _count[refno]++;
         
-        printf(">>Ref %d: %s = %d: count = %d\n", refno, message, value, _count[refno]);
+        printf(">>Ref %d: %s = %d: count = %d\n", refno, message, 
+                value, _count[refno]);
     }
 
 ```
