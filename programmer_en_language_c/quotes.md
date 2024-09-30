@@ -70,3 +70,135 @@ D'une manière générale, la notion de type, sert à régler ce problèmes.
 #### Les types entiers
 
 Le mot clé int correspond à la représentation de nombres entiers relatifs. Pour ce faire: un bit est réservé pour représenter le sign du number; les autres bits servent à représenter la valeur absolue du nombre
+
+#### Les types flottants
+
+Les types "flottants" permettent de représenter, de manière approchée, une partie des nombres réels. Pour ce faire, ils s'inspirent de la notation "scientifique" (ou "exponentielle") qui consiste à écrire un nombre sous la forme `1.5 x 10^22` ou `0.472 x 10^-8`; dans une telle notation, on nomme "mantisses" les quantités telles que `1.5` ou `0.472` et "exposants" les quantités telles que `22` ou `-8`.
+
+#### Les types caractères
+
+Par ailleurs, la notion de caractère en C dépasse celle de caractère imprimable, c'est-à-dire auquel est obligatoirement associé un graphisme. C'est ainsi qu'il existe certains "caractères" de changement de ligne, de tabulation...
+
+## III. Les opérateurs et les expressions
+
+En C, l'affectation (=) est un opérateur.
+
+La principlae instruction est une expression terminée par un point-virgule. Sous l'allure d'une affectation `(i=5)` il y a évaluation d'une expression dont la valeur est finalement inutilisé.
+
+C dispose d'opérateurs classiques "binaires" (c'est-à-dire portant sur deux "opérandes"), ainsi que d'un opérateur "unaire" (portant sur un seul opérande) correspondant à l'opposé.
+
+#### Conversions d'ajustement de type
+
+Une conversion ne peut se faire que suivant une "hiérarchie" qui permet de ne pas dénaturer la valeur initiale, à savoir:
+`int -> long -> float -> double -> long double`
+
+La conversion est effectué avant l'évaluation de l'expression.
+
+
+#### Promotions numériques
+
+Les conversions d'ajustement de type ne suffisent pas à régler tous les cas.
+
+Les types `char` et `short` sont convertie en |`int`, et cela sans considérer les types des éventuels autres opérandes. On parle alors, dans ce cas, de "promotions numériques", ou "conversions systématiques".
+
+
+Les arguments d'appel d'une fonction peuvent $etre également soumis à des conversions. Lorsque le type des arguments n'a pas été déclaré, les valeurs transmises en argument sont soumises aux règles précédentes auxquelles il faut ajouter la promotion numérique `float -> double`.
+
+#### Les opérateurs relationnels
+
+Opérateurs classiques de comparaison:
+`2 * a > b + 5`. Le langage C distingue deux points:
+- le résultat de la comparaison est un entier valent 0 si faux et 1 si vrai. Ainsi la comparaison ci dessus devient en fait une expression de type entier.
+
+```c
+    a < b == c < d
+    /* interprétée comme: */
+    (a < b) == (c < d)
+    
+    /* opérateur raltionnels sont moins prioritaires
+       que les opérateurs arithmétiques */
+    x + y < a + 2
+    (x + y) < (a + 2)
+   
+```
+#### Opérateurs logiques
+
+L'opérateur ! a une priorité supérieure à celle de tous les opérateurs arithmétiques binaires et aux opérateurs relationnels.
+
+L'opérateur ! inverse la valeur logique de `n`
+
+```c
+    if (!n)
+    /* imaginons n=5 
+       n=5, non nul alors 1
+       !1 deviens 0
+       La condition if teste si !n est vrai, 0
+       ne permet pas d'entrer dans le if
+    */
+```
+
+Les deux opérateurs && et || possède une propriété intéressante: leur second opérande (à droite) n'est évalué que si la connaissance de sa valeur est indispendable.
+
+```c
+    a<b && c<d
+    /* on commence par evaluer a<b, si le résultat est faux
+    il est inutile d'évaluer c<d
+    */
+```
+
+#### Affectation ordinaire
+
+Le terme "lvalue" ("left value") fait référence à une expression qui
+désigne un emplacement de mémoire, c'est-à-dire une adresse où une
+valeur peut être stockée. Une lvalue peut apparaître à gauche d'une
+affectation, ce qui signifie qu'elle peut recevoir une valeur.
+
+L'opérateur d'affectation possède une associativité de "droite à gauche"
+
+#### L'opérateur de cast
+
+Le programmeur peut forcer la conversion d'une expression quelconque dans un type de son choix, à l'aide de l'opérateur "cast".
+
+
+`(double) (n/p)` la notation (double) correspond à un opérateur unaire dont le rôle est d'effectuer la conversion.
+
+#### L'opérateur séquentiel
+
+L'opérateur dit "séquentiel" permet d'exprimer plusieurs calculs successifs au sein d'une mêmeexpression.
+
+
+`a*b, i+j` est une expression que évalue d'abord a * b, puis i + j et qui prend comme valeur la dernière calculée.
+
+Un tel opérateur peut être utilisé pour réunir plusieurs instructions en une seule. Ce dernier pourra fréquement intervenir dans les instructions de choix ou dans les boucles; là où celles-ci s'attendent à trouver une seule expression, l'opérateur séquentiel permettre d'en placer plusieurs.
+
+```c
+    if (i++, k>0) ...
+
+    for (i=1, k=0; ...; ...) ...
+
+    for (i=1, k=0, printf("on commence");...)
+```
+
+#### L'opérateur sizeof
+
+L'opérateur sizeof, dont l'emploi ressemble à celui d'une fonction, fournit la taille en octetcs.
+
+#### Operateurs d'incrémentation
+
+Post incrémentation `i++` affect dans un premier temps la valeur i = i, puisincrement, c'est la difference clé entre pré/post incrémentation.
+
+```c
+    int n = 15;
+    int p = 10;
+    int q = 5;
+
+    if (n < p) {
+        /* execution de n++ */
+        q = n;   
+        n = n + 1; 
+    } else {
+        /* execution de p++ */
+        q = p;   
+        p = p + 1; 
+    }
+```
