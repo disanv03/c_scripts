@@ -202,3 +202,123 @@ Post incrémentation `i++` affect dans un premier temps la valeur i = i, puisinc
         p = p + 1; 
     }
 ```
+
+# IV. Entrées-sorties conversationnelles
+
+#### Gabarit d'affichage
+
+Par défaut, les entiers sont affichés avec le nombre de caractères nécessaires. Les flottants sont affichés avec six chiffres après le point.
+
+
+Un nombre placé après % dans le code de format précise un gabarit d'affichage, c'est-à-dire un nombre minimal de caractères à utiliser.
+
+```c
+    /* entier avec 3 caractères minimum */
+    printf("%3d", n);
+    n = 20      -> ^20
+    n = 3       -> ^^3
+    n = 2358    -> 2358
+    n = -5200   -> -5200
+
+    /* notation décimale gabarit par défaut
+     * (6 chiffres après point)
+     */
+    printf("%f", x);
+    x = 1.2345      -> 1.234500
+    x = 12.3456789  -> 12.345679 
+
+    /* gabarit mini 10
+     * (6 chiffres après point)
+     */
+    printf("%10f", x);
+    x = 1.2345      -> ^^1.234500
+    x = 12.345      -> ^12.354000
+    x = 1.2345E5    -> 123450.000000
+
+    /* notation exponentielle - gabarit par défaut
+     * (6 chiffres après point )
+     */
+    printf("%e", x);
+    x = 1.2345          -> 1.234500e+000
+    x = 123.45          -> 1.234500e+002
+    x = 123.456789E8    -> 1.234568e+010
+    x = -123.456789E8   -> -1.234568e+010
+```
+
+#### Actions sur la précision
+
+Pour les flottants, on peut spécifier un numbre de chiffres après le point décimal.
+
+```c
+    /* gabarit 10 mini
+     * 3 chiffres après point
+     */
+    printf("%10.3f", x);
+    x = 1.2345      -> ^^^^^1.235
+    x = 1.2345E3    -> ^^1234.500
+    x = 1.2345E7    -> 12345000.000
+
+    /* notation exponentielle mini 12
+     * 4 chiffres après point
+     */
+    printf("%12.4e", x);
+    x = 1.2345          -> ^1.2345e+000
+    x = 123.456789E8    -> ^1.2346e+010
+```
+
+Le signe moins (-), placé immédiatement après le symbole % (comme dans %-4d ou %-10.3f), demande de "cadrer" l'affichage à gauche au lieu de le cadrer (par défaut) à droite.
+
+Le caractère (\*) signifie que la valeur est fournie dans la list des arguments de printf
+
+La fonction printf fournit une "valeur de retour". Il s'agit du nombre de caractères qu'elle a réellement affichés (ou -1 en cas d'erreur).
+
+#### Scanf
+
+L'information frappée au clavier est rangér temporairement dans l'emplacement mémoire nommé "tampon" (buffer). Ce dernier est exploré, caractère par caractère par scanf, au fur et à mesure des besoins. Il existe un "pointeur" qui précise quel est le prochain caractère à prendre en compte.
+
+
+D'autre part, certains caractères jouent un rôte particulier dans les données: ce sont les "séparateurs". Les deux principaux sont l'espace et la fin de ligne (\n).
+
+
+```c
+    /* ^ désigne un espace et @ une fin de ligne */
+    scanf("%d%d", &n, &p);
+    12^25@      n = 12,     p = 25
+    ^12^^25^^@  n = 12,     p = 25
+    12@@^25@    n = 12,     p = 25
+
+    scanf("%c%d", &c, &n);
+    a25@        c = 'a',    n = 25
+    a^^25@      c = 'a',    n = 25
+
+    scanf("%d%c", &n, &c);
+    12^a@       n = 12,     c = '^'
+```
+
+Le code format précise la nature du travail à effectuer pour "transcoder" une partie de l'information frappée au clavier.
+
+
+%d entraîne une "double conversion" char->int->binary. En revanche, le code %c demande simplement de reopier tel qeul l'octet du caractère concerné.
+
+```c
+    scanf("%3d%3d", &n, &c);
+    12^25@      n = 12      p = 25
+    ^^^^^12345@ n = 123     p = 45
+    12@25@      n = 12      p = 25
+```
+
+Un espace entre deux codes de format demande à scanf de faire avance le pointeur au prochain caractère différent d'un séparateur. (pour type numérique). En revanche, cela n'est pas le cas pour les caractères.
+
+
+D'une manière générale, dans le traitement d'un code de format, scanf arrête son exploration du tampon dès que l'une des trois conditions est satisfaite:
+
+- rencontre d'un caractère séparateur
+- gabarit maximal atteint
+- rencontre d'un caractère "invalide"
+
+
+L'informations frappées au clavier ne sont pas traitées instantanément par scanf mais mémorisées dans un tampon. Jusqu'ici, nous n'avons pas précisé quand scanf s'arrêt de "mémoriser" pour commencer à "traiter". Il le fait tout naturellement à la rencontre d'un caractère de fin de ligne généré par "return", dont le rôle est aussi celui d'une "validation".
+Notez que, bien qu'il joue le rôle d'une validation, ce caractère de fin de ligne est quand m$eme recopié dans le tampon; il pourra donc éventuellement être lu en tant que tel.
+
+
+Dans ce cas, il faut bien voir que les caractères non exploité reste dans le tampon pour une "prochaine fois".
