@@ -322,3 +322,16 @@ Notez que, bien qu'il joue le rôle d'une validation, ce caractère de fin de li
 
 
 Dans ce cas, il faut bien voir que les caractères non exploité reste dans le tampon pour une "prochaine fois".
+
+## V. Instructions de contrôle
+
+Instructions de branchement inconditionnel: goto, break et continue
+
+
+Un else se rapporte toujours au dernier if rencontré auquel un else n'a pas encore été attribué.
+
+Ces constructions sont correctes:
+- `do c=getchar(); while (c!='x');`
+- `do ; while (...);`
+- `do { } while (...);`
+
